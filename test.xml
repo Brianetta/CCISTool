@@ -1,0 +1,79 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE NCCIS2015>
+<!--NCCIS Return Information Exported from the CogniSoft NCCIS Database-->
+<NCCIS2015>
+<FileHeader>
+  <Databases>
+    <DatabaseId>123</DatabaseId>
+  </Databases>
+  <SourceLEAs>
+      <LEACode>390</LEACode>
+      <LEACode>391</LEACode>
+      <LEACode>392</LEACode>
+      <LEACode>393</LEACode>
+      <LEACode>394</LEACode>
+      <LEACode>929</LEACode>
+  </SourceLEAs>
+  <DateOfSend>2015-02-17</DateOfSend>
+  <PeriodEnd>2015-04-30</PeriodEnd>
+  <SupplierName>CCISTool</SupplierName>
+  <SupplierXMLVersion>1.0</SupplierXMLVersion>
+  <XMLSchemaVersion>1.0</XMLSchemaVersion>
+</FileHeader>
+<YoungPersonsRecord>
+    <PersonalDetails>
+        <YoungPersonsID>1230000000001</YoungPersonsID>
+        <CohortStatus>P</CohortStatus>
+        <GivenName>Wilma</GivenName>
+        <MiddleName></MiddleName>
+        <FamilyName>Dummy</FamilyName>
+        <AddressLine1></AddressLine1>
+        <AddressLine2>1</AddressLine2>
+        <AddressLine3>Dummy Street</AddressLine3>
+        <AddressLine4></AddressLine4>
+        <Town>Dummytown</Town>
+        <County></County>
+        <Postcode>ZZ99 9ZZ</Postcode>
+        <Gender>F</Gender>
+        <DOB>1999-01-01</DOB>
+        <Ethnicity>WBRI</Ethnicity>
+        <LeadLEA>390</LeadLEA>
+        <EducatedLEA>390</EducatedLEA>
+        <TransferredToLACode />
+        <LEACodeAtYear11 />
+        <UniqueLearnerNo>1234567890</UniqueLearnerNo>
+        <UniquePupilNumber />
+        <GuaranteeStatusIndicator>N</GuaranteeStatusIndicator>
+        <YouthContractIndicator>N</YouthContractIndicator>
+        <YouthContractStartDate></YouthContractStartDate>
+        <PreviousYPIDIdentifier />
+    </PersonalDetails>
+    <SeptemberGuarantee />
+    <LevelOfNeed>
+        <LevelOfNeedCode>3</LevelOfNeedCode>
+        <LDDFlag>N</LDDFlag>
+        <Characteristics>
+            <Characteristic>180</Characteristic>
+        </Characteristics>
+    </LevelOfNeed>
+    <Activities>
+        <Cohort>
+            <ActivityCode>110</ActivityCode>
+            <StartDate>2013-11-14</StartDate>
+            <DateAscertained>2013-11-14</DateAscertained>
+            <DateVerified>2014-09-03</DateVerified>
+            <ReviewDate />
+            <DueToLapseDate>2015-08-31</DueToLapseDate>
+            <CurrencyLapsed>N</CurrencyLapsed>
+            <EstablishmentNumber>0000001</EstablishmentNumber>
+            <EstablishmentName>Dummy School</EstablishmentName>
+            <UKProviderReferenceNumber />
+            <NeetStartDate />
+            <PredictedEndDate>2015-08-31</PredictedEndDate>
+        </Cohort>
+    </Activities>
+    <IntendedDestination>
+        <IntendedDestinationYr11>611</IntendedDestinationYr11>
+    </IntendedDestination>
+</YoungPersonsRecord>
+</NCCIS2015>
