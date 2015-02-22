@@ -15,4 +15,9 @@ package org.ppcis.ccistool.storage;
  * GNU General Public License for more details.
  */
 public class YoungPersonsRecord {
+    private PersonalDetails personalDetails;
+    private SeptemberGuarantee septemberGuarantee;
+    private LevelOfNeed levelOfNeed;
+    private Activities activities;
+    private IntendedDestination intendedDestination;
 }
