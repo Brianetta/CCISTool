@@ -15,4 +15,23 @@ package org.ppcis.ccistool.storage;
  * GNU General Public License for more details.
  */
 public class SeptemberGuarantee {
+    public SeptemberGuarantee() {
+        year12 = new Guarantee();
+        year11 = new Guarantee();
+    }
+
+    class Guarantee {
+        private Integer guaranteeStatus;
+        private Integer LEACode;
+
+        void setGuaranteeStatus(Integer status) {
+            this.guaranteeStatus = status;
+        }
+
+        void setLEACode(Integer code) {
+            this.LEACode = code;
+        }
+    }
+    Guarantee year11;
+    Guarantee year12;
 }
