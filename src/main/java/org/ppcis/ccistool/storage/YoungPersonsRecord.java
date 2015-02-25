@@ -18,13 +18,17 @@ import java.util.Date;
  * GNU General Public License for more details.
  */
 public class YoungPersonsRecord {
-    private PersonalDetails personalDetails;
-    private SeptemberGuarantee septemberGuarantee;
-    private LevelOfNeed levelOfNeed;
-    private Activities activities;
+    public PersonalDetails personalDetails;
+    public SeptemberGuarantee septemberGuarantee;
+    public LevelOfNeed levelOfNeed;
+    public Activities activities;
     private Integer intendedDestination;
 
-    class PersonalDetails {
+    public void setIntendedDestination(Integer intendedDestination) {
+        this.intendedDestination = intendedDestination;
+    }
+
+    public class PersonalDetails {
         private Integer youngPersonsID;
         private char cohortStatus;
         private String givenName;
@@ -142,34 +146,30 @@ public class YoungPersonsRecord {
         }
     }
 
-    class SeptemberGuarantee {
+    public class SeptemberGuarantee {
+        public Guarantee year11;
+        public Guarantee year12;
+
         public SeptemberGuarantee() {
             year12 = new Guarantee();
             year11 = new Guarantee();
         }
 
-        public void setYoungPersonsID(Integer youngPersonsID) {
-            this.youngPersonsID = youngPersonsID;
-        }
-
-        class Guarantee {
+        public class Guarantee {
             private Integer guaranteeStatus;
             private Integer LEACode;
 
-            void setGuaranteeStatus(Integer status) {
+            public void setGuaranteeStatus(Integer status) {
                 this.guaranteeStatus = status;
             }
 
-            void setLEACode(Integer code) {
+            public void setLEACode(Integer code) {
                 this.LEACode = code;
             }
         }
-        Guarantee year11;
-        Guarantee year12;
-        private Integer youngPersonsID;
     }
 
-    class LevelOfNeed {
+    public class LevelOfNeed {
         private Integer youngPersonsID;
         private Integer levelOfNeedCode;
         private Boolean sendFlag;
@@ -188,7 +188,7 @@ public class YoungPersonsRecord {
         }
     }
 
-    class Activities {
+    public class Activities {
         private Integer youngPersonsID;
         private Integer activityCode;
         private Date startDate;
