@@ -16,7 +16,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-public class CCISTool extends DefaultHandler {
+public class CCISTool {
 
 public static void main(String args[]) {
         Gui gui = new Gui();
