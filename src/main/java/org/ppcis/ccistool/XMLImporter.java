@@ -8,6 +8,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
+import java.util.Stack;
 
 /**
  * Copyright © Brian Ronald
@@ -25,6 +26,10 @@ import java.io.IOException;
  */
 
 public class XMLImporter extends DefaultHandler {
+
+    private Stack currentNode = new Stack<String>();
+    private Integer currentYPID;
+
     void experimental(String filename) {
         SAXParserFactory spf = SAXParserFactory.newInstance();
         SAXParser sp;
