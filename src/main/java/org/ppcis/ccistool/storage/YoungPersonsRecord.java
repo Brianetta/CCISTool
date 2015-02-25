@@ -1,5 +1,8 @@
 package org.ppcis.ccistool.storage;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * Copyright © Brian Ronald
  * 22/02/15
@@ -19,7 +22,8 @@ public class YoungPersonsRecord {
     private SeptemberGuarantee septemberGuarantee;
     private LevelOfNeed levelOfNeed;
     private Activities activities;
-    private IntendedDestination intendedDestination;
+    private Integer intendedDestination;
+
     class PersonalDetails {
         private Integer youngPersonsID;
         private char cohortStatus;
