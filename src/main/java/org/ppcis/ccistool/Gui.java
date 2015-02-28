@@ -42,7 +42,7 @@ public class Gui implements ActionListener {
                 fileOpen = new JMenuItem("Import...");
                 fileOpen.setMnemonic('I');
                 fileOpen.addActionListener(this);
-                fileOpen.setActionCommand("import");
+                fileOpen.setActionCommand("open");
             }
             fileMenu.add(fileOpen);
             fileMenu.addSeparator();
@@ -60,13 +60,15 @@ public class Gui implements ActionListener {
         jPanel = new JPanel();
         jFrame.setContentPane(jPanel);
 
+        jPanel.add(new JLabel((new ImageIcon(getClass().getResource("/CCISTool.png"), "Logo")),JLabel.CENTER));
+
         jFrame.setSize(400, 400);
         jFrame.setVisible(true);
 
     }
 
     public String getFileName() {
-        FileDialog fileDialog = new FileDialog(jFrame,"Test",FileDialog.LOAD);
+        FileDialog fileDialog = new FileDialog(jFrame,"FileOpen",FileDialog.LOAD);
         fileDialog.setFile("*.xml");
         fileDialog.setVisible(true);
         return fileDialog.getFile();
@@ -77,7 +79,7 @@ public class Gui implements ActionListener {
         System.out.println(actionEvent.getActionCommand());
         switch(actionEvent.getActionCommand())
         {
-            case ("import"):
+            case ("open"):
                 fileHeader = new XMLImporter().importXML(getFileName());
                 break;
             case ("exit"):
