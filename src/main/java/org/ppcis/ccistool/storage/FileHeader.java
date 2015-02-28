@@ -98,4 +98,15 @@ public class FileHeader {
     public List<String> getFileValidationErrors() {
         return fileValidationErrors;
     }
+
+    public String getDatabaseIDs() {
+        StringBuilder tempIDList = new StringBuilder();
+        for (int databaseID : databases) {
+            if (tempIDList.length() > 0) {
+                tempIDList.append(", ");
+            }
+            tempIDList.append(String.valueOf(databaseID));
+        }
+        return tempIDList.toString();
+    }
 }
