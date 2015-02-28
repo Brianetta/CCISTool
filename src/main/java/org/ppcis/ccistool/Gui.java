@@ -1,5 +1,7 @@
 package org.ppcis.ccistool;
 
+import org.ppcis.ccistool.storage.FileHeader;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -20,17 +22,18 @@ import java.awt.event.*;
  */
 public class Gui implements ActionListener {
 
-    JFrame jFrame;
-    JPanel jPanel;
-    JMenuBar jMenuBar;
-    JMenu fileMenu;
-    JMenuItem fileOpen;
-    JMenuItem fileExit;
+    JFrame jFrame;          // Main app window
+    JMenuBar jMenuBar;      // The menu bar
+    JMenu fileMenu;         // The file menu
+    JMenuItem fileOpen;     // File -> Open...
+    JMenuItem fileExit;     // File -> Exit
+    JPanel jPanel;          // The bit below the menu bar
+
+    FileHeader fileHeader;
 
     public Gui() {
         jFrame = new JFrame("CCIS Tool");
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jPanel = new JPanel();
         jMenuBar = new JMenuBar();
         {
             fileMenu = new JMenu("File");
@@ -52,9 +55,10 @@ public class Gui implements ActionListener {
             fileMenu.add(fileExit);
         }
         jMenuBar.add(fileMenu);
-
-        jFrame.setContentPane(jPanel);
         jFrame.setJMenuBar(jMenuBar);
+
+        jPanel = new JPanel();
+        jFrame.setContentPane(jPanel);
 
         jFrame.setSize(400, 400);
         jFrame.setVisible(true);
@@ -74,7 +78,7 @@ public class Gui implements ActionListener {
         switch(actionEvent.getActionCommand())
         {
             case ("import"):
-                new XMLImporter().importXML(getFileName());
+                fileHeader = new XMLImporter().importXML(getFileName());
                 break;
             case ("exit"):
                 System.exit(0);
