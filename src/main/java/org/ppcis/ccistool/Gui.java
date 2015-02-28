@@ -39,6 +39,7 @@ public class Gui implements ActionListener {
                 fileOpen = new JMenuItem("Import...");
                 fileOpen.setMnemonic('I');
                 fileOpen.addActionListener(this);
+                fileOpen.setActionCommand("import");
             }
             fileMenu.add(fileOpen);
             fileMenu.addSeparator();
@@ -46,6 +47,7 @@ public class Gui implements ActionListener {
                 fileExit = new JMenuItem("Exit");
                 fileExit.setMnemonic('X');
                 fileExit.addActionListener(this);
+                fileExit.setActionCommand("exit");
             }
             fileMenu.add(fileExit);
         }
@@ -71,10 +73,10 @@ public class Gui implements ActionListener {
         System.out.println(actionEvent.getActionCommand());
         switch(actionEvent.getActionCommand())
         {
-            case ("Import..."):
+            case ("import"):
                 new XMLImporter().importXML(getFileName());
                 break;
-            case ("Exit"):
+            case ("exit"):
                 System.exit(0);
                 break;
         }
