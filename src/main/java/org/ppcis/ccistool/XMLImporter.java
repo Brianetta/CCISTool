@@ -38,8 +38,11 @@ public class XMLImporter extends DefaultHandler {
     private FileHeader fileHeader;
     private List<YoungPersonsRecord> youngPersonsRecords = new ArrayList<>();
     private YoungPersonsRecord currentYoungPersonsRecord;
+    // A pair of flags for keeping track of which data structure we're importing
+    private boolean fileHeaderImport = false;
+    private boolean youngPersonsRecordImport = true;
 
-    void experimental(String filename) {
+    FileHeader importXML(String filename) {
         SAXParserFactory spf = SAXParserFactory.newInstance();
         SAXParser sp;
         // Inhale the XML file
@@ -51,26 +54,30 @@ public class XMLImporter extends DefaultHandler {
         }
         // Check FileHeader for errors
         if (fileHeader == null) {
+            fileHeader=new FileHeader();
             fileValidationError("XML submission does not contain a FileHeader node");
         }
+        return fileHeader;
     }
 
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        System.out.println("Begin "+qName);
         if (currentNode.isEmpty()) {
             if (rootNode == null) {
                 rootNode = qName;
             } else {
+                if (fileHeader==null) fileHeader=new FileHeader();
                 fileValidationError("More than one root node in the XML submission");
             }
         } else if (qName.equals("FileHeader")) {
             if(fileHeader == null) {
                 fileHeader = new FileHeader();
+                fileHeaderImport = true;
             } else {
                 fileValidationError("More than one FileHeader node found in XML");
             }
         } else if (qName.equals("YoungPersonsRecord")) {
             currentYoungPersonsRecord = new YoungPersonsRecord();
+            youngPersonsRecordImport = true;
         }
         currentNode.push(qName);
         // This next line enforces a specific data model - that XML tags
@@ -80,6 +87,7 @@ public class XMLImporter extends DefaultHandler {
     }
 
     private void fileValidationError(String errorMessage) {
+        fileHeader.addFileValidationError(errorMessage);
         System.out.println(errorMessage);
     }
 
@@ -94,51 +102,93 @@ public class XMLImporter extends DefaultHandler {
         String currentString;
         Integer currentValue;
         Date currentDate;
-        if (currentContent != null) {
-            currentString = currentContent.toString();
-            switch (currentNode.peek()) {
-                case "DatabaseID":
-                    currentValue = Integer.decode(currentString);
-                    if (currentValue == null) {
-                        fileValidationError("Invalid databaseIDs found in FileHeader: " + currentString);
-                    } else {
-                        fileHeader.addDatabase(currentValue);
-                    }
-                    break;
-                case "LEACode":
-                    currentValue = Integer.decode(currentString);
-                    if (currentValue == null) {
-                        fileValidationError("Invalid LEA value found in FileHeader: " + currentString);
-                    } else {
-                        // LEACode isn't a unique node name
-                        switch (currentNode.elementAt(1)) {
-                            case "SourceLEAs":
-                                fileHeader.addSourceLea(currentValue);
-                                break;
-                            case "Year11":
-                                currentYoungPersonsRecord.septemberGuarantee.year11.setLEACode(currentValue);
-                                break;
-                            case "Year12":
-                                currentYoungPersonsRecord.septemberGuarantee.year12.setLEACode(currentValue);
-                                break;
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT);
+        dateFormatter.setLenient(false);
+        if (currentContent != null) {                   // Current tag contains data, not more tags
+            currentString = currentContent.toString();  // We always need the String
+            if (fileHeaderImport) {
+                // We're currently looking at tags inside the FileHeader node
+                assert(!youngPersonsRecordImport);
+                // A quick check - this object should have been initialised in startElement
+                assert(fileHeader!=null);
+                // We're not checking to see if nodes are contained in the correct nodes.
+                // I considered it, but the intention is to check the data rather than
+                // the XML structure. Other tools can validate against XSD.
+                switch (currentNode.peek()) {
+                    case "DatabaseId":
+                        currentValue = Integer.decode(currentString);
+                        if (currentValue == null) {
+                            fileValidationError("Invalid databaseIDs found in FileHeader: " + currentString);
+                        } else {
+                            fileHeader.addDatabase(currentValue);
                         }
-                    }
-                    break;
-                case "DateOfSend":
-                    try {
-                        currentDate = new SimpleDateFormat(DATE_FORMAT).parse(currentString);
-                        fileHeader.setDateOfSend(currentDate);
-                    } catch (ParseException e) {
-                        fileValidationError("Invalid date: " + currentString);
-                    }
+                        break;
+                    case "LEACode":
+                        currentValue = Integer.decode(currentString);
+                        if (currentValue == null) {
+                            fileValidationError("Invalid LEA value found in FileHeader: " + currentString);
+                        } else {
+                            fileHeader.addSourceLea(currentValue);
+                        }
+                        break;
+                    case "DateOfSend":
+                        try {
+                            // Enforce the date format
+                            if (currentString.length() != DATE_FORMAT.length()) {
+                                throw new ParseException(null, 0);
+                            }
+                            currentDate = dateFormatter.parse(currentString);
+                            fileHeader.setDateOfSend(currentDate);
+                        } catch (ParseException e) {
+                            fileValidationError("Invalid DateOfSend: " + currentString);
+                        }
+                        break;
+                    case "PeriodEnd":
+                        try {
+                            // Enforce the date format
+                            if (currentString.length() != DATE_FORMAT.length()) {
+                                throw new ParseException(null, 0);
+                            }
+                            currentDate = dateFormatter.parse(currentString);
+                            fileHeader.setPeriodEnd(currentDate);
+                        } catch (ParseException e) {
+                            fileValidationError("Invalid PeriodEnd: " + currentString);
+                        }
+                        break;
+                    case "SupplierName":
+                        fileHeader.setSupplierName(currentString);
+                        break;
+                    case "SupplierXMLVersion":
+                        fileHeader.setSupplierXMLVersion(currentString);
+                        break;
+                    case "XMLSchemaVersion":
+                        fileHeader.setXMLSchemaVersion(currentString);
+                        break;
+                    default:
+                        fileValidationError("Unexpected data in node: "+currentNode.peek()+", "+currentString);
+                        break;
+                }
+            }
+            if (youngPersonsRecordImport) {
+                assert (!fileHeaderImport);
+                assert (currentYoungPersonsRecord != null);
             }
             // This next line enforces a specific data model - that XML tags
             // can contain either XML tags or data, but not both. While it's
             // perfectly valid XML, the current schema doesn't allow it.
+            // This program will ignore it.
             currentContent = null;
         }
 
-        System.out.println("End " + qName);
-        assert (currentNode.pop().equals(qName));
+        switch (currentNode.pop()) {
+            case "FileHeader":
+                fileHeaderImport = false;
+                break;
+            case "YoungPersonsRecord":
+                youngPersonsRecords.add(currentYoungPersonsRecord);
+                youngPersonsRecordImport = false;
+                break;
+        }
     }
 }
+

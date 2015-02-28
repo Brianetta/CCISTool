@@ -19,6 +19,7 @@ import java.util.List;
  * GNU General Public License for more details.
  */
 public class FileHeader {
+    private List<String> fileValidationErrors;
     private List<Integer> databases;
     private List<Integer> sourceLEAs;
     private Date dateOfSend;
@@ -30,6 +31,7 @@ public class FileHeader {
     public FileHeader() {
         sourceLEAs = new ArrayList<>();
         databases = new ArrayList<>();
+        fileValidationErrors = new ArrayList<>();
     }
 
     public void addDatabase(Integer databaseID) {
@@ -87,5 +89,13 @@ public class FileHeader {
 
     public void setXMLSchemaVersion(String XMLSchemaVersion) {
         this.XMLSchemaVersion = XMLSchemaVersion;
+    }
+
+    public void addFileValidationError(String fileValidationError) {
+        this.fileValidationErrors.add(fileValidationError);
+    }
+
+    public List<String> getFileValidationErrors() {
+        return fileValidationErrors;
     }
 }

@@ -72,7 +72,7 @@ public class Gui implements ActionListener {
         switch(actionEvent.getActionCommand())
         {
             case ("Import..."):
-                new XMLImporter().experimental(getFileName());
+                new XMLImporter().importXML(getFileName());
                 break;
             case ("Exit"):
                 System.exit(0);
