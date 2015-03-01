@@ -96,9 +96,9 @@ public class Gui implements ActionListener {
 
     }
 
-    public String getFileName() {
+    public String getFileName(String fileSpec) {
         FileDialog fileDialog = new FileDialog(jFrame,"FileOpen",FileDialog.LOAD);
-        fileDialog.setFile("*.xml");
+        fileDialog.setFile(fileSpec);
         fileDialog.setVisible(true);
         return fileDialog.getFile();
     }
@@ -117,7 +117,7 @@ public class Gui implements ActionListener {
     }
 
     private void importXMLFile() {
-        fileHeader = new XMLImporter().importXML(getFileName());
+        fileHeader = new XMLImporter().importXML(getFileName("*.xml"));
         databaseIDTextField.setText(fileHeader.getDatabaseIDs());
         for (Integer sourceLEA : fileHeader.getSourceLEAs()) {
             leaListData.addElement(sourceLEA);
