@@ -108,15 +108,19 @@ public class Gui implements ActionListener {
         switch(actionEvent.getActionCommand())
         {
             case ("open"):
-                fileHeader = new XMLImporter().importXML(getFileName());
-                databaseIDTextField.setText(fileHeader.getDatabaseIDs());
-                for (Integer sourceLEA : fileHeader.getSourceLEAs()) {
-                    leaListData.addElement(sourceLEA);
-                }
+                importXMLFile();
                 break;
             case ("exit"):
                 System.exit(0);
                 break;
+        }
+    }
+
+    private void importXMLFile() {
+        fileHeader = new XMLImporter().importXML(getFileName());
+        databaseIDTextField.setText(fileHeader.getDatabaseIDs());
+        for (Integer sourceLEA : fileHeader.getSourceLEAs()) {
+            leaListData.addElement(sourceLEA);
         }
     }
 }
