@@ -4,7 +4,11 @@ import org.ppcis.ccistool.storage.FileHeader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Copyright © Brian Ronald
@@ -28,9 +32,10 @@ public class Gui implements ActionListener {
     private JMenuItem fileOpen;     // File -> Open...
     private JMenuItem fileExit;     // File -> Exit
     private JPanel jPanel;          // The bit below the menu bar
-    private JTextField databaseIDTextField;         // Text field to display database IDs
     private JList<Integer> leaList;                 // List field to display source LEAs
     private DefaultListModel<Integer> leaListData;  // Data for that list field
+    private JLabel showDateOfSend, showPeriodEnd, showDatabaseID, showSupplierInfo;
+    private static final String MONTH_FORMAT = "MMMMM, YYYY";
 
     FileHeader fileHeader;
 
@@ -40,6 +45,9 @@ public class Gui implements ActionListener {
         } catch (ClassNotFoundException | UnsupportedLookAndFeelException | IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
         }
+
+        final String NO_DATA_LOADED = "No data loaded";
+
         jFrame = new JFrame("CCIS Tool");
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jMenuBar = new JMenuBar();
@@ -69,18 +77,16 @@ public class Gui implements ActionListener {
         jFrame.setContentPane(jPanel);
         GridBagConstraints c = new GridBagConstraints();
 
-        c.gridx=0;c.gridy=0;c.gridwidth=4;
-        jPanel.add(new JLabel(new ImageIcon(getClass().getResource("/CCISTool.png"), "Logo"),JLabel.CENTER),c);
-        c.gridx=1;c.gridy=1;c.gridwidth=1;c.weighty=1.0;
-        jPanel.add(new JLabel("Database IDs:"),c);
-        databaseIDTextField = new JTextField("No data loaded");
-        databaseIDTextField.setEnabled(false);
-        databaseIDTextField.setDisabledTextColor(Color.BLACK);
-        databaseIDTextField.setPreferredSize(new Dimension(150,30));
-        c.gridx=2;c.gridy=1;
-        jPanel.add(databaseIDTextField,c);
-        c.gridx=1;c.gridy=2;
-        jPanel.add(new JLabel("Source LEAs:"),c);
+        c.gridx=0;c.gridy=0;c.gridwidth=2;
+        jPanel.add(new JLabel(new ImageIcon(getClass().getResource("/CCISTool.png"), "Logo"), JLabel.CENTER), c);
+        c.gridy=1;c.gridwidth=1;c.weighty=0.0;c.fill = GridBagConstraints.BOTH;
+        jPanel.add(new JLabel("Database ID:", JLabel.RIGHT), c);
+        showDatabaseID = new JLabel(NO_DATA_LOADED);
+        c.gridx=1;c.gridy=1;c.weighty=1.0;
+        jPanel.add(showDatabaseID,c);
+
+        c.gridx=0;c.gridy=2;c.weighty=0.0;
+        jPanel.add(new JLabel("Source LEAs:", JLabel.RIGHT), c);
         leaListData = new DefaultListModel<>();
         leaList = new JList<>(leaListData);
         leaList.setVisibleRowCount(5);
@@ -89,10 +95,30 @@ public class Gui implements ActionListener {
         leaList.setVisible(true);
         JScrollPane leaListScrollPane = new JScrollPane();
         leaListScrollPane.getViewport().add(leaList);
-        c.gridx=2;c.gridy=2;
+        c.gridx=1;c.gridy=2;c.weighty=1.0;
         jPanel.add(leaListScrollPane,c);
+
+        c.gridx=0;c.gridy=3;c.weighty=0.0;
+        jPanel.add(new JLabel("Submission date:", JLabel.RIGHT), c);
+        showDateOfSend = new JLabel(NO_DATA_LOADED);
+        c.gridx=1;c.gridy=3;c.weighty=1.0;
+        jPanel.add(showDateOfSend, c);
+
+        c.gridx=0;c.gridy=4;c.weighty=0.0;
+        jPanel.add(new JLabel("For period end:", JLabel.RIGHT), c);
+        showPeriodEnd = new JLabel(NO_DATA_LOADED);
+        c.gridx=1;c.gridy=4;c.weighty=1.0;
+        jPanel.add(showPeriodEnd, c);
+
+        c.gridx=0;c.gridy=5;c.weighty=0.0;
+        jPanel.add(new JLabel("Supplier info:", JLabel.RIGHT), c);
+        showSupplierInfo = new JLabel(NO_DATA_LOADED);
+        c.gridx=1;c.gridy=5;c.weighty=1.0;
+        jPanel.add(showSupplierInfo, c);
+
         jFrame.pack();
         jFrame.setVisible(true);
+        jFrame.setMinimumSize(jFrame.getSize());
 
     }
 
@@ -118,9 +144,23 @@ public class Gui implements ActionListener {
 
     private void importXMLFile() {
         fileHeader = new XMLImporter().importXML(getFileName("*.xml"));
-        databaseIDTextField.setText(fileHeader.getDatabaseIDs());
+        if (fileHeader.getPeriodEnd()==null) return;
+        showDatabaseID.setText(fileHeader.getDatabaseIDs());
         for (Integer sourceLEA : fileHeader.getSourceLEAs()) {
             leaListData.addElement(sourceLEA);
         }
+        showDateOfSend.setText(new SimpleDateFormat(MONTH_FORMAT).format(fileHeader.getDateOfSend()));
+        if (fileHeader.getDateOfSend().before(fileHeader.getPeriodEnd())) {
+            showDateOfSend.setForeground(new Color(224, 128, 0));
+        } else {
+            showDateOfSend.setForeground(new Color(0, 128, 0));
+        }
+        showPeriodEnd.setText(new SimpleDateFormat(MONTH_FORMAT).format(fileHeader.getPeriodEnd()));
+        if (fileHeader.getPeriodEnd().after((Calendar.getInstance()).getTime())) {
+            showPeriodEnd.setForeground(new Color(224, 128, 0));
+        } else {
+            showPeriodEnd.setForeground(new Color(0, 128, 0));
+        }
+        showSupplierInfo.setText(fileHeader.getSupplierName()+", "+fileHeader.getSupplierXMLVersion()+", "+fileHeader.getXMLSchemaVersion());
     }
 }

@@ -40,7 +40,7 @@ public class XMLImporter extends DefaultHandler {
     private YoungPersonsRecord currentYoungPersonsRecord;
     // A pair of flags for keeping track of which data structure we're importing
     private boolean fileHeaderImport = false;
-    private boolean youngPersonsRecordImport = true;
+    private boolean youngPersonsRecordImport = false;
 
     FileHeader importXML(String filename) {
         SAXParserFactory spf = SAXParserFactory.newInstance();
