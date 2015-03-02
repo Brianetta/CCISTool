@@ -71,7 +71,7 @@ public class Gui implements ActionListener {
 
         c.gridx=0;c.gridy=0;c.gridwidth=4;
         jPanel.add(new JLabel(new ImageIcon(getClass().getResource("/CCISTool.png"), "Logo"),JLabel.CENTER),c);
-        c.gridx=1;c.gridy=1;c.gridwidth=1;;c.weighty=1.0;
+        c.gridx=1;c.gridy=1;c.gridwidth=1;c.weighty=1.0;
         jPanel.add(new JLabel("Database IDs:"),c);
         databaseIDTextField = new JTextField("No data loaded");
         databaseIDTextField.setEnabled(false);
