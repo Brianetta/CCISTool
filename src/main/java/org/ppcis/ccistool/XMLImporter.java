@@ -4,6 +4,7 @@ import org.ppcis.ccistool.storage.FileHeader;
 import org.ppcis.ccistool.storage.YoungPersonsRecord;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -12,7 +13,10 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * Copyright © Brian Ronald
@@ -48,9 +52,17 @@ public class XMLImporter extends DefaultHandler {
         // Inhale the XML file
         try {
             sp = spf.newSAXParser();
-            sp.parse(filename,this);
-        } catch (ParserConfigurationException | SAXException | IOException e) {
+            sp.parse(filename, this);
+        } catch (ParserConfigurationException e) {
             e.printStackTrace();
+        } catch (SAXException e) {
+            if (e instanceof SAXParseException) {
+                fileValidationError(String.format("XML error at line %d: %s", ((SAXParseException) e).getLineNumber(), e.getMessage()));
+            } else {
+                fileValidationError("Trouble with XML data: "+e.getMessage());
+            }
+        } catch (IOException e) {
+            fileValidationError("Trouble with XML file: "+e.getMessage());
         }
         // Check FileHeader for errors
         if (fileHeader == null) {
