@@ -4,7 +4,7 @@
 <NCCIS2015>
 <FileHeader>
   <Databases>
-    <DatabaseId>123</DatabaseId>
+    <DatabaseID>123</DatabaseID>
   </Databases>
   <SourceLEAs>
       <LEACode>390</LEACode>

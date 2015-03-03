@@ -115,7 +115,7 @@ public class XMLImporter extends DefaultHandler {
                 // I considered it, but the intention is to check the data rather than
                 // the XML structure. Other tools can validate against XSD.
                 switch (currentNode.peek()) {
-                    case "DatabaseId":
+                    case "DatabaseID":
                         currentValue = Integer.decode(currentString);
                         if (currentValue == null) {
                             fileValidationError("Invalid databaseIDs found in FileHeader: " + currentString);
