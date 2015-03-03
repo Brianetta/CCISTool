@@ -47,9 +47,16 @@ public class XMLImporter extends DefaultHandler {
     private FileHeader fileHeader;
     private List<YoungPersonsRecord> youngPersonsRecords = new ArrayList<>();
     private YoungPersonsRecord currentYoungPersonsRecord;
-    // A pair of flags for keeping track of which data structure we're importing
+    // A flag to track the number of fileHeaders seen. One bit should be big enough.
+    private boolean fileHeaderSeen = false;
+    // A pair of flags for keeping track of which data structure we're importing,
+    // because some tags (like SourceLEA) appear in both
     private boolean fileHeaderImport = false;
     private boolean youngPersonsRecordImport = false;
+
+    public XMLImporter() {
+        fileHeader = new FileHeader();
+    }
 
     FileHeader importXML(String filename) {
         SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -59,50 +66,57 @@ public class XMLImporter extends DefaultHandler {
             // Put the ENTIRE XML file into a StringBuilder, line by line, so we can fix XML entities.
             // Would rather read directly from the file, but the XML we get from Cognisoft's product
             // often contains un-escaped ampersands in data strings.
-            List<String> lines = Files.readAllLines(Paths.get(filename), Charset.defaultCharset());
             StringBuilder xml = new StringBuilder();
+
+            // Read all the lines into a list
+            List<String> lines = Files.readAllLines(Paths.get(filename), Charset.defaultCharset());
             for (String line : lines) {
+                // Fix each line, turning ampersand followed by space into the entity and a space
                 line = line.replaceAll("& ", "&amp; ");
+                // Put that line into the StringBuilder
                 xml.append(line);
             }
             sp = spf.newSAXParser();
+            // Turn that StringBuilder into a file-like InputSource, and parse it as XML
             sp.parse(new InputSource(new StringReader(xml.toString())), this);
         } catch (ParserConfigurationException e) {
+            // No idea what mishaps throw these
             e.printStackTrace();
         } catch (SAXException e) {
             if (e instanceof SAXParseException) {
+                // This was how the ampersand problem worked around earlier was detected
                 fileValidationError(String.format("XML error at line %d: %s", ((SAXParseException) e).getLineNumber(), e.getMessage()));
             } else {
+                // There might be other data problems. File might well not even be XML.
                 fileValidationError("Trouble with XML data: "+e.getMessage());
             }
         } catch (IOException e) {
-            fileValidationError("Trouble with XML file: "+e.getMessage());
-            e.printStackTrace();
+            // Probably, the user managed to select a non-file of some sort
+            fileValidationError("Trouble with XML file: " + e.getMessage());
         }
         // Check FileHeader for errors
         if (fileHeader == null) {
-            fileHeader=new FileHeader();
             fileValidationError("XML submission does not contain a FileHeader node");
         }
         return fileHeader;
     }
 
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        if (currentNode.isEmpty()) {
-            if (rootNode == null) {
-                rootNode = qName;
-            } else {
-                if (fileHeader==null) fileHeader=new FileHeader();
+        if (currentNode.isEmpty()) { // This node has no parents in the node stack
+            if (rootNode == null) {  // ...and no root node has been seen yet...
+                rootNode = qName;    // ...making this the root node.
+            } else { // Only one root node, please
                 fileValidationError("More than one root node in the XML submission");
             }
-        } else if (qName.equals("FileHeader")) {
-            if(fileHeader == null) {
-                fileHeader = new FileHeader();
-                fileHeaderImport = true;
-            } else {
-                fileValidationError("More than one FileHeader node found in XML");
-            }
+        } else if (qName.equals("FileHeader")) { // We want exactly one of these
+            fileHeaderImport = true;
+            if (fileHeaderSeen) {
+                    // Hope this is self-explanatory
+                    fileValidationError("More than one FileHeader node found in XML");
+                }
+            fileHeaderSeen=true;
         } else if (qName.equals("YoungPersonsRecord")) {
+            // New tag, new data.
             currentYoungPersonsRecord = new YoungPersonsRecord();
             youngPersonsRecordImport = true;
         }
@@ -114,7 +128,6 @@ public class XMLImporter extends DefaultHandler {
     }
 
     private void fileValidationError(String errorMessage) {
-        if (fileHeader == null) fileHeader = new FileHeader();
         fileHeader.addFileValidationError(errorMessage);
         System.out.println(errorMessage);
     }
