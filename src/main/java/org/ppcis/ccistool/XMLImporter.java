@@ -95,7 +95,7 @@ public class XMLImporter extends DefaultHandler {
             fileValidationError("Trouble with XML file: " + e.getMessage());
         }
         // Check FileHeader for errors
-        if (fileHeader == null) {
+        if (!fileHeaderSeen) {
             fileValidationError("XML submission does not contain a FileHeader node");
         }
         return fileHeader;
