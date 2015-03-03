@@ -3,6 +3,7 @@ package org.ppcis.ccistool;
 import org.ppcis.ccistool.storage.FileHeader;
 import org.ppcis.ccistool.storage.YoungPersonsRecord;
 import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -11,6 +12,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
+import java.io.StringReader;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,8 +56,17 @@ public class XMLImporter extends DefaultHandler {
         SAXParser sp;
         // Inhale the XML file
         try {
+            // Put the ENTIRE XML file into a StringBuilder, line by line, so we can fix XML entities.
+            // Would rather read directly from the file, but the XML we get from Cognisoft's product
+            // often contains un-escaped ampersands in data strings.
+            List<String> lines = Files.readAllLines(Paths.get(filename), Charset.defaultCharset());
+            StringBuilder xml = new StringBuilder();
+            for (String line : lines) {
+                line = line.replaceAll("& ", "&amp; ");
+                xml.append(line);
+            }
             sp = spf.newSAXParser();
-            sp.parse(filename, this);
+            sp.parse(new InputSource(new StringReader(xml.toString())), this);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {
@@ -63,6 +77,7 @@ public class XMLImporter extends DefaultHandler {
             }
         } catch (IOException e) {
             fileValidationError("Trouble with XML file: "+e.getMessage());
+            e.printStackTrace();
         }
         // Check FileHeader for errors
         if (fileHeader == null) {
@@ -99,6 +114,7 @@ public class XMLImporter extends DefaultHandler {
     }
 
     private void fileValidationError(String errorMessage) {
+        if (fileHeader == null) fileHeader = new FileHeader();
         fileHeader.addFileValidationError(errorMessage);
         System.out.println(errorMessage);
     }
