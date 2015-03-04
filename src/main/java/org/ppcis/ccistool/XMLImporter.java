@@ -133,6 +133,10 @@ public class XMLImporter extends DefaultHandler {
     }
 
     public void characters(char[] ch, int start, int length) throws SAXException {
+        // In between the open and close tags, this function gets called an
+        // arbitrary number of times (usually once, but not always) with some
+        // more of the tag's data. We append it, to be dealt with when the tag
+        // is closed.
         if (length > 0 && currentContent != null) {
             currentContent.append(ch, start, length);
         }
@@ -155,7 +159,7 @@ public class XMLImporter extends DefaultHandler {
                 // We're not checking to see if nodes are contained in the correct nodes.
                 // I considered it, but the intention is to check the data rather than
                 // the XML structure. Other tools can validate against XSD.
-                switch (currentNode.peek()) {
+                switch (currentNode.peek()) { // This is our current tag; data is in qNode
                     case "DatabaseID":
                         currentValue = Integer.decode(currentString);
                         if (currentValue == null) {
@@ -211,8 +215,21 @@ public class XMLImporter extends DefaultHandler {
                 }
             }
             if (youngPersonsRecordImport) {
-                assert (!fileHeaderImport);
-                assert (currentYoungPersonsRecord != null);
+                // Our tag data is associated with a YoungPersonsRecord.
+                assert (!fileHeaderImport); // This would mean our state is messed up
+                assert (currentYoungPersonsRecord != null); // Should have been initialised in startElement
+                switch (currentNode.peek()) { // This is our current tag; data is in qNode
+                    case "YoungPersonsID":
+                        currentValue = Integer.decode(currentString);
+                        if (currentValue == null) {
+                            // This counts. We're not going to check for other violations at this time, because
+                            // there's no guarantee that the FileHeader node has been seen yet.
+                            fileValidationError("'YoungPersonsID' does not contain a value that is specified as the 'DatabaseID' in the FileHeader");
+                            // To do: Put the error number (903) into the error.
+                        } else {
+                            currentYoungPersonsRecord.personalDetails.setYoungPersonsID(currentValue);
+                        }
+                }
             }
             // This next line enforces a specific data model - that XML tags
             // can contain either XML tags or data, but not both. While it's
@@ -222,10 +239,12 @@ public class XMLImporter extends DefaultHandler {
         }
 
         switch (currentNode.pop()) {
+            // Clear the flags on the way up the stack
             case "FileHeader":
                 fileHeaderImport = false;
                 break;
             case "YoungPersonsRecord":
+                // For now, throw this into a List. To do: Database.
                 youngPersonsRecords.add(currentYoungPersonsRecord);
                 youngPersonsRecordImport = false;
                 break;
