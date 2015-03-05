@@ -1,5 +1,6 @@
 package org.ppcis.ccistool;
 
+import org.ppcis.ccistool.Constants.ErrorStrings;
 import org.ppcis.ccistool.storage.FileHeader;
 import org.ppcis.ccistool.storage.YoungPersonsRecord;
 import org.xml.sax.Attributes;
@@ -106,19 +107,29 @@ public class XMLImporter extends DefaultHandler {
             if (rootNode == null) {  // ...and no root node has been seen yet...
                 rootNode = qName;    // ...making this the root node.
             } else { // Only one root node, please
-                fileValidationError("More than one root node in the XML submission");
+                fileValidationError(ErrorStrings.ERR_MULTIPLE_ROOT);
             }
-        } else if (qName.equals("FileHeader")) { // We want exactly one of these
-            fileHeaderImport = true;
-            if (fileHeaderSeen) {
-                    // Hope this is self-explanatory
-                    fileValidationError("More than one FileHeader node found in XML");
-                }
-            fileHeaderSeen=true;
-        } else if (qName.equals("YoungPersonsRecord")) {
-            // New tag, new data.
-            currentYoungPersonsRecord = new YoungPersonsRecord();
-            youngPersonsRecordImport = true;
+        } else {
+            switch (qName) {
+                case "FileHeader":
+                    // We want exactly one of these
+                    fileHeaderImport = true;
+                    if (fileHeaderSeen) {
+                        // Hope this is self-explanatory
+                        fileValidationError("More than one FileHeader node found in XML");
+                    }
+                    fileHeaderSeen = true;
+                    break;
+                case "YoungPersonsRecord":
+                    // New tag, new data.
+                    currentYoungPersonsRecord = new YoungPersonsRecord();
+                    youngPersonsRecordImport = true;
+                    break;
+                case "PersonalDetails":
+                    if (youngPersonsRecordImport) {
+
+                    }
+            }
         }
         currentNode.push(qName);
         // This next line enforces a specific data model - that XML tags
@@ -163,7 +174,7 @@ public class XMLImporter extends DefaultHandler {
                     case "DatabaseID":
                         currentValue = Integer.decode(currentString);
                         if (currentValue == null) {
-                            fileValidationError("Invalid databaseIDs found in FileHeader: " + currentString);
+                            fileValidationError(ErrorStrings.ERR_INVALID_DBIDS + ": " + currentString);
                         } else {
                             fileHeader.addDatabase(currentValue);
                         }
@@ -171,7 +182,7 @@ public class XMLImporter extends DefaultHandler {
                     case "LEACode":
                         currentValue = Integer.decode(currentString);
                         if (currentValue == null) {
-                            fileValidationError("Invalid LEA value found in FileHeader: " + currentString);
+                            fileValidationError(ErrorStrings.ERR_INVALID_FHLEA + ": " + currentString);
                         } else {
                             fileHeader.addSourceLea(currentValue);
                         }
@@ -220,15 +231,8 @@ public class XMLImporter extends DefaultHandler {
                 assert (currentYoungPersonsRecord != null); // Should have been initialised in startElement
                 switch (currentNode.peek()) { // This is our current tag; data is in qNode
                     case "YoungPersonsID":
-                        currentValue = Integer.decode(currentString);
-                        if (currentValue == null) {
-                            // This counts. We're not going to check for other violations at this time, because
-                            // there's no guarantee that the FileHeader node has been seen yet.
-                            fileValidationError("'YoungPersonsID' does not contain a value that is specified as the 'DatabaseID' in the FileHeader");
-                            // To do: Put the error number (903) into the error.
-                        } else {
-                            currentYoungPersonsRecord.personalDetails.setYoungPersonsID(currentValue);
-                        }
+                        currentYoungPersonsRecord.personalDetails.setYoungPersonsID(Long.decode(currentString));
+                        break;
                 }
             }
             // This next line enforces a specific data model - that XML tags

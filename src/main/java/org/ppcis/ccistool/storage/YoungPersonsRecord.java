@@ -24,12 +24,19 @@ public class YoungPersonsRecord {
     public Activities activities;
     private Integer intendedDestination;
 
+    public YoungPersonsRecord() {
+        personalDetails = new PersonalDetails();
+        septemberGuarantee = new SeptemberGuarantee();
+        levelOfNeed = new LevelOfNeed();
+        activities = new Activities();
+    }
+
     public void setIntendedDestination(Integer intendedDestination) {
         this.intendedDestination = intendedDestination;
     }
 
     public class PersonalDetails {
-        private Integer youngPersonsID;
+        private Long youngPersonsID;
         private char cohortStatus;
         private String givenName;
         private String middleName;
@@ -53,7 +60,7 @@ public class YoungPersonsRecord {
         private char youthContractIndicator;
         private Date youthContractStartDate;
 
-        public void setYoungPersonsID(Integer youngPersonsID) {
+        public void setYoungPersonsID(Long youngPersonsID) {
             this.youngPersonsID = youngPersonsID;
         }
 
