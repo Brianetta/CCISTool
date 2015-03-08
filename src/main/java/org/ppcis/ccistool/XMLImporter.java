@@ -238,6 +238,55 @@ public class XMLImporter extends DefaultHandler {
                     case "YoungPersonsID":
                         currentYoungPersonsRecord.personalDetails.setYoungPersonsID(Long.decode(currentString));
                         break;
+                    case "CohortStatus":
+                        currentYoungPersonsRecord.personalDetails.setCohortStatus(currentString.charAt(0));
+                        break;
+                    case "GivenName":
+                        currentYoungPersonsRecord.personalDetails.setGivenName(currentString);
+                        break;
+                    case "MiddleName":
+                        currentYoungPersonsRecord.personalDetails.setGivenName(currentString);
+                        break;
+                    case "FamilyName":
+                        currentYoungPersonsRecord.personalDetails.setFamilyName(currentString);
+                        break;
+                    case "AddressLine1":
+                        currentYoungPersonsRecord.personalDetails.setAddressLine1(currentString);
+                        break;
+                    case "AddressLine2":
+                        currentYoungPersonsRecord.personalDetails.setAddressLine2(currentString);
+                        break;
+                    case "AddressLine3":
+                        currentYoungPersonsRecord.personalDetails.setAddressLine3(currentString);
+                        break;
+                    case "AddressLine4":
+                        currentYoungPersonsRecord.personalDetails.setAddressLine4(currentString);
+                        break;
+                    case "Town":
+                        currentYoungPersonsRecord.personalDetails.setTown(currentString);
+                        break;
+                    case "County":
+                        currentYoungPersonsRecord.personalDetails.setCounty(currentString);
+                        break;
+                    case "Postcode":
+                        currentYoungPersonsRecord.personalDetails.setPostcode(currentString);
+                        break;
+                    case "Gender":
+                        currentYoungPersonsRecord.personalDetails.setGender(currentString.charAt(0));
+                        break;
+                    case "DOB":
+                        try {
+                            // Enforce the date format
+                            if (currentString.length() != DATE_FORMAT.length()) {
+                                throw new ParseException(null, 0);
+                            }
+                            currentDate = dateFormatter.parse(currentString);
+                            currentYoungPersonsRecord.personalDetails.setDob(currentDate);
+                        } catch (ParseException e) {
+                            //TODO: Double-check date format thing
+                            fileValidationError(ErrorStrings.ERR_INVALID_DOB + ": " + currentString);
+                        }
+                        break;
                 }
             }
             // This next line enforces a specific data model - that XML tags

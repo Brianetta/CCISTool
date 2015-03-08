@@ -45,6 +45,7 @@ public class YoungPersonsRecord {
         private String addressLine2;
         private String addressLine3;
         private String addressLine4;
+        private String county;
         private String town;
         private String postcode;
         private char gender;
@@ -150,6 +151,10 @@ public class YoungPersonsRecord {
 
         public void setYouthContractStartDate(Date youthContractStartDate) {
             this.youthContractStartDate = youthContractStartDate;
+        }
+
+        public void setCounty(String county) {
+            this.county = county;
         }
     }
 
