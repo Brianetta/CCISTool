@@ -54,6 +54,7 @@ public class XMLImporter extends DefaultHandler {
     // because some tags (like SourceLEA) appear in both
     private boolean fileHeaderImport = false;
     private boolean youngPersonsRecordImport = false;
+    private boolean personalDetailsFound = false;
 
     public XMLImporter() {
         fileHeader = new FileHeader();
@@ -130,7 +131,7 @@ public class XMLImporter extends DefaultHandler {
                     break;
                 case "PersonalDetails":
                     if (youngPersonsRecordImport) {
-
+                        personalDetailsFound = true;
                     }
             }
         }
@@ -255,6 +256,10 @@ public class XMLImporter extends DefaultHandler {
                 // For now, throw this into a List. TODO: Database.
                 youngPersonsRecords.add(currentYoungPersonsRecord);
                 youngPersonsRecordImport = false;
+                if (!personalDetailsFound) {
+                    fileValidationError(ErrorStrings.ERR_NO_PERSONAL_DETAILS);
+                }
+                personalDetailsFound = false;
                 break;
         }
     }
