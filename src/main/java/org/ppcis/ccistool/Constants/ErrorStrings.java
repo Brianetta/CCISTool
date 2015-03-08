@@ -16,8 +16,14 @@ package org.ppcis.ccistool.Constants;
  */
 public class ErrorStrings {
     public static final String ERR_NO_FILEHEADER = "XML submission does not contain a FileHeader node";
-    public static final String ERR_NO_ROOT_CLOSE = "Cannot find closing root node int he XML submission";
+    public static final String ERR_NO_ROOT_CLOSE = "Cannot find closing root node in the XML submission";
     public static final String ERR_MULTIPLE_ROOT = "More than one root node in the XML submission";
     public static final String ERR_INVALID_DBIDS = "Invalid databaseIDs found in FileHeader";
     public static final String ERR_INVALID_FHLEA = "Invalid LEA value found in FileHeader";
+    public static final String ERR_INVALID_DATE_SEND = "Invalid DateOfSend";
+    public static final String ERR_INVALID_PERIODEND = "Invalid PeriodEnd";
+    public static final String ERR_UNEXPECTED_DATA = "Unexpected data in node";
+    public static final String XML_ERROR_AT_LINE_D = "XML error at line %d";
+    public static final String XML_DATA_ERROR = "Trouble with XML data";
+    public static final String XML_FILE_ERROR = "Trouble with XML file";
 }

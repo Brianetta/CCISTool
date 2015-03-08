@@ -86,18 +86,21 @@ public class XMLImporter extends DefaultHandler {
         } catch (SAXException e) {
             if (e instanceof SAXParseException) {
                 // This was how the ampersand problem worked around earlier was detected
-                fileValidationError(String.format("XML error at line %d: %s", ((SAXParseException) e).getLineNumber(), e.getMessage()));
+                fileValidationError(String.format(ErrorStrings.XML_ERROR_AT_LINE_D + ": %s", ((SAXParseException) e).getLineNumber(), e.getMessage()));
             } else {
                 // There might be other data problems. File might well not even be XML.
-                fileValidationError("Trouble with XML data: "+e.getMessage());
+                fileValidationError(ErrorStrings.XML_DATA_ERROR + ": "+e.getMessage());
             }
         } catch (IOException e) {
             // Probably, the user managed to select a non-file of some sort
-            fileValidationError("Trouble with XML file: " + e.getMessage());
+            fileValidationError(ErrorStrings.XML_FILE_ERROR + ": " + e.getMessage());
         }
         // Check FileHeader for errors
         if (!fileHeaderSeen) {
-            fileValidationError("XML submission does not contain a FileHeader node");
+            fileValidationError(ErrorStrings.ERR_NO_FILEHEADER);
+        }
+        if (!currentNode.isEmpty()) {
+            fileValidationError(ErrorStrings.ERR_NO_ROOT_CLOSE);
         }
         return fileHeader;
     }
@@ -116,7 +119,7 @@ public class XMLImporter extends DefaultHandler {
                     fileHeaderImport = true;
                     if (fileHeaderSeen) {
                         // Hope this is self-explanatory
-                        fileValidationError("More than one FileHeader node found in XML");
+                        fileValidationError(ErrorStrings.ERR_MULTIPLE_ROOT);
                     }
                     fileHeaderSeen = true;
                     break;
@@ -139,6 +142,7 @@ public class XMLImporter extends DefaultHandler {
     }
 
     private void fileValidationError(String errorMessage) {
+        // TODO: Add fileValidationError implementation with error code argument
         fileHeader.addFileValidationError(errorMessage);
         System.out.println(errorMessage);
     }
@@ -196,7 +200,7 @@ public class XMLImporter extends DefaultHandler {
                             currentDate = dateFormatter.parse(currentString);
                             fileHeader.setDateOfSend(currentDate);
                         } catch (ParseException e) {
-                            fileValidationError("Invalid DateOfSend: " + currentString);
+                            fileValidationError(ErrorStrings.ERR_INVALID_DATE_SEND + ": " + currentString);
                         }
                         break;
                     case "PeriodEnd":
@@ -208,7 +212,7 @@ public class XMLImporter extends DefaultHandler {
                             currentDate = dateFormatter.parse(currentString);
                             fileHeader.setPeriodEnd(currentDate);
                         } catch (ParseException e) {
-                            fileValidationError("Invalid PeriodEnd: " + currentString);
+                            fileValidationError(ErrorStrings.ERR_INVALID_PERIODEND + ": " + currentString);
                         }
                         break;
                     case "SupplierName":
@@ -221,7 +225,7 @@ public class XMLImporter extends DefaultHandler {
                         fileHeader.setXMLSchemaVersion(currentString);
                         break;
                     default:
-                        fileValidationError("Unexpected data in node: "+currentNode.peek()+", "+currentString);
+                        fileValidationError(ErrorStrings.ERR_UNEXPECTED_DATA + ": "+currentNode.peek()+", "+currentString);
                         break;
                 }
             }
@@ -248,7 +252,7 @@ public class XMLImporter extends DefaultHandler {
                 fileHeaderImport = false;
                 break;
             case "YoungPersonsRecord":
-                // For now, throw this into a List. To do: Database.
+                // For now, throw this into a List. TODO: Database.
                 youngPersonsRecords.add(currentYoungPersonsRecord);
                 youngPersonsRecordImport = false;
                 break;
