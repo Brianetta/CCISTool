@@ -4,7 +4,6 @@ import org.ppcis.ccistool.Constants.ErrorStrings;
 import org.ppcis.ccistool.storage.FileHeader;
 import org.ppcis.ccistool.storage.YoungPersonsRecord;
 import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -12,17 +11,14 @@ import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringReader;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Copyright © Brian Ronald
@@ -60,27 +56,67 @@ public class XMLImporter extends DefaultHandler {
         fileHeader = new FileHeader();
     }
 
+    FileHeader importXMLWithFix(String filename) {
+        File tempFile;
+        Scanner inputScanner;
+        BufferedWriter tempFileWriter;
+
+        try {
+            tempFile = File.createTempFile("CCISTool", ".tmp");
+            tempFile.deleteOnExit();
+            System.out.println("Temporary file: " + tempFile.getCanonicalPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        try {
+            tempFileWriter = new BufferedWriter(new FileWriter(tempFile));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        try {
+            inputScanner = new Scanner(Paths.get(filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        while (inputScanner.hasNext()) {
+            // Fix each line, turning ampersand followed by space into the entity and a space
+            try {
+                tempFileWriter.write(inputScanner.nextLine().replaceAll("& ", "&amp; "));
+                tempFileWriter.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+                fileValidationError("Error processing file");
+            }
+        }
+        try {
+            tempFileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            return importXML(tempFile.getCanonicalPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            fileValidationError("Temp file died");
+            return null;
+        }
+    }
+
     FileHeader importXML(String filename) {
         SAXParserFactory spf = SAXParserFactory.newInstance();
         SAXParser sp;
         // Inhale the XML file
         try {
-            // Put the ENTIRE XML file into a StringBuilder, line by line, so we can fix XML entities.
-            // Would rather read directly from the file, but the XML we get from Cognisoft's product
-            // often contains un-escaped ampersands in data strings.
-            StringBuilder xml = new StringBuilder();
-
-            // Read all the lines into a list
-            List<String> lines = Files.readAllLines(Paths.get(filename), Charset.defaultCharset());
-            for (String line : lines) {
-                // Fix each line, turning ampersand followed by space into the entity and a space
-                line = line.replaceAll("& ", "&amp; ");
-                // Put that line into the StringBuilder
-                xml.append(line);
-            }
             sp = spf.newSAXParser();
             // Turn that StringBuilder into a file-like InputSource, and parse it as XML
-            sp.parse(new InputSource(new StringReader(xml.toString())), this);
+            sp.parse(filename, this);
         } catch (ParserConfigurationException e) {
             // No idea what mishaps throw these
             e.printStackTrace();

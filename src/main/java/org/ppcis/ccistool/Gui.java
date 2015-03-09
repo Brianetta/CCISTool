@@ -30,6 +30,7 @@ public class Gui implements ActionListener {
     private JMenuBar jMenuBar;      // The menu bar
     private JMenu fileMenu;         // The file menu
     private JMenuItem fileOpen;     // File -> Open...
+    private JMenuItem fileOpenWithFix;     // File -> Open impaired...
     private JMenuItem fileExit;     // File -> Exit
     private JPanel jPanel;          // The bit below the menu bar
     private JList<Integer> leaList;                 // List field to display source LEAs
@@ -61,6 +62,13 @@ public class Gui implements ActionListener {
                 fileOpen.setActionCommand("open");
             }
             fileMenu.add(fileOpen);
+            {
+                fileOpenWithFix = new JMenuItem("Import impaired...");
+                fileOpenWithFix.setMnemonic('I');
+                fileOpenWithFix.addActionListener(this);
+                fileOpenWithFix.setActionCommand("openImpaired");
+            }
+            fileMenu.add(fileOpenWithFix);
             fileMenu.addSeparator();
             {
                 fileExit = new JMenuItem("Exit");
@@ -134,7 +142,10 @@ public class Gui implements ActionListener {
         switch(actionEvent.getActionCommand())
         {
             case ("open"):
-                importXMLFile();
+                importXMLFile(true);  // unimpaired XML file
+                break;
+            case ("openImpaired"):
+                importXMLFile(false); // XML probably needs fixing up
                 break;
             case ("exit"):
                 System.exit(0);
@@ -142,8 +153,12 @@ public class Gui implements ActionListener {
         }
     }
 
-    private void importXMLFile() {
-        fileHeader = new XMLImporter().importXML(getFileName("*.xml"));
+    private void importXMLFile(boolean unimpaired) {
+        if (unimpaired) {
+            fileHeader = new XMLImporter().importXML(getFileName("*.xml"));
+        } else {
+            fileHeader = new XMLImporter().importXMLWithFix(getFileName("*.xml"));
+        }
         if (fileHeader.getPeriodEnd()==null) return;
         showDatabaseID.setText(fileHeader.getDatabaseIDs());
         for (Integer sourceLEA : fileHeader.getSourceLEAs()) {
