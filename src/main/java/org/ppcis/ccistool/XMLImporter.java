@@ -44,7 +44,6 @@ public class XMLImporter extends DefaultHandler {
     private StringBuilder currentContent;
     private String rootNode;
     private FileHeader fileHeader;
-    private List<YoungPersonsRecord> youngPersonsRecords = new ArrayList<>();
     private YoungPersonsRecord currentYoungPersonsRecord;
     // A flag to track the number of fileHeaders seen. One bit should be big enough.
     private boolean fileHeaderSeen = false;
@@ -350,8 +349,8 @@ public class XMLImporter extends DefaultHandler {
                 fileHeaderImport = false;
                 break;
             case "YoungPersonsRecord":
-                // For now, throw this into a List. TODO: Database.
-                youngPersonsRecords.add(currentYoungPersonsRecord);
+                // For now, dump some stuff. TODO: Database.
+                currentYoungPersonsRecord.dumpSomeStuff();
                 youngPersonsRecordImport = false;
                 if (!personalDetailsFound) {
                     fileValidationError(ErrorStrings.ERR_NO_PERSONAL_DETAILS);

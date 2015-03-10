@@ -262,4 +262,8 @@ public class YoungPersonsRecord {
             this.predictedEndDate = predictedEndDate;
         }
     }
+
+    public void dumpSomeStuff() {
+        System.out.println(String.format("%d: %s %s (%d)", personalDetails.youngPersonsID,personalDetails.givenName,personalDetails.familyName,activities.activityCode));
+    }
 }
