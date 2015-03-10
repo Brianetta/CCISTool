@@ -36,8 +36,10 @@ import java.util.*;
  */
 
 public class XMLImporter extends DefaultHandler {
-
+    // NCCIS sets the format of dates to be thus
     public static final String DATE_FORMAT = "yyyy-MM-dd";
+    // Regular expression to find non-escaped ampersands in XML
+    public static final String ENTITY_REGEX = "&[\\S&&[^;]]*\\s";
     private Stack<String> currentNode = new Stack<>();
     private StringBuilder currentContent;
     private String rootNode;
@@ -85,9 +87,19 @@ public class XMLImporter extends DefaultHandler {
         }
 
         while (inputScanner.hasNext()) {
-            // Fix each line, turning ampersand followed by space into the entity and a space
+            // Fix each line, turning ampersands that are not entities into the entity
             try {
-                tempFileWriter.write(inputScanner.nextLine().replaceAll("& ", "&amp; "));
+                String[] pieces;
+                StringBuilder fixedLine = new StringBuilder();
+                pieces = inputScanner.nextLine().split(ENTITY_REGEX);
+                for (String piece : pieces) {
+                    if (piece.matches(ENTITY_REGEX)) {
+                        fixedLine.append(piece.replaceAll("&", "&amp;"));
+                    } else {
+                        fixedLine.append(piece);
+                    }
+                }
+                tempFileWriter.write(fixedLine.toString());
                 tempFileWriter.flush();
             } catch (IOException e) {
                 e.printStackTrace();
