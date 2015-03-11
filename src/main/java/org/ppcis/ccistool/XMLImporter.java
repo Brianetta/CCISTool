@@ -292,7 +292,7 @@ public class XMLImporter extends DefaultHandler {
                         currentYoungPersonsRecord.personalDetails.setGivenName(currentString);
                         break;
                     case "MiddleName":
-                        currentYoungPersonsRecord.personalDetails.setGivenName(currentString);
+                        currentYoungPersonsRecord.personalDetails.setMiddleName(currentString);
                         break;
                     case "FamilyName":
                         currentYoungPersonsRecord.personalDetails.setFamilyName(currentString);
