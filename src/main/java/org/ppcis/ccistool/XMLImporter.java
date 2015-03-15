@@ -317,9 +317,14 @@ public class XMLImporter extends DefaultHandler {
                             currentDate = dateFormatter.parse(currentString);
                             currentYoungPersonsRecord.personalDetails.setDob(currentDate);
                         } catch (ParseException e) {
-                            //TODO: Double-check date format thing
-                            fileValidationError(ErrorStrings.ERR_INVALID_DOB + ": " + currentString);
+                            // Leave DOB as null
                         }
+                        break;
+                    case "Ethnicity":
+                        currentYoungPersonsRecord.personalDetails.setEthnicity(currentString);
+                        break;
+                    case "LeadLEA":
+                        currentYoungPersonsRecord.personalDetails.setLeadLea(Integer.decode(currentString));
                         break;
                 }
             }

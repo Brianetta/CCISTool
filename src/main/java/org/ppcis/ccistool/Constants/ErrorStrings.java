@@ -27,5 +27,4 @@ public class ErrorStrings {
     public static final String XML_DATA_ERROR = "Trouble with XML data";
     public static final String XML_FILE_ERROR = "Trouble with XML file";
     public static final String ERR_NO_PERSONAL_DETAILS = "YoungPersonsRecord without PersonalDetails node";
-    public static final String ERR_INVALID_DOB = "Invalid date of birth";
 }
