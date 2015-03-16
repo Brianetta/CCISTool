@@ -1,7 +1,5 @@
 package org.ppcis.ccistool;
 
-import org.xml.sax.helpers.DefaultHandler;
-
 /**
  * Copyright © Brian Ronald
  * 19/02/15
