@@ -51,7 +51,7 @@
     <SeptemberGuarantee />
     <LevelOfNeed>
         <LevelOfNeedCode>3</LevelOfNeedCode>
-        <LDDFlag>N</LDDFlag>
+        <SENDFlag>N</SENDFlag>
         <Characteristics>
             <Characteristic>180</Characteristic>
         </Characteristics>
