@@ -1,5 +1,6 @@
 package org.ppcis.ccistool;
 
+import org.ppcis.ccistool.Constants.UsefulData;
 import org.ppcis.ccistool.storage.FileHeader;
 
 import javax.swing.*;
@@ -33,8 +34,8 @@ public class Gui implements ActionListener {
     private JMenuItem fileOpenWithFix;     // File -> Open impaired...
     private JMenuItem fileExit;     // File -> Exit
     private JPanel jPanel;          // The bit below the menu bar
-    private JList<Integer> leaList;                 // List field to display source LEAs
-    private DefaultListModel<Integer> leaListData;  // Data for that list field
+    private JList<String> leaList;                 // List field to display source LEAs
+    private DefaultListModel<String> leaListData;  // Data for that list field
     private JLabel showDateOfSend, showPeriodEnd, showDatabaseID, showSupplierInfo;
     private static final String MONTH_FORMAT = "MMMMM, YYYY";
 
@@ -162,7 +163,7 @@ public class Gui implements ActionListener {
         if (fileHeader.getPeriodEnd()==null) return;
         showDatabaseID.setText(fileHeader.getDatabaseIDs());
         for (Integer sourceLEA : fileHeader.getSourceLEAs()) {
-            leaListData.addElement(sourceLEA);
+            leaListData.addElement(sourceLEA.toString() + ": " + UsefulData.LEA.get(sourceLEA));
         }
         showDateOfSend.setText(new SimpleDateFormat(MONTH_FORMAT).format(fileHeader.getDateOfSend()));
         if (fileHeader.getDateOfSend().before(fileHeader.getPeriodEnd())) {
