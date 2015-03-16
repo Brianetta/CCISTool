@@ -31,12 +31,14 @@ public class YoungPersonsRecord {
         activities = new Activities();
     }
 
+
+
     public void setIntendedDestination(Integer intendedDestination) {
         this.intendedDestination = intendedDestination;
     }
 
     public class PersonalDetails {
-        private Long youngPersonsID;
+        private String youngPersonsID;
         private char cohortStatus;
         private String givenName;
         private String middleName;
@@ -56,12 +58,13 @@ public class YoungPersonsRecord {
         private Integer transferredToLACode;
         private Integer LEACodeAtYear11;
         private Integer uniqueLearnerNo;
-        private Integer uniquePupilNumber;
+        private String uniquePupilNumber;
         private char guaranteeStatusIndicator;
         private char youthContractIndicator;
         private Date youthContractStartDate;
+        private String previousYPIDIdentifier;
 
-        public void setYoungPersonsID(Long youngPersonsID) {
+        public void setYoungPersonsID(String youngPersonsID) {
             this.youngPersonsID = youngPersonsID;
         }
 
@@ -137,7 +140,7 @@ public class YoungPersonsRecord {
             this.uniqueLearnerNo = uniqueLearnerNo;
         }
 
-        public void setUniquePupilNumber(Integer uniquePupilNumber) {
+        public void setUniquePupilNumber(String uniquePupilNumber) {
             this.uniquePupilNumber = uniquePupilNumber;
         }
 
@@ -155,6 +158,10 @@ public class YoungPersonsRecord {
 
         public void setCounty(String county) {
             this.county = county;
+        }
+
+        public void setPreviousYPIDIdentifier(String previousYPIDIdentifier) {
+            this.previousYPIDIdentifier = previousYPIDIdentifier;
         }
     }
 
@@ -264,6 +271,6 @@ public class YoungPersonsRecord {
     }
 
     public void dumpSomeStuff() {
-        System.out.println(String.format("%d: %s %s (%d)", personalDetails.youngPersonsID,personalDetails.givenName,personalDetails.familyName,activities.activityCode));
+        System.out.println(String.format("%s: %s %s (%d)", personalDetails.youngPersonsID,personalDetails.givenName,personalDetails.familyName,activities.activityCode));
     }
 }
