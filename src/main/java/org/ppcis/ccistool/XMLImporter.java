@@ -219,19 +219,19 @@ public class XMLImporter extends DefaultHandler {
                 // the XML structure. Other tools can validate against XSD.
                 switch (currentNode.peek()) { // This is our current tag; data is in qNode
                     case "DatabaseID":
-                        currentValue = Integer.decode(currentString);
-                        if (currentValue == null) {
-                            fileValidationError(ErrorStrings.ERR_INVALID_DBIDS + ": " + currentString);
-                        } else {
+                        try {
+                            currentValue = Integer.decode(currentString);
                             fileHeader.addDatabase(currentValue);
+                        } catch (NumberFormatException e) {
+                            fileValidationError(ErrorStrings.ERR_INVALID_DBIDS + ": " + currentString);
                         }
                         break;
                     case "LEACode":
-                        currentValue = Integer.decode(currentString);
-                        if (currentValue == null) {
-                            fileValidationError(ErrorStrings.ERR_INVALID_FHLEA + ": " + currentString);
-                        } else {
+                        try {
+                            currentValue = Integer.decode(currentString);
                             fileHeader.addSourceLea(currentValue);
+                        } catch (NumberFormatException e) {
+                            fileValidationError(ErrorStrings.ERR_INVALID_FHLEA + ": " + currentString);
                         }
                         break;
                     case "DateOfSend":
