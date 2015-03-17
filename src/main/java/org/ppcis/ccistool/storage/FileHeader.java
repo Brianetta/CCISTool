@@ -1,5 +1,7 @@
 package org.ppcis.ccistool.storage;
 
+import org.ppcis.ccistool.Constants.ErrorStrings;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,8 +36,14 @@ public class FileHeader {
         fileValidationErrors = new ArrayList<>();
     }
 
-    public void addDatabase(Integer databaseID) {
-        this.databases.add(databaseID);
+    public void addDatabase(String databaseIDStr) {
+        if (databaseIDStr == null || databaseIDStr.length() == 0 ) {
+            this.addFileValidationError(ErrorStrings.ERR_INVALID_DBIDS);
+        } else try {
+            this.databases.add(Integer.decode(databaseIDStr));
+        } catch (NumberFormatException e) {
+            this.addFileValidationError(ErrorStrings.ERR_INVALID_DBIDS + ": " + databaseIDStr);
+        }
     }
 
     public List<Integer> getDatabases() {
