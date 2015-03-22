@@ -377,6 +377,10 @@ public class XMLImporter extends DefaultHandler {
                         break;
                     case "PredictedEndDate":
                         currentYoungPersonsRecord.activities.setPredictedEndDate(currentString);
+                        break;
+                    case "IntendedDestinationYr11":
+                        currentYoungPersonsRecord.setIntendedDestination(currentString);
+                        break;
                 }
             }
             // This next line enforces a specific data model - that XML tags

@@ -42,8 +42,12 @@ public class YoungPersonsRecord {
 
 
 
-    public void setIntendedDestination(Integer intendedDestination) {
-        this.intendedDestination = intendedDestination;
+    public void setIntendedDestination(String intendedDestination) {
+        try {
+            this.intendedDestination = Integer.decode(intendedDestination);
+        } catch (NumberFormatException e) {
+            // Leave this as null
+        }
     }
 
     public class PersonalDetails {
