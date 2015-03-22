@@ -39,7 +39,7 @@ public class YoungPersonsRecord {
 
     public class PersonalDetails {
         private String youngPersonsID;
-        private char cohortStatus;
+        private Character cohortStatus;
         private String givenName;
         private String middleName;
         private String familyName;
@@ -50,7 +50,7 @@ public class YoungPersonsRecord {
         private String county;
         private String town;
         private String postcode;
-        private char gender;
+        private Character gender;
         private Date dob;
         private String ethnicity;
         private Integer leadLea;
@@ -59,8 +59,8 @@ public class YoungPersonsRecord {
         private Integer LEACodeAtYear11;
         private Integer uniqueLearnerNo;
         private String uniquePupilNumber;
-        private char guaranteeStatusIndicator;
-        private char youthContractIndicator;
+        private Character guaranteeStatusIndicator;
+        private Character youthContractIndicator;
         private Date youthContractStartDate;
         private String previousYPIDIdentifier;
 
