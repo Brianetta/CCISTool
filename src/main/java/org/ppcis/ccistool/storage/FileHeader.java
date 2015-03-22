@@ -2,6 +2,8 @@ package org.ppcis.ccistool.storage;
 
 import org.ppcis.ccistool.Constants.ErrorStrings;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,20 +31,25 @@ public class FileHeader {
     private String supplierName;
     private String supplierXMLVersion;
     private String XMLSchemaVersion;
+    SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT);
+
+    // NCCIS sets the format of dates to be thus
+    public static final String DATE_FORMAT = "yyyy-MM-dd";
 
     public FileHeader() {
         sourceLEAs = new ArrayList<>();
         databases = new ArrayList<>();
         fileValidationErrors = new ArrayList<>();
+        dateFormatter.setLenient(false);
     }
 
-    public void addDatabase(String databaseIDStr) {
-        if (databaseIDStr == null || databaseIDStr.length() == 0 ) {
+    public void addDatabase(String databaseID) {
+        if (databaseID == null || databaseID.length() == 0 ) {
             this.addFileValidationError(ErrorStrings.ERR_INVALID_DBIDS);
         } else try {
-            this.databases.add(Integer.decode(databaseIDStr));
+            this.databases.add(Integer.decode(databaseID));
         } catch (NumberFormatException e) {
-            this.addFileValidationError(ErrorStrings.ERR_INVALID_DBIDS + ": " + databaseIDStr);
+            this.addFileValidationError(ErrorStrings.ERR_INVALID_DBIDS + ": " + databaseID);
         }
     }
 
@@ -50,8 +57,14 @@ public class FileHeader {
         return new ArrayList<Integer>(this.databases);
     }
 
-    public void addSourceLea(Integer sourceLEA) {
-        this.sourceLEAs.add(sourceLEA);
+    public void addSourceLea(String sourceLEA) {
+        if (sourceLEA == null || sourceLEA.length() == 0 ) {
+            this.addFileValidationError(ErrorStrings.ERR_INVALID_FHLEA);
+        } else try {
+            this.sourceLEAs.add(Integer.decode(sourceLEA));
+        } catch (NumberFormatException e) {
+            this.addFileValidationError(ErrorStrings.ERR_INVALID_FHLEA + ": " + sourceLEA);
+        }
     }
 
     public List<Integer> getSourceLEAs()
@@ -67,12 +80,32 @@ public class FileHeader {
         this.dateOfSend = dateOfSend;
     }
 
+    public void setDateOfSend(String dateOfSend) {
+        try {
+            // Enforce the date format
+            if (dateOfSend.length() != DATE_FORMAT.length()) {
+                throw new ParseException(null, 0);
+            }
+            this.dateOfSend = dateFormatter.parse(dateOfSend);
+        } catch (ParseException e) {
+            this.addFileValidationError(ErrorStrings.ERR_INVALID_DATE_SEND + ": " + dateOfSend);
+        }
+    }
+
     public Date getPeriodEnd() {
         return periodEnd;
     }
 
-    public void setPeriodEnd(Date periodEnd) {
-        this.periodEnd = periodEnd;
+    public void setPeriodEnd(String periodEnd) {
+        try {
+            // Enforce the date format
+            if (periodEnd.length() != DATE_FORMAT.length()) {
+                throw new ParseException(null, 0);
+            }
+            this.periodEnd = dateFormatter.parse(periodEnd);
+        } catch (ParseException e) {
+            this.addFileValidationError(ErrorStrings.ERR_INVALID_DATE_SEND + ": " + periodEnd);
+        }
     }
 
     public String getSupplierName() {

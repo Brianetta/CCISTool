@@ -222,36 +222,13 @@ public class XMLImporter extends DefaultHandler {
                         fileHeader.addDatabase(currentString);
                         break;
                     case "LEACode":
-                        try {
-                            currentValue = Integer.decode(currentString);
-                            fileHeader.addSourceLea(currentValue);
-                        } catch (NumberFormatException e) {
-                            fileValidationError(ErrorStrings.ERR_INVALID_FHLEA + ": " + currentString);
-                        }
+                        fileHeader.addSourceLea(currentString);
                         break;
                     case "DateOfSend":
-                        try {
-                            // Enforce the date format
-                            if (currentString.length() != DATE_FORMAT.length()) {
-                                throw new ParseException(null, 0);
-                            }
-                            currentDate = dateFormatter.parse(currentString);
-                            fileHeader.setDateOfSend(currentDate);
-                        } catch (ParseException e) {
-                            fileValidationError(ErrorStrings.ERR_INVALID_DATE_SEND + ": " + currentString);
-                        }
+                        fileHeader.setDateOfSend(currentString);
                         break;
                     case "PeriodEnd":
-                        try {
-                            // Enforce the date format
-                            if (currentString.length() != DATE_FORMAT.length()) {
-                                throw new ParseException(null, 0);
-                            }
-                            currentDate = dateFormatter.parse(currentString);
-                            fileHeader.setPeriodEnd(currentDate);
-                        } catch (ParseException e) {
-                            fileValidationError(ErrorStrings.ERR_INVALID_PERIODEND + ": " + currentString);
-                        }
+                        fileHeader.setPeriodEnd(currentString);
                         break;
                     case "SupplierName":
                         fileHeader.setSupplierName(currentString);
