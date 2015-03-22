@@ -298,6 +298,7 @@ public class YoungPersonsRecord {
         private Boolean currencyLapsed;
         private Integer establishmentNumber;
         private String establishmentName;
+        private String UKProviderReferenceNumber;
         private Date NEETStartDate;
         private Date predictedEndDate;
 
@@ -370,6 +371,7 @@ public class YoungPersonsRecord {
             this.establishmentName = establishmentName;
         }
 
+
         public void setNEETStartDate(String NEETStartDate) {
             try {
                 this.NEETStartDate = dateFormatter.parse(NEETStartDate);
@@ -384,6 +386,10 @@ public class YoungPersonsRecord {
             } catch (ParseException e) {
                 // Leave this as null
             }
+        }
+
+        public void setUKProviderReferenceNumber(String UKProviderReferenceNumber) {
+            this.UKProviderReferenceNumber = UKProviderReferenceNumber;
         }
     }
 

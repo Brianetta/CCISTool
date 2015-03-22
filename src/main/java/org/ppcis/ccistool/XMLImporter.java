@@ -16,8 +16,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -204,12 +202,8 @@ public class XMLImporter extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         // Re-usable content variables
         String currentString;
-        Integer currentValue;
-        Date currentDate;
-        SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT);
-        dateFormatter.setLenient(false);
         if (currentContent != null) {                   // Current tag contains data, not more tags
-            currentString = currentContent.toString();  // We always need the String
+            currentString = currentContent.toString();  // Stringify the StringBuilder
             if (fileHeaderImport) {
                 // We're currently looking at tags inside the FileHeader node
                 assert(!youngPersonsRecordImport);
@@ -348,6 +342,41 @@ public class XMLImporter extends DefaultHandler {
                     case "CharacteristicCode":
                         currentYoungPersonsRecord.levelOfNeed.addCharacteristic(currentString);
                         break;
+                    case "ActivityCode":
+                        currentYoungPersonsRecord.activities.setActivityCode(currentString);
+                        break;
+                    case "StartDate":
+                        currentYoungPersonsRecord.activities.setStartDate(currentString);
+                        break;
+                    case "DateAscertained":
+                        currentYoungPersonsRecord.activities.setDateAscertained(currentString);
+                        break;
+                    case "DateVerified":
+                        currentYoungPersonsRecord.activities.setDateVerified(currentString);
+                        break;
+                    case "ReviewDate":
+                        currentYoungPersonsRecord.activities.setReviewDate(currentString);
+                        break;
+                    case "DueToLapseDate":
+                        currentYoungPersonsRecord.activities.setDueToLapseDate(currentString);
+                        break;
+                    case "CurrencyLapsed":
+                        currentYoungPersonsRecord.activities.setCurrencyLapsed(currentString);
+                        break;
+                    case "EstablishmentNumber":
+                        currentYoungPersonsRecord.activities.setEstablishmentNumber(currentString);
+                        break;
+                    case "EstablishmentName":
+                        currentYoungPersonsRecord.activities.setEstablishmentName(currentString);
+                        break;
+                    case "UKProviderReferenceNumber":
+                        currentYoungPersonsRecord.activities.setUKProviderReferenceNumber(currentString);
+                        break;
+                    case "NEETStartDate":
+                        currentYoungPersonsRecord.activities.setNEETStartDate(currentString);
+                        break;
+                    case "PredictedEndDate":
+                        currentYoungPersonsRecord.activities.setPredictedEndDate(currentString);
                 }
             }
             // This next line enforces a specific data model - that XML tags
