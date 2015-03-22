@@ -16,9 +16,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * Copyright © Brian Ronald
@@ -253,11 +254,7 @@ public class XMLImporter extends DefaultHandler {
                         currentYoungPersonsRecord.personalDetails.setYoungPersonsID(currentString);
                         break;
                     case "CohortStatus":
-                        try {
-                            currentYoungPersonsRecord.personalDetails.setCohortStatus(currentString.charAt(0));
-                        } catch (StringIndexOutOfBoundsException e) {
-                            // Leave this as null
-                        }
+                        currentYoungPersonsRecord.personalDetails.setCohortStatus(currentString,fileHeader);
                         break;
                     case "GivenName":
                         currentYoungPersonsRecord.personalDetails.setGivenName(currentString);
@@ -290,61 +287,28 @@ public class XMLImporter extends DefaultHandler {
                         currentYoungPersonsRecord.personalDetails.setPostcode(currentString);
                         break;
                     case "Gender":
-                        try {
-                            currentYoungPersonsRecord.personalDetails.setGender(currentString.charAt(0));
-                        } catch (StringIndexOutOfBoundsException e) {
-                            // Leave this as null
-                        }
+                        currentYoungPersonsRecord.personalDetails.setGender(currentString);
                         break;
                     case "DOB":
-                        try {
-                            // Enforce the date format
-                            if (currentString.length() != DATE_FORMAT.length()) {
-                                throw new ParseException(null, 0);
-                            }
-                            currentDate = dateFormatter.parse(currentString);
-                            currentYoungPersonsRecord.personalDetails.setDob(currentDate);
-                        } catch (ParseException e) {
-                            // Leave DOB as null
-                        }
+                        currentYoungPersonsRecord.personalDetails.setDob(currentString);
                         break;
                     case "Ethnicity":
                         currentYoungPersonsRecord.personalDetails.setEthnicity(currentString);
                         break;
                     case "LeadLEA":
-                        try {
-                            currentYoungPersonsRecord.personalDetails.setLeadLea(Integer.decode(currentString));
-                        } catch (NumberFormatException e) {
-                            // Leave this as null
-                        }
+                        currentYoungPersonsRecord.personalDetails.setLeadLea(currentString);
                         break;
                     case "EducatedLEA":
-                        try {
-                        currentYoungPersonsRecord.personalDetails.setEducatedLEA(Integer.decode(currentString));
-                        } catch (NumberFormatException e) {
-                            // Leave this as null
-                        }
+                        currentYoungPersonsRecord.personalDetails.setEducatedLEA(currentString);
                         break;
                     case "TransferredToLACode":
-                        try {
-                        currentYoungPersonsRecord.personalDetails.setTransferredToLACode(Integer.decode(currentString));
-                        } catch (NumberFormatException e) {
-                            // Leave this as null
-                        }
+                        currentYoungPersonsRecord.personalDetails.setTransferredToLACode(currentString);
                         break;
                     case "LEACodeAtYear11":
-                        try {
-                        currentYoungPersonsRecord.personalDetails.setLEACodeAtYear11(Integer.decode(currentString));
-                        } catch (NumberFormatException e) {
-                            // Leave this as null
-                        }
+                        currentYoungPersonsRecord.personalDetails.setLEACodeAtYear11(currentString);
                         break;
                     case "UniqueLearnerNo":
-                        try {
-                        currentYoungPersonsRecord.personalDetails.setUniqueLearnerNo(Integer.decode(currentString));
-                        } catch (NumberFormatException e) {
-                            // Leave this as null
-                        }
+                        currentYoungPersonsRecord.personalDetails.setUniqueLearnerNo(currentString);
                         break;
                     case "UniquePupilNumber":
                         currentYoungPersonsRecord.personalDetails.setUniquePupilNumber(currentString);
@@ -356,61 +320,33 @@ public class XMLImporter extends DefaultHandler {
                         currentYoungPersonsRecord.personalDetails.setYouthContractIndicator(currentString.charAt(0));
                         break;
                     case "YouthContractStartDate":
-                        try {
-                            if (currentString.length() != DATE_FORMAT.length()) {
-                                throw new ParseException(null, 0);
-                            }
-                            currentDate = dateFormatter.parse(currentString);
-                            currentYoungPersonsRecord.personalDetails.setYouthContractStartDate(currentDate);
-                        } catch (ParseException e) {
-                            // Leave YouthContractStartDate as null
-                        }
+                        currentYoungPersonsRecord.personalDetails.setYouthContractStartDate(currentString);
                         break;
                     case "PreviousYPIDIdentifier":
                         currentYoungPersonsRecord.personalDetails.setPreviousYPIDIdentifier(currentString);
                         break;
                     case "GuaranteeStatus":
-                        try {
-                            if (year11SGFlag) {
-                                currentYoungPersonsRecord.septemberGuarantee.year11.setGuaranteeStatus(Integer.decode(currentString));
-                            } else {
-                                currentYoungPersonsRecord.septemberGuarantee.year12.setGuaranteeStatus(Integer.decode(currentString));
-                            }
-                        } catch (StringIndexOutOfBoundsException e) {
-                            // Leave this as null
+                        if (year11SGFlag) {
+                            currentYoungPersonsRecord.septemberGuarantee.year11.setGuaranteeStatus(currentString);
+                        } else {
+                            currentYoungPersonsRecord.septemberGuarantee.year12.setGuaranteeStatus(currentString);
                         }
                         break;
                     case "LEACode":
-                        try {
-                            if (year11SGFlag) {
-                                currentYoungPersonsRecord.septemberGuarantee.year11.setLEACode(Integer.decode(currentString));
-                            } else {
-                                currentYoungPersonsRecord.septemberGuarantee.year12.setLEACode(Integer.decode(currentString));
-                            }
-                        } catch (StringIndexOutOfBoundsException e) {
-                            // Leave this as null
+                        if (year11SGFlag) {
+                            currentYoungPersonsRecord.septemberGuarantee.year11.setLEACode(currentString);
+                        } else {
+                            currentYoungPersonsRecord.septemberGuarantee.year12.setLEACode(currentString);
                         }
                         break;
                     case "LevelOfNeedCode":
-                        try {
-                            currentYoungPersonsRecord.levelOfNeed.setLevelOfNeedCode(Integer.decode(currentString));
-                        } catch (NumberFormatException e) {
-                            // Leave this as null
-                        }
+                        currentYoungPersonsRecord.levelOfNeed.setLevelOfNeedCode(currentString);
                         break;
                     case "SENDFlag":
-                        try {
-                            currentYoungPersonsRecord.levelOfNeed.setSendFlag(currentString.charAt(0) == 'Y' || currentString.charAt(0) == 'y');
-                        } catch (StringIndexOutOfBoundsException e) {
-                            // Leave this as null
-                        }
+                        currentYoungPersonsRecord.levelOfNeed.setSendFlag(currentString);
                         break;
                     case "CharacteristicCode":
-                        try {
-                            currentYoungPersonsRecord.levelOfNeed.addCharacteristic(Integer.decode(currentString));
-                        } catch (NumberFormatException e) {
-                            // Leave this as null
-                        }
+                        currentYoungPersonsRecord.levelOfNeed.addCharacteristic(currentString);
                         break;
                 }
             }

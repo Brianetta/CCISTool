@@ -180,4 +180,7 @@ public class UsefulData {
         LEA.put(808,"Stockton on Tees");
         LEA.put(861,"Stoke on Trent");
     }
+
+    // NCCIS sets the format of dates in XML to be thus
+    public static final String DATE_FORMAT = "yyyy-MM-dd";
 }

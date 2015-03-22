@@ -1,5 +1,10 @@
 package org.ppcis.ccistool.storage;
 
+import org.ppcis.ccistool.Constants.ErrorStrings;
+import org.ppcis.ccistool.Constants.UsefulData;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -24,11 +29,15 @@ public class YoungPersonsRecord {
     public Activities activities;
     private Integer intendedDestination;
 
+    SimpleDateFormat dateFormatter; // Tool for decoding dates
+
     public YoungPersonsRecord() {
         personalDetails = new PersonalDetails();
         septemberGuarantee = new SeptemberGuarantee();
         levelOfNeed = new LevelOfNeed();
         activities = new Activities();
+        dateFormatter = new SimpleDateFormat(UsefulData.DATE_FORMAT);
+        dateFormatter.setLenient(false);
     }
 
 
@@ -57,7 +66,7 @@ public class YoungPersonsRecord {
         private Integer educatedLEA;
         private Integer transferredToLACode;
         private Integer LEACodeAtYear11;
-        private Integer uniqueLearnerNo;
+        private Long uniqueLearnerNo;
         private String uniquePupilNumber;
         private Character guaranteeStatusIndicator;
         private Character youthContractIndicator;
@@ -68,8 +77,16 @@ public class YoungPersonsRecord {
             this.youngPersonsID = youngPersonsID;
         }
 
-        public void setCohortStatus(char cohortStatus) {
-            this.cohortStatus = cohortStatus;
+        public void setCohortStatus(String cohortStatus,FileHeader fileHeader) {
+            try {
+                this.cohortStatus = cohortStatus.charAt(0);
+            } catch (StringIndexOutOfBoundsException e) {
+                // Leave this as null
+            }
+            if (this.cohortStatus == 'X') {
+                // NCCIS treat this data content error as a File Rejection, so we need that fileHeader instance
+                fileHeader.addFileValidationError(ErrorStrings.ERR_INCORRECT_COHORT_STATUS);
+            }
         }
 
         public void setGivenName(String givenName) {
@@ -108,36 +125,68 @@ public class YoungPersonsRecord {
             this.postcode = postcode;
         }
 
-        public void setGender(char gender) {
-            this.gender = gender;
+        public void setGender(String gender) {
+            try {
+                this.gender = gender.charAt(0);
+            } catch (StringIndexOutOfBoundsException e) {
+                // Leave this as null
+            }
         }
 
-        public void setDob(Date dob) {
-            this.dob = dob;
+        public void setDob(String dob) {
+            try {
+                // Enforce the date format
+                if (dob.length() != UsefulData.DATE_FORMAT.length()) {
+                    throw new ParseException(null, 0);
+                }
+                this.dob = dateFormatter.parse(dob);
+            } catch (ParseException e) {
+                // TODO Date format error (DOB)
+            }
         }
 
         public void setEthnicity(String ethnicity) {
             this.ethnicity = ethnicity;
         }
 
-        public void setLeadLea(Integer leadLea) {
-            this.leadLea = leadLea;
+        public void setLeadLea(String leadLea) {
+            try {
+                this.leadLea = Integer.decode(leadLea);
+            } catch (NumberFormatException e) {
+                // Leave this as null
+            }
         }
 
-        public void setEducatedLEA(Integer educatedLEA) {
-            this.educatedLEA = educatedLEA;
+        public void setEducatedLEA(String educatedLEA) {
+            try {
+                this.educatedLEA = Integer.decode(educatedLEA);
+            } catch (NumberFormatException e) {
+                // Leave this as null
+            }
         }
 
-        public void setTransferredToLACode(Integer transferredToLACode) {
-            this.transferredToLACode = transferredToLACode;
+        public void setTransferredToLACode(String transferredToLACode) {
+            try {
+                this.transferredToLACode = Integer.decode(transferredToLACode);
+            } catch (NumberFormatException e) {
+                // Leave this as null
+            }
         }
 
-        public void setLEACodeAtYear11(Integer LEACodeAtYear11) {
-            this.LEACodeAtYear11 = LEACodeAtYear11;
+        public void setLEACodeAtYear11(String LEACodeAtYear11) {
+            try {
+                this.LEACodeAtYear11 = Integer.decode(LEACodeAtYear11);
+            } catch (NumberFormatException e) {
+                // Leave this as null
+            }
         }
 
-        public void setUniqueLearnerNo(Integer uniqueLearnerNo) {
-            this.uniqueLearnerNo = uniqueLearnerNo;
+        public void setUniqueLearnerNo(String uniqueLearnerNo) {
+            try {
+                this.uniqueLearnerNo = Long.decode(uniqueLearnerNo);
+            } catch (NumberFormatException e) {
+                // Leave this as null
+            }
         }
 
         public void setUniquePupilNumber(String uniquePupilNumber) {
@@ -152,8 +201,16 @@ public class YoungPersonsRecord {
             this.youthContractIndicator = youthContractIndicator;
         }
 
-        public void setYouthContractStartDate(Date youthContractStartDate) {
-            this.youthContractStartDate = youthContractStartDate;
+        public void setYouthContractStartDate(String youthContractStartDate) {
+            try {
+                // Enforce the date format
+                if (youthContractStartDate.length() != UsefulData.DATE_FORMAT.length()) {
+                    throw new ParseException(null, 0);
+                }
+                this.youthContractStartDate = dateFormatter.parse(youthContractStartDate);
+            } catch (ParseException e) {
+                // TODO Date format error (DOB)
+            }
         }
 
         public void setCounty(String county) {
@@ -178,37 +235,60 @@ public class YoungPersonsRecord {
             private Integer guaranteeStatus;
             private Integer LEACode;
 
-            public void setGuaranteeStatus(Integer status) {
-                this.guaranteeStatus = status;
+            public void setGuaranteeStatus(String status) {
+                try {
+                    this.guaranteeStatus = Integer.decode(status);
+                } catch (NumberFormatException e) {
+                    // Leave this as null
+                }
             }
 
-            public void setLEACode(Integer code) {
-                this.LEACode = code;
+            public void setLEACode(String code) {
+                try {
+                    this.LEACode = Integer.decode(code);
+                } catch (NumberFormatException e) {
+                    // Leave this as null
+                }
             }
         }
     }
 
     public class LevelOfNeed {
-        private Integer youngPersonsID;
         private Integer levelOfNeedCode;
         private Boolean sendFlag;
         private ArrayList<Integer> Characteristics;
 
-        public void setLevelOfNeedCode(Integer levelOfNeedCode) {
-            this.levelOfNeedCode = levelOfNeedCode;
+        public LevelOfNeed() {
+            Characteristics = new ArrayList<>();
         }
 
-        public void setSendFlag(Boolean sendFlag) {
-            this.sendFlag = sendFlag;
+        public void setLevelOfNeedCode(String levelOfNeedCode) {
+            try {
+                this.levelOfNeedCode = Integer.decode(levelOfNeedCode);
+            } catch (NumberFormatException e) {
+                // Leave this as null
+            }
         }
 
-        public void addCharacteristic(Integer characteristic) {
-            Characteristics.add(characteristic);
+        public void setSendFlag(String sendFlag) {
+            try {
+                // If the first character is a y (ignoring case) the flag is true, else false
+                this.sendFlag = (sendFlag.charAt(0) == 'Y' || sendFlag.charAt(0) == 'y');
+            } catch (StringIndexOutOfBoundsException e) {
+                // Leave this as null
+            }
+        }
+
+        public void addCharacteristic(String characteristic) {
+            try {
+                Characteristics.add(Integer.decode(characteristic));
+            } catch (NumberFormatException e) {
+                // TODO invalid characteristic
+            }
         }
     }
 
     public class Activities {
-        private Integer youngPersonsID;
         private Integer activityCode;
         private Date startDate;
         private Date dateAscertained;
@@ -221,52 +301,89 @@ public class YoungPersonsRecord {
         private Date NEETStartDate;
         private Date predictedEndDate;
 
-        public void setYoungPersonsID(Integer youngPersonsID) {
-            this.youngPersonsID = youngPersonsID;
+        public void setActivityCode(String activityCode) {
+            try {
+                this.activityCode = Integer.decode(activityCode);
+            } catch (NumberFormatException e) {
+                //TODO invalid activity
+            }
         }
 
-        public void setActivityCode(Integer activityCode) {
-            this.activityCode = activityCode;
+        public void setStartDate(String startDate) {
+            try {
+                this.startDate = dateFormatter.parse(startDate);
+            } catch (ParseException e) {
+                // Leave this as null
+            }
         }
 
-        public void setStartDate(Date startDate) {
-            this.startDate = startDate;
+        public void setDateAscertained(String dateAscertained) {
+            try {
+                this.dateAscertained = dateFormatter.parse(dateAscertained);
+            } catch (ParseException e) {
+                // Leave this as null
+            }
         }
 
-        public void setDateAscertained(Date dateAscertained) {
-            this.dateAscertained = dateAscertained;
+        public void setDateVerified(String dateVerified) {
+            try {
+                this.dateVerified = dateFormatter.parse(dateVerified);
+            } catch (ParseException e) {
+                // Leave this as null
+            }
         }
 
-        public void setDateVerified(Date dateVerified) {
-            this.dateVerified = dateVerified;
+        public void setReviewDate(String reviewDate) {
+            try {
+                this.reviewDate = dateFormatter.parse(reviewDate);
+            } catch (ParseException e) {
+                // Leave this as null
+            }
         }
 
-        public void setReviewDate(Date reviewDate) {
-            this.reviewDate = reviewDate;
+        public void setDueToLapseDate(String dueToLapseDate) {
+            try {
+                this.dueToLapseDate = dateFormatter.parse(dueToLapseDate);
+            } catch (ParseException e) {
+                // Leave this as null
+            }
         }
 
-        public void setDueToLapseDate(Date dueToLapseDate) {
-            this.dueToLapseDate = dueToLapseDate;
+        public void setCurrencyLapsed(String currencyLapsed) {
+            try {
+                // If the first character is a y (ignoring case) the flag is true, else false
+                this.currencyLapsed = (currencyLapsed.charAt(0) == 'Y' || currencyLapsed.charAt(0) == 'y');
+            } catch (StringIndexOutOfBoundsException e) {
+                // Leave this as null
+            }
         }
 
-        public void setCurrencyLapsed(Boolean currencyLapsed) {
-            this.currencyLapsed = currencyLapsed;
-        }
-
-        public void setEstablishmentNumber(Integer establishmentNumber) {
-            this.establishmentNumber = establishmentNumber;
+        public void setEstablishmentNumber(String establishmentNumber) {
+            try {
+                this.establishmentNumber = Integer.decode(establishmentNumber);
+            } catch (NumberFormatException e) {
+                // Leave this as null
+            }
         }
 
         public void setEstablishmentName(String establishmentName) {
             this.establishmentName = establishmentName;
         }
 
-        public void setNEETStartDate(Date NEETStartDate) {
-            this.NEETStartDate = NEETStartDate;
+        public void setNEETStartDate(String NEETStartDate) {
+            try {
+                this.NEETStartDate = dateFormatter.parse(NEETStartDate);
+            } catch (ParseException e) {
+                // Leave this as null
+            }
         }
 
-        public void setPredictedEndDate(Date predictedEndDate) {
-            this.predictedEndDate = predictedEndDate;
+        public void setPredictedEndDate(String predictedEndDate) {
+            try {
+                this.predictedEndDate = dateFormatter.parse(predictedEndDate);
+            } catch (ParseException e) {
+                // Leave this as null
+            }
         }
     }
 

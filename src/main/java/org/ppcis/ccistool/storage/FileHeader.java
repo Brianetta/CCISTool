@@ -1,6 +1,7 @@
 package org.ppcis.ccistool.storage;
 
 import org.ppcis.ccistool.Constants.ErrorStrings;
+import org.ppcis.ccistool.Constants.UsefulData;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,15 +32,14 @@ public class FileHeader {
     private String supplierName;
     private String supplierXMLVersion;
     private String XMLSchemaVersion;
-    SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT);
 
-    // NCCIS sets the format of dates to be thus
-    public static final String DATE_FORMAT = "yyyy-MM-dd";
+    SimpleDateFormat dateFormatter; // Tool for decoding dates
 
     public FileHeader() {
         sourceLEAs = new ArrayList<>();
         databases = new ArrayList<>();
         fileValidationErrors = new ArrayList<>();
+        dateFormatter = new SimpleDateFormat(UsefulData.DATE_FORMAT);
         dateFormatter.setLenient(false);
     }
 
@@ -76,14 +76,10 @@ public class FileHeader {
         return dateOfSend;
     }
 
-    public void setDateOfSend(Date dateOfSend) {
-        this.dateOfSend = dateOfSend;
-    }
-
     public void setDateOfSend(String dateOfSend) {
         try {
             // Enforce the date format
-            if (dateOfSend.length() != DATE_FORMAT.length()) {
+            if (dateOfSend.length() != UsefulData.DATE_FORMAT.length()) {
                 throw new ParseException(null, 0);
             }
             this.dateOfSend = dateFormatter.parse(dateOfSend);
@@ -99,7 +95,7 @@ public class FileHeader {
     public void setPeriodEnd(String periodEnd) {
         try {
             // Enforce the date format
-            if (periodEnd.length() != DATE_FORMAT.length()) {
+            if (periodEnd.length() != UsefulData.DATE_FORMAT.length()) {
                 throw new ParseException(null, 0);
             }
             this.periodEnd = dateFormatter.parse(periodEnd);
