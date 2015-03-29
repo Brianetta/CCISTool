@@ -35,8 +35,6 @@ import java.util.Stack;
  */
 
 public class XMLImporter extends DefaultHandler {
-    // NCCIS sets the format of dates to be thus
-    public static final String DATE_FORMAT = "yyyy-MM-dd";
     private Stack<String> currentNode = new Stack<>();
     private StringBuilder currentContent;
     private String rootNode;
