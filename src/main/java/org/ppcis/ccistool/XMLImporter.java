@@ -138,6 +138,7 @@ public class XMLImporter extends DefaultHandler {
         return fileHeader;
     }
 
+    @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         if (currentNode.isEmpty()) { // This node has no parents in the node stack
             if (rootNode == null) {  // ...and no root node has been seen yet...
@@ -187,6 +188,7 @@ public class XMLImporter extends DefaultHandler {
         System.out.println(errorMessage);
     }
 
+    @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         // In between the open and close tags, this function gets called an
         // arbitrary number of times (usually once, but not always) with some
@@ -197,6 +199,7 @@ public class XMLImporter extends DefaultHandler {
         }
     }
 
+    @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         // Re-usable content variables
         String currentString;
