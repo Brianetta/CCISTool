@@ -100,7 +100,7 @@ public class FileHeader {
             }
             this.periodEnd = dateFormatter.parse(periodEnd);
         } catch (ParseException e) {
-            this.addFileValidationError(ErrorStrings.ERR_INVALID_DATE_SEND + ": " + periodEnd);
+            this.addFileValidationError(ErrorStrings.ERR_INVALID_PERIODEND + ": " + periodEnd);
         }
     }
 
