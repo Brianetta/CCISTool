@@ -1,22 +1,22 @@
 DROP TABLE IF EXISTS ErrorDef;
 
 CREATE TABLE ErrorDef (
-	ErrorCode INT
-	Description VARCHAR
-	Priority INT
+	ErrorCode INT PRIMARY KEY,
+	Description VARCHAR,
+	Priority INT,
 	Explanation VARCHAR
 );
 
 DROP TABLE IF EXISTS LEA;
 
 CREATE TABLE Lea (
-	LEANo INT
+	LEANo INT PRIMARY KEY,
 	Name VARCHAR
 );
 
 INSERT INTO ErrorDef (ErrorCode,Description,Priority,Explanation) VALUES
 (1,'‘YoungPersonsID’ not of the correct length digits',1,'The young person’s identifier must contain 13 the 3 digit DatabaseID followed by the local CCIS ID, and with padded 0s. eg 4440000123456'),
-(2,'‘GivenName’ does not contain a value',1'The young person’s given name is missing'),
+(2,'‘GivenName’ does not contain a value',1,'The young person’s given name is missing'),
 (3,'‘FamilyName’ does not contain a value',1,'The young person’s family name is missing'),
 (4,'‘Gender’ does not contain a value',2,'The young person’s gender has not been recorded'),
 (5,'‘Gender’ does not contain a recognised value',2,'The value input is not valid – see YP07 for a list of valid entries'),
@@ -86,7 +86,7 @@ INSERT INTO ErrorDef (ErrorCode,Description,Priority,Explanation) VALUES
 (258,'‘PredictedEndDate’ doesn’t contain a recognised value',1,'This error is most likely to have occurred if the course end date has been input incorrectly'),
 (259,'Young person’s current activity is education or training without a ‘PredictedEndDate’',1,'The course end date is mandatory for all education and training destinations except apprenticeships'),
 (260,'‘CharacteristicCode’ is 180 (Pregnant) but Gender is recorded as Male',2,'Either the characteristic needs removing or the gender correcting'),
-(262,'Guarantee ‘LEACode’ is not a recognised value (used for year 11 and 12)',1,'Valid LA codes can be found in appendix B.'),
+(261,'Guarantee ‘LEACode’ is not a recognised value (used for year 11 and 12)',1,'Valid LA codes can be found in appendix B.'),
 (262,'‘ActivityCode’ is 260, 290, 350, 710 or 720 and the ‘ReviewDate’ doesn’t contain a value',1,'All young people in temporary employment, gap year, custody, asylum seekers or those with an agreed start date should have a current activity review date'),
 (301,'‘IntendedDestinationYr11’ does not have a value',2,'Data missing'),
 (302,'‘IntendedDestinationYr11’ does not contain a recognised value',2,'The value given in the XML is not valid– see ID01 for a list of valid codes'),
@@ -97,4 +97,4 @@ INSERT INTO ErrorDef (ErrorCode,Description,Priority,Explanation) VALUES
 (908,'Suspected duplicate young person found by ‘GivenName’,  ‘FamilyName’ and ‘DOB’',3,'This error won’t count in the monthly error reports but indicates to the service that they have potential duplicates on their system'),
 (240,'Node Activities not found in young person’s record',1,'‘Activities’ node missing from XML file. File will be rejected and marked as ‘Failed’. Notification will be sent'),
 (903,'‘YoungPersonsID’ does not contain a value that is specified as the ‘DatabaseID’ in the XML FileHeader',1,'The first three digits of the ‘YoungPersonsID’ must always be the same as the ‘DatabaseID’ returned in the FileHeader'),
-(904,'The field ‘CohortStatus’ contains an unrecognised value, the file will fail validation',1,'See YP10 for a list of recognised values')
+(904,'The field ‘CohortStatus’ contains an unrecognised value, the file will fail validation',1,'See YP10 for a list of recognised values');
