@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS ErrorDef;
+
+CREATE TABLE ErrorDef (
+	ErrorCode INT
+	Description VARCHAR
+	Priority INT
+	Explanation VARCHAR
+);
+
+DROP TABLE IF EXISTS LEA;
+
+CREATE TABLE Lea (
+	LEANo INT
+	Name VARCHAR
+);

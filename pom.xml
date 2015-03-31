@@ -17,7 +17,7 @@
                     <configuration>
                         <source>1.7</source>
                         <target>1.7</target>
-                </configuration>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -39,5 +39,12 @@
             </resource>
         </resources>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.7.2</version>
+        </dependency>
+    </dependencies>
 
 </project>

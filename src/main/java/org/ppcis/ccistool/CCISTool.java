@@ -1,5 +1,7 @@
 package org.ppcis.ccistool;
 
+import org.ppcis.ccistool.storage.Database;
+
 /**
  * Copyright © Brian Ronald
  * 19/02/15
@@ -17,6 +19,7 @@ package org.ppcis.ccistool;
 public class CCISTool {
 
 public static void main(String args[]) {
+        Database database = new Database();
         Gui gui = new Gui();
     }
 

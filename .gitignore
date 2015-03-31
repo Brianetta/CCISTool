@@ -37,3 +37,6 @@ Ant files
 *.ipr
 *.iws
 .idea/
+
+# Our own persistence file
+CCISTool.db
