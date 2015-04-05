@@ -35,7 +35,7 @@ public class Database {
                     createQuery.append(scanner.nextLine());
                 }
                 System.out.println(createQuery.toString());
-                statement.executeUpdate(createQuery.toString());
+                statement.execute(createQuery.toString());
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             } finally {
