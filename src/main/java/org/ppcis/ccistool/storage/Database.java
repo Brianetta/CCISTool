@@ -1,9 +1,9 @@
 package org.ppcis.ccistool.storage;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import org.ppcis.ccistool.Constants.UsefulData;
+
+import java.sql.*;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -34,10 +34,28 @@ public class Database {
                 while (scanner.hasNext()) {
                     createQuery.append(scanner.nextLine());
                 }
-                System.out.println(createQuery.toString());
-                statement.execute(createQuery.toString());
-            } catch (SQLException | ClassNotFoundException e) {
+                // Statements in the SQL file are delimited by double-semicolon, because JDBC is awful
+                // and we need to run each statement individually.
+                String[] sqlStatements = createQuery.toString().split(";;");
+                for(String sql : sqlStatements) {
+                    statement.addBatch(sql);
+                }
+                statement.executeBatch();
+                statement.close();
+                // Now to populate the LEA table from the UsefulData class. It might be quicker to hard-code the SQL,
+                // but that requires more maintenance.
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Lea (LEANo, Name) VALUES (?, ?)");
+                for (Map.Entry<Integer,String> LEA : UsefulData.LEA.entrySet()) {
+                    preparedStatement.setInt(1, LEA.getKey());
+                    preparedStatement.setString(2, LEA.getValue());
+                    preparedStatement.addBatch();
+                }
+                preparedStatement.executeBatch();
+                preparedStatement.close();
+            } catch (SQLException e) {
                 e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                // Need to tell user about SQLite JDBC requirement
             } finally {
                 scanner.close();
             }
@@ -50,5 +68,9 @@ public class Database {
         } catch (SQLException e) {
             // Clearly that wasn't open.
         }
+    }
+
+    public void storeYoungPersonsRecord(YoungPersonsRecord youngPersonsRecord) {
+        // Insert into database!
     }
 }

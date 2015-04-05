@@ -398,7 +398,7 @@ public class XMLImporter extends DefaultHandler {
                 break;
             case "YoungPersonsRecord":
                 // For now, dump some stuff. TODO: Database.
-                currentYoungPersonsRecord.dumpSomeStuff();
+                currentYoungPersonsRecord.storeInDatabase();
                 youngPersonsRecordImport = false;
                 if (!personalDetailsFound) {
                     fileValidationError(ErrorStrings.ERR_NO_PERSONAL_DETAILS);

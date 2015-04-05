@@ -50,6 +50,15 @@ public class YoungPersonsRecord {
         }
     }
 
+    public void storeInDatabase() {
+        Database database = new Database();
+        database.storeYoungPersonsRecord(this);
+    }
+
+    public Integer getIntendedDestination() {
+        return intendedDestination;
+    }
+
     public class PersonalDetails {
         private String youngPersonsID;
         private Character cohortStatus;
@@ -224,6 +233,106 @@ public class YoungPersonsRecord {
         public void setPreviousYPIDIdentifier(String previousYPIDIdentifier) {
             this.previousYPIDIdentifier = previousYPIDIdentifier;
         }
+
+        public String getYoungPersonsID() {
+            return youngPersonsID;
+        }
+
+        public Character getCohortStatus() {
+            return cohortStatus;
+        }
+
+        public String getGivenName() {
+            return givenName;
+        }
+
+        public String getMiddleName() {
+            return middleName;
+        }
+
+        public String getFamilyName() {
+            return familyName;
+        }
+
+        public String getAddressLine1() {
+            return addressLine1;
+        }
+
+        public String getAddressLine2() {
+            return addressLine2;
+        }
+
+        public String getAddressLine3() {
+            return addressLine3;
+        }
+
+        public String getAddressLine4() {
+            return addressLine4;
+        }
+
+        public String getCounty() {
+            return county;
+        }
+
+        public String getTown() {
+            return town;
+        }
+
+        public String getPostcode() {
+            return postcode;
+        }
+
+        public Character getGender() {
+            return gender;
+        }
+
+        public Date getDob() {
+            return dob;
+        }
+
+        public String getEthnicity() {
+            return ethnicity;
+        }
+
+        public Integer getLeadLea() {
+            return leadLea;
+        }
+
+        public Integer getEducatedLEA() {
+            return educatedLEA;
+        }
+
+        public Integer getTransferredToLACode() {
+            return transferredToLACode;
+        }
+
+        public Integer getLEACodeAtYear11() {
+            return LEACodeAtYear11;
+        }
+
+        public Long getUniqueLearnerNo() {
+            return uniqueLearnerNo;
+        }
+
+        public String getUniquePupilNumber() {
+            return uniquePupilNumber;
+        }
+
+        public Character getGuaranteeStatusIndicator() {
+            return guaranteeStatusIndicator;
+        }
+
+        public Character getYouthContractIndicator() {
+            return youthContractIndicator;
+        }
+
+        public Date getYouthContractStartDate() {
+            return youthContractStartDate;
+        }
+
+        public String getPreviousYPIDIdentifier() {
+            return previousYPIDIdentifier;
+        }
     }
 
     public class SeptemberGuarantee {
@@ -254,16 +363,24 @@ public class YoungPersonsRecord {
                     // Leave this as null
                 }
             }
+
+            public Integer getGuaranteeStatus() {
+                return guaranteeStatus;
+            }
+
+            public Integer getLEACode() {
+                return LEACode;
+            }
         }
     }
 
     public class LevelOfNeed {
         private Integer levelOfNeedCode;
         private Boolean sendFlag;
-        private ArrayList<Integer> Characteristics;
+        private ArrayList<Integer> characteristics;
 
         public LevelOfNeed() {
-            Characteristics = new ArrayList<>();
+            characteristics = new ArrayList<>();
         }
 
         public void setLevelOfNeedCode(String levelOfNeedCode) {
@@ -285,10 +402,22 @@ public class YoungPersonsRecord {
 
         public void addCharacteristic(String characteristic) {
             try {
-                Characteristics.add(Integer.decode(characteristic));
+                characteristics.add(Integer.decode(characteristic));
             } catch (NumberFormatException e) {
                 // TODO invalid characteristic
             }
+        }
+
+        public ArrayList getCharacteristics() {
+            return characteristics;
+        }
+
+        public Integer getLevelOfNeedCode() {
+            return levelOfNeedCode;
+        }
+
+        public Boolean isSendFlag() {
+            return sendFlag;
         }
     }
 
@@ -395,9 +524,53 @@ public class YoungPersonsRecord {
         public void setUKProviderReferenceNumber(String UKProviderReferenceNumber) {
             this.UKProviderReferenceNumber = UKProviderReferenceNumber;
         }
-    }
 
-    public void dumpSomeStuff() {
-        System.out.println(String.format("%s: %s %s (%d)", personalDetails.youngPersonsID,personalDetails.givenName,personalDetails.familyName,activities.activityCode));
+        public Integer getActivityCode() {
+            return activityCode;
+        }
+
+        public Date getStartDate() {
+            return startDate;
+        }
+
+        public Date getDateAscertained() {
+            return dateAscertained;
+        }
+
+        public Date getDateVerified() {
+            return dateVerified;
+        }
+
+        public Date getReviewDate() {
+            return reviewDate;
+        }
+
+        public Date getDueToLapseDate() {
+            return dueToLapseDate;
+        }
+
+        public Boolean isCurrencyLapsed() {
+            return currencyLapsed;
+        }
+
+        public Integer getEstablishmentNumber() {
+            return establishmentNumber;
+        }
+
+        public String getEstablishmentName() {
+            return establishmentName;
+        }
+
+        public String getUKProviderReferenceNumber() {
+            return UKProviderReferenceNumber;
+        }
+
+        public Date getNEETStartDate() {
+            return NEETStartDate;
+        }
+
+        public Date getPredictedEndDate() {
+            return predictedEndDate;
+        }
     }
 }

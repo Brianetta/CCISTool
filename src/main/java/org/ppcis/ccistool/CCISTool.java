@@ -19,7 +19,6 @@ import org.ppcis.ccistool.storage.Database;
 public class CCISTool {
 
 public static void main(String args[]) {
-        Database database = new Database();
         Gui gui = new Gui();
     }
 
