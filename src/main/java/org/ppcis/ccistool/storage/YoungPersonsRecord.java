@@ -1,12 +1,8 @@
 package org.ppcis.ccistool.storage;
 
 import org.ppcis.ccistool.Constants.ErrorStrings;
-import org.ppcis.ccistool.Constants.UsefulData;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Copyright © Brian Ronald
@@ -29,15 +25,11 @@ public class YoungPersonsRecord {
     public Activities activities;
     private Integer intendedDestination;
 
-    SimpleDateFormat dateFormatter; // Tool for decoding dates
-
     public YoungPersonsRecord() {
         personalDetails = new PersonalDetails();
         septemberGuarantee = new SeptemberGuarantee();
         levelOfNeed = new LevelOfNeed();
         activities = new Activities();
-        dateFormatter = new SimpleDateFormat(UsefulData.DATE_FORMAT);
-        dateFormatter.setLenient(false);
     }
 
 
@@ -55,7 +47,7 @@ public class YoungPersonsRecord {
         database.storeYoungPersonsRecord(this);
     }
 
-    public Integer getIntendedDestination() {
+    public Integer getIntendedDestinationY11() {
         return intendedDestination;
     }
 
@@ -73,7 +65,7 @@ public class YoungPersonsRecord {
         private String town;
         private String postcode;
         private Character gender;
-        private Date dob;
+        private String dob;
         private String ethnicity;
         private Integer leadLea;
         private Integer educatedLEA;
@@ -83,7 +75,7 @@ public class YoungPersonsRecord {
         private String uniquePupilNumber;
         private Character guaranteeStatusIndicator;
         private Character youthContractIndicator;
-        private Date youthContractStartDate;
+        private String youthContractStartDate;
         private String previousYPIDIdentifier;
 
         public void setYoungPersonsID(String youngPersonsID) {
@@ -147,15 +139,7 @@ public class YoungPersonsRecord {
         }
 
         public void setDob(String dob) {
-            try {
-                // Enforce the date format
-                if (dob.length() != UsefulData.DATE_FORMAT.length()) {
-                    throw new ParseException(null, 0);
-                }
-                this.dob = dateFormatter.parse(dob);
-            } catch (ParseException e) {
-                // TODO Date format error (DOB)
-            }
+            this.dob = dob;
         }
 
         public void setEthnicity(String ethnicity) {
@@ -215,15 +199,7 @@ public class YoungPersonsRecord {
         }
 
         public void setYouthContractStartDate(String youthContractStartDate) {
-            try {
-                // Enforce the date format
-                if (youthContractStartDate.length() != UsefulData.DATE_FORMAT.length()) {
-                    throw new ParseException(null, 0);
-                }
-                this.youthContractStartDate = dateFormatter.parse(youthContractStartDate);
-            } catch (ParseException e) {
-                // TODO Date format error (DOB)
-            }
+            this.youthContractStartDate = youthContractStartDate;
         }
 
         public void setCounty(String county) {
@@ -286,7 +262,7 @@ public class YoungPersonsRecord {
             return gender;
         }
 
-        public Date getDob() {
+        public String getDob() {
             return dob;
         }
 
@@ -326,7 +302,7 @@ public class YoungPersonsRecord {
             return youthContractIndicator;
         }
 
-        public Date getYouthContractStartDate() {
+        public String getYouthContractStartDate() {
             return youthContractStartDate;
         }
 
@@ -423,17 +399,17 @@ public class YoungPersonsRecord {
 
     public class Activities {
         private Integer activityCode;
-        private Date startDate;
-        private Date dateAscertained;
-        private Date dateVerified;
-        private Date reviewDate;
-        private Date dueToLapseDate;
+        private String startDate;
+        private String dateAscertained;
+        private String dateVerified;
+        private String reviewDate;
+        private String dueToLapseDate;
         private Boolean currencyLapsed;
         private Integer establishmentNumber;
         private String establishmentName;
         private String UKProviderReferenceNumber;
-        private Date NEETStartDate;
-        private Date predictedEndDate;
+        private String NEETStartDate;
+        private String predictedEndDate;
 
         public void setActivityCode(String activityCode) {
             try {
@@ -444,43 +420,23 @@ public class YoungPersonsRecord {
         }
 
         public void setStartDate(String startDate) {
-            try {
-                this.startDate = dateFormatter.parse(startDate);
-            } catch (ParseException e) {
-                // Leave this as null
-            }
+            this.startDate = startDate;
         }
 
         public void setDateAscertained(String dateAscertained) {
-            try {
-                this.dateAscertained = dateFormatter.parse(dateAscertained);
-            } catch (ParseException e) {
-                // Leave this as null
-            }
+            this.dateAscertained = dateAscertained;
         }
 
         public void setDateVerified(String dateVerified) {
-            try {
-                this.dateVerified = dateFormatter.parse(dateVerified);
-            } catch (ParseException e) {
-                // Leave this as null
-            }
+            this.dateVerified = dateVerified;
         }
 
         public void setReviewDate(String reviewDate) {
-            try {
-                this.reviewDate = dateFormatter.parse(reviewDate);
-            } catch (ParseException e) {
-                // Leave this as null
-            }
+            this.reviewDate = reviewDate;
         }
 
         public void setDueToLapseDate(String dueToLapseDate) {
-            try {
-                this.dueToLapseDate = dateFormatter.parse(dueToLapseDate);
-            } catch (ParseException e) {
-                // Leave this as null
-            }
+            this.dueToLapseDate = dueToLapseDate;
         }
 
         public void setCurrencyLapsed(String currencyLapsed) {
@@ -506,19 +462,11 @@ public class YoungPersonsRecord {
 
 
         public void setNEETStartDate(String NEETStartDate) {
-            try {
-                this.NEETStartDate = dateFormatter.parse(NEETStartDate);
-            } catch (ParseException e) {
-                // Leave this as null
-            }
+            this.NEETStartDate = NEETStartDate;
         }
 
         public void setPredictedEndDate(String predictedEndDate) {
-            try {
-                this.predictedEndDate = dateFormatter.parse(predictedEndDate);
-            } catch (ParseException e) {
-                // Leave this as null
-            }
+            this.predictedEndDate = predictedEndDate;
         }
 
         public void setUKProviderReferenceNumber(String UKProviderReferenceNumber) {
@@ -529,23 +477,23 @@ public class YoungPersonsRecord {
             return activityCode;
         }
 
-        public Date getStartDate() {
+        public String getStartDate() {
             return startDate;
         }
 
-        public Date getDateAscertained() {
+        public String getDateAscertained() {
             return dateAscertained;
         }
 
-        public Date getDateVerified() {
+        public String getDateVerified() {
             return dateVerified;
         }
 
-        public Date getReviewDate() {
+        public String getReviewDate() {
             return reviewDate;
         }
 
-        public Date getDueToLapseDate() {
+        public String getDueToLapseDate() {
             return dueToLapseDate;
         }
 
@@ -565,11 +513,11 @@ public class YoungPersonsRecord {
             return UKProviderReferenceNumber;
         }
 
-        public Date getNEETStartDate() {
+        public String getNEETStartDate() {
             return NEETStartDate;
         }
 
-        public Date getPredictedEndDate() {
+        public String getPredictedEndDate() {
             return predictedEndDate;
         }
     }
