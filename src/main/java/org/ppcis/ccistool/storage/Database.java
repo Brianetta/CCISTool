@@ -171,4 +171,22 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    public void beginTransaction() {
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute("BEGIN TRANSACTION");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void commitTransaction() {
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute("COMMIT TRANSACTION");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

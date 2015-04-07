@@ -1,6 +1,7 @@
 package org.ppcis.ccistool;
 
 import org.ppcis.ccistool.Constants.ErrorStrings;
+import org.ppcis.ccistool.storage.Database;
 import org.ppcis.ccistool.storage.FileHeader;
 import org.ppcis.ccistool.storage.YoungPersonsRecord;
 import org.xml.sax.Attributes;
@@ -109,10 +110,15 @@ public class XMLImporter extends DefaultHandler {
     FileHeader importXML(String filename) {
         SAXParserFactory spf = SAXParserFactory.newInstance();
         SAXParser sp;
+        // Need this to start and commit a transaction. I'd rather have done this elsewhere, but I haven't
+        // figured out how to encapsulate the database interactions properly yet.
+        Database database = new Database();
         // Inhale the XML file
         try {
             sp = spf.newSAXParser();
+            database.beginTransaction();
             sp.parse(filename, this);
+            database.commitTransaction();
         } catch (ParserConfigurationException e) {
             // No idea what mishaps throw these
             e.printStackTrace();
