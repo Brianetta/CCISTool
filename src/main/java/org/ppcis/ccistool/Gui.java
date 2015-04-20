@@ -135,7 +135,9 @@ public class Gui implements ActionListener {
         FileDialog fileDialog = new FileDialog(jFrame,"FileOpen",FileDialog.LOAD);
         fileDialog.setFile(fileSpec);
         fileDialog.setVisible(true);
-        return String.format("%s%s", fileDialog.getDirectory(), fileDialog.getFile());
+        String fileName = fileDialog.getFile();
+        if (fileName == null) return null;
+        return String.format("%s%s", fileDialog.getDirectory(), fileName);
     }
 
     @Override
@@ -155,12 +157,15 @@ public class Gui implements ActionListener {
     }
 
     private void importXMLFile(boolean unimpaired) {
+        FileHeader fileHeader;
         if (unimpaired) {
             fileHeader = new XMLImporter().importXML(getFileName("*.xml"));
         } else {
             fileHeader = new XMLImporter().importXMLWithFix(getFileName("*.xml"));
         }
+        if (fileHeader == null) return;
         if (fileHeader.getPeriodEnd()==null) return;
+        this.fileHeader = fileHeader;
         showDatabaseID.setText(fileHeader.getDatabaseIDs());
         for (Integer sourceLEA : fileHeader.getSourceLEAs()) {
             leaListData.addElement(sourceLEA.toString() + ": " + UsefulData.LEA.get(sourceLEA));

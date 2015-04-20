@@ -55,10 +55,12 @@ public class XMLImporter extends DefaultHandler {
     }
 
     FileHeader importXMLWithFix(String filename) {
+        // Dialogue was cancelled; drop out as if nothing happened
+        if (filename == null) return null;
+
         File tempFile;
         Scanner inputScanner;
         BufferedWriter tempFileWriter;
-
         try {
             tempFile = File.createTempFile("CCISTool", ".tmp");
             tempFile.deleteOnExit();
@@ -108,6 +110,9 @@ public class XMLImporter extends DefaultHandler {
     }
 
     FileHeader importXML(String filename) {
+        // Dialogue was cancelled; drop out as if nothing happened
+        if (filename == null) return null;
+
         SAXParserFactory spf = SAXParserFactory.newInstance();
         SAXParser sp;
         // Need this to start and commit a transaction. I'd rather have done this elsewhere, but I haven't
