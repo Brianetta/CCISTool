@@ -53,7 +53,7 @@
         <LevelOfNeedCode>3</LevelOfNeedCode>
         <SENDFlag>N</SENDFlag>
         <Characteristics>
-            <Characteristic>180</Characteristic>
+            <CharacteristicCode>180</CharacteristicCode>
         </Characteristics>
     </LevelOfNeed>
     <Activities>

@@ -70,6 +70,24 @@ CREATE TABLE Characteristic (
 	CharacteristicCode VARCHAR
 );;
 
+DROP TABLE IF EXISTS ErrorFound;;
+
+CREATE TABLE ErrorFound (
+	YoungPersonsID VARCHAR,
+	ErrorCode INT
+);;
+
+CREATE TABLE IF NOT EXISTS PreviousError (
+	YoungPersonsID VARCHAR,
+	ErrorCode INT,
+	PeriodEnd DATE
+);;
+
+CREATE TABLE IF NOT EXISTS PreviousCohort (
+	YoungPersonsID VARCHAR,
+	CohortStatus VARCHAR
+);;
+
 INSERT INTO ErrorDef (ErrorCode,Description,Priority,Explanation) VALUES (1,'‘YoungPersonsID’ not of the correct length digits',1,'The young person’s identifier must contain 13 the 3 digit DatabaseID followed by the local CCIS ID, and with padded 0s. eg 4440000123456');;
 INSERT INTO ErrorDef (ErrorCode,Description,Priority,Explanation) VALUES (2,'‘GivenName’ does not contain a value',1,'The young person’s given name is missing');;
 INSERT INTO ErrorDef (ErrorCode,Description,Priority,Explanation) VALUES (3,'‘FamilyName’ does not contain a value',1,'The young person’s family name is missing');;

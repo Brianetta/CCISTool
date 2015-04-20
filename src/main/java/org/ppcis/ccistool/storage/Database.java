@@ -3,6 +3,7 @@ package org.ppcis.ccistool.storage;
 import org.ppcis.ccistool.Constants.UsefulData;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -167,6 +168,13 @@ public class Database {
             preparedStatement.setObject(44, youngPersonsRecord.septemberGuarantee.year12.getLEACode());
             preparedStatement.execute();
             preparedStatement.close();
+            preparedStatement = connection.prepareStatement("INSERT INTO Characteristic (YoungPersonsID,CharacteristicCode) VALUES(?,?)");
+            for (Integer characteristicCode : (ArrayList<Integer>)youngPersonsRecord.levelOfNeed.getCharacteristics()) {
+                preparedStatement.setString(1,youngPersonsRecord.personalDetails.getYoungPersonsID());
+                preparedStatement.setInt(2,characteristicCode);
+                preparedStatement.execute();
+                preparedStatement.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
