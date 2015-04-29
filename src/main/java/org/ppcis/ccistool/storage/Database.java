@@ -170,11 +170,11 @@ public class Database {
             preparedStatement.close();
             preparedStatement = connection.prepareStatement("INSERT INTO Characteristic (YoungPersonsID,CharacteristicCode) VALUES(?,?)");
             for (Integer characteristicCode : (ArrayList<Integer>)youngPersonsRecord.levelOfNeed.getCharacteristics()) {
-                preparedStatement.setString(1,youngPersonsRecord.personalDetails.getYoungPersonsID());
-                preparedStatement.setInt(2,characteristicCode);
+                preparedStatement.setString(1, youngPersonsRecord.personalDetails.getYoungPersonsID());
+                preparedStatement.setInt(2, characteristicCode);
                 preparedStatement.execute();
-                preparedStatement.close();
             }
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
