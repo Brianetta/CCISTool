@@ -33,11 +33,15 @@ public class Gui implements ActionListener {
     private JMenuItem fileOpen;     // File -> Open...
     private JMenuItem fileOpenWithFix;     // File -> Open impaired...
     private JMenuItem fileExit;     // File -> Exit
+    private JMenu dataMenu;         // The file menu
+    private JMenuItem dataShowErrors;     // File -> Open...
     private JPanel jPanel;          // The bit below the menu bar
     private JList<String> leaList;                 // List field to display source LEAs
     private DefaultListModel<String> leaListData;  // Data for that list field
     private JLabel showDateOfSend, showPeriodEnd, showDatabaseID, showSupplierInfo, guiStatus;
     private static final String MONTH_FORMAT = "MMMMM, YYYY";
+
+    private static ErrorDisplay errorDisplay;
 
     FileHeader fileHeader;
 
@@ -78,8 +82,18 @@ public class Gui implements ActionListener {
                 fileExit.setActionCommand("exit");
             }
             fileMenu.add(fileExit);
+            dataMenu = new JMenu("Data");
+            dataMenu.setMnemonic(KeyEvent.VK_D);
+            {
+                dataShowErrors = new JMenuItem("Show errors...");
+                dataShowErrors.setMnemonic('S');
+                dataShowErrors.addActionListener(this);
+                dataShowErrors.setActionCommand("showErrors");
+            }
+            dataMenu.add(dataShowErrors);
         }
         jMenuBar.add(fileMenu);
+        jMenuBar.add(dataMenu);
         jFrame.setJMenuBar(jMenuBar);
 
         jPanel = new JPanel(new GridBagLayout());
@@ -160,7 +174,12 @@ public class Gui implements ActionListener {
                 System.exit(0);
                 break;
             case ("showErrors"):
-                errorDisplay = new ErrorDisplay();
+                Integer[] LEAs = new Integer[leaList.getSelectedIndices().length];
+                int i=0;
+                for (Integer LEA : leaList.getSelectedIndices()) {
+                    LEAs[i] = LEA; i++;
+                }
+                errorDisplay = new ErrorDisplay(LEAs);
                 System.out.println(leaList.getSelectedIndices());
                 break;
         }

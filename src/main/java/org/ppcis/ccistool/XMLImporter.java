@@ -9,6 +9,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -49,9 +50,17 @@ public class XMLImporter extends DefaultHandler {
     private boolean youngPersonsRecordImport = false;
     private boolean personalDetailsFound = false;
     private boolean year11SGFlag;
+    private static JLabel label;
+    private static boolean labelExists = false;
+    private int recordCount=0;
 
-    public XMLImporter() {
+    public XMLImporter(JLabel label) {
         fileHeader = new FileHeader();
+        if (label != null) {
+            this.label = label;
+            labelExists = true;
+            label.setText("Open file...");
+        }
     }
 
     FileHeader importXMLWithFix(String filename) {
@@ -64,7 +73,8 @@ public class XMLImporter extends DefaultHandler {
         try {
             tempFile = File.createTempFile("CCISTool", ".tmp");
             tempFile.deleteOnExit();
-            System.out.println("Temporary file: " + tempFile.getCanonicalPath());
+            if (labelExists) label.setText("Temporary file: " + tempFile.getCanonicalPath());
+            label.updateUI();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -74,12 +84,14 @@ public class XMLImporter extends DefaultHandler {
             tempFileWriter = new BufferedWriter(new FileWriter(tempFile));
         } catch (IOException e) {
             e.printStackTrace();
+            if (labelExists) label.setText(e.getMessage());
             return null;
         }
 
         try {
             inputScanner = new Scanner(Paths.get(filename));
         } catch (IOException e) {
+            if (labelExists) label.setText(e.getMessage());
             e.printStackTrace();
             return null;
         }
@@ -91,18 +103,21 @@ public class XMLImporter extends DefaultHandler {
                 tempFileWriter.flush();
             } catch (IOException e) {
                 e.printStackTrace();
+                if (labelExists) label.setText(e.getMessage());
                 fileValidationError("Error processing file");
             }
         }
         try {
             tempFileWriter.close();
         } catch (IOException e) {
+            if (labelExists) label.setText(e.getMessage());
             e.printStackTrace();
         }
 
         try {
             return importXML(tempFile.getCanonicalPath());
         } catch (IOException e) {
+            if (labelExists) label.setText(e.getMessage());
             e.printStackTrace();
             fileValidationError("Temp file died");
             return null;
@@ -125,9 +140,11 @@ public class XMLImporter extends DefaultHandler {
             sp.parse(filename, this);
             database.commitTransaction();
         } catch (ParserConfigurationException e) {
+            if (labelExists) label.setText(e.getMessage());
             // No idea what mishaps throw these
             e.printStackTrace();
         } catch (SAXException e) {
+            if (labelExists) label.setText(e.getMessage());
             if (e instanceof SAXParseException) {
                 // This was how the ampersand problem worked around earlier was detected
                 fileValidationError(String.format(ErrorStrings.XML_ERROR_AT_LINE_D + ": %s", ((SAXParseException) e).getLineNumber(), e.getMessage()));
@@ -136,6 +153,7 @@ public class XMLImporter extends DefaultHandler {
                 fileValidationError(ErrorStrings.XML_DATA_ERROR + ": "+e.getMessage());
             }
         } catch (IOException e) {
+            if (labelExists) label.setText(e.getMessage());
             // Probably, the user managed to select a non-file of some sort
             fileValidationError(ErrorStrings.XML_FILE_ERROR + ": " + e.getMessage());
         }
@@ -405,10 +423,13 @@ public class XMLImporter extends DefaultHandler {
         switch (currentNode.pop()) {
             // Clear the flags on the way up the stack
             case "FileHeader":
+                if (labelExists) label.setText("Fileheader found");
                 fileHeaderImport = false;
                 break;
             case "YoungPersonsRecord":
-                // For now, dump some stuff. TODO: Database.
+                recordCount++;
+                if (labelExists) label.setText(String.format("%d YP records read",recordCount));
+                label.updateUI();
                 currentYoungPersonsRecord.storeInDatabase();
                 youngPersonsRecordImport = false;
                 if (!personalDetailsFound) {

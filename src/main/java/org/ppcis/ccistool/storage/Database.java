@@ -1,7 +1,9 @@
 package org.ppcis.ccistool.storage;
 
 import org.ppcis.ccistool.Constants.UsefulData;
+import org.ppcis.ccistool.ErrorTableModel;
 
+import javax.swing.table.TableModel;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Map;
@@ -196,5 +198,33 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public TableModel errors(Integer[] LEAs) {
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        ResultSetMetaData metaData;
+        ErrorTableModel tableModel = new ErrorTableModel();
+        try {
+            preparedStatement = connection.prepareStatement("select yp.youngpersonsid,d.ErrorCode,d.description,D.Priority " +
+                    "from errorfound as e " +
+                    "inner join youngpersonsrecord as yp " +
+                    "on e.youngpersonsid=yp.youngpersonsid " +
+                    "inner join errordef as d " +
+                    "on d.ErrorCode=e.ErrorCode " +
+                    "where yp.LeadLEA in (?)");
+            preparedStatement.setArray(1, connection.createArrayOf("int", LEAs));
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    tableModel.addRow(resultSet.getString(1),resultSet.getInt(2),resultSet.getString(3),resultSet.getInt(4));
+                }
+                resultSet.close();
+            }
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tableModel;
     }
 }
