@@ -18,7 +18,7 @@ import java.util.List;
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-public class ErrorTableModel extends AbstractTableModel{
+public class ErrorTableModel extends AbstractTableModel {
     private String[] columnNames = {
             "YoungPersonsID",
             "ErrorCode",
@@ -61,10 +61,10 @@ public class ErrorTableModel extends AbstractTableModel{
     public Object getValueAt(int row, int col) {
         if (row > cells.size()) return null;
         switch (col) {
-            case 1: return cells.get(row).youngPersonsID;
-            case 2: return cells.get(row).errorCode;
-            case 3: return cells.get(row).description;
-            case 4: return cells.get(row).priority;
+            case 0: return cells.get(row).youngPersonsID;
+            case 1: return cells.get(row).errorCode;
+            case 2: return cells.get(row).description;
+            case 3: return cells.get(row).priority;
             default: return null;
         }
     }

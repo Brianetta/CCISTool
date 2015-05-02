@@ -38,12 +38,19 @@ public class Gui implements ActionListener {
     private JPanel jPanel;          // The bit below the menu bar
     private JList<String> leaList;                 // List field to display source LEAs
     private DefaultListModel<String> leaListData;  // Data for that list field
-    private JLabel showDateOfSend, showPeriodEnd, showDatabaseID, showSupplierInfo, guiStatus;
+    private JLabel showDateOfSend, showPeriodEnd, showDatabaseID, showSupplierInfo;
+    private JLabel guiStatus;
     private static final String MONTH_FORMAT = "MMMMM, YYYY";
 
     private static ErrorDisplay errorDisplay;
+    private static Gui guiInstance;
 
     FileHeader fileHeader;
+
+    public static Gui getGui() {
+        // Return an instance of Gui (which should be *the* instance of Gui)
+        return guiInstance;
+    }
 
     public Gui() {
         try {
@@ -53,6 +60,8 @@ public class Gui implements ActionListener {
         }
 
         final String NO_DATA_LOADED = "No data loaded";
+
+        guiInstance = this;
 
         jFrame = new JFrame("CCIS Tool");
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -174,13 +183,7 @@ public class Gui implements ActionListener {
                 System.exit(0);
                 break;
             case ("showErrors"):
-                Integer[] LEAs = new Integer[leaList.getSelectedIndices().length];
-                int i=0;
-                for (Integer LEA : leaList.getSelectedIndices()) {
-                    LEAs[i] = LEA; i++;
-                }
-                errorDisplay = new ErrorDisplay(LEAs);
-                System.out.println(leaList.getSelectedIndices());
+                errorDisplay = new ErrorDisplay(leaList.getSelectedValuesList());
                 break;
         }
     }
@@ -188,9 +191,9 @@ public class Gui implements ActionListener {
     private void importXMLFile(boolean unimpaired) {
         FileHeader fileHeader;
         if (unimpaired) {
-            fileHeader = new XMLImporter(guiStatus).importXML(getFileName("*.xml"));
+            fileHeader = new XMLImporter().importXML(getFileName("*.xml"));
         } else {
-            fileHeader = new XMLImporter(guiStatus).importXMLWithFix(getFileName("*.xml"));
+            fileHeader = new XMLImporter().importXMLWithFix(getFileName("*.xml"));
         }
         if (fileHeader == null) return;
         if (fileHeader.getPeriodEnd()==null) return;
@@ -212,5 +215,10 @@ public class Gui implements ActionListener {
             showPeriodEnd.setForeground(new Color(0, 128, 0));
         }
         showSupplierInfo.setText(fileHeader.getSupplierName()+", "+fileHeader.getSupplierXMLVersion()+", "+fileHeader.getXMLSchemaVersion());
+    }
+
+    public void setGuiStatus(String status) {
+        guiStatus.setText(status);
+        jPanel.updateUI();
     }
 }

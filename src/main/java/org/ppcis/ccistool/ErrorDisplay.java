@@ -3,6 +3,7 @@ package org.ppcis.ccistool;
 import org.ppcis.ccistool.storage.Database;
 
 import javax.swing.*;
+import java.util.List;
 
 /**
  * Copyright © Brian Ronald
@@ -20,13 +21,13 @@ import javax.swing.*;
  */
 public class ErrorDisplay {
     private static JFrame jFrame = new JFrame("Errors");
-    private Integer[] LEAs;
 
-    private JTable jTable = new JTable(new Database().errors(LEAs));
-    private JScrollPane jScrollPane = new JScrollPane(jTable);
+    private JTable jTable;
+    private JScrollPane jScrollPane;
 
-    public ErrorDisplay(Integer[] LEAs) {
-        this.LEAs = LEAs;
+    public ErrorDisplay(List LEAs) {
+        jTable = new JTable(new Database().errors(LEAs));
+        jScrollPane = new JScrollPane(jTable);
         jFrame.setContentPane(jScrollPane);
         jFrame.pack();
         jFrame.setVisible(true);

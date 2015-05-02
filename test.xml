@@ -20,9 +20,61 @@
   <SupplierXMLVersion>1.0</SupplierXMLVersion>
   <XMLSchemaVersion>1.0</XMLSchemaVersion>
 </FileHeader>
-<YoungPersonsRecord>
+    <YoungPersonsRecord>
+        <PersonalDetails>
+            <YoungPersonsID>1230000000001</YoungPersonsID>
+            <CohortStatus>P</CohortStatus>
+            <GivenName>Zorba</GivenName>
+            <MiddleName></MiddleName>
+            <FamilyName>Dummy</FamilyName>
+            <AddressLine1></AddressLine1>
+            <AddressLine2>2</AddressLine2>
+            <AddressLine3>Dummy Street</AddressLine3>
+            <AddressLine4></AddressLine4>
+            <Town>Dummytown</Town>
+            <County>Tyne & Wear</County>
+            <Postcode>ZZ99 9ZZ</Postcode>
+            <Gender>F</Gender>
+            <DOB>1998-01-01</DOB>
+            <Ethnicity>WBRI</Ethnicity>
+            <LeadLEA>391</LeadLEA>
+            <EducatedLEA>391</EducatedLEA>
+            <TransferredToLACode />
+            <LEACodeAtYear11 />
+            <UniqueLearnerNo>9876543210</UniqueLearnerNo>
+            <UniquePupilNumber />
+            <GuaranteeStatusIndicator>N</GuaranteeStatusIndicator>
+            <YouthContractIndicator>N</YouthContractIndicator>
+            <YouthContractStartDate></YouthContractStartDate>
+            <PreviousYPIDIdentifier />
+        </PersonalDetails>
+        <SeptemberGuarantee />
+        <LevelOfNeed>
+            <LevelOfNeedCode>3</LevelOfNeedCode>
+            <SENDFlag>N</SENDFlag>
+        </LevelOfNeed>
+        <Activities>
+            <Cohort>
+                <ActivityCode>110</ActivityCode>
+                <StartDate>2013-11-14</StartDate>
+                <DateAscertained>2013-11-14</DateAscertained>
+                <DateVerified>2014-09-03</DateVerified>
+                <ReviewDate />
+                <DueToLapseDate>2015-08-31</DueToLapseDate>
+                <CurrencyLapsed>N</CurrencyLapsed>
+                <EstablishmentNumber>0000002</EstablishmentNumber>
+                <EstablishmentName>Dummy School</EstablishmentName>
+                <UKProviderReferenceNumber />
+                <NeetStartDate />
+                <PredictedEndDate>2015-08-31</PredictedEndDate>
+            </Cohort>
+        </Activities>
+        <IntendedDestination>
+            <IntendedDestinationYr11>611</IntendedDestinationYr11>
+        </IntendedDestination>
+    </YoungPersonsRecord><YoungPersonsRecord>
     <PersonalDetails>
-        <YoungPersonsID>1230000000001</YoungPersonsID>
+        <YoungPersonsID>1230000000002</YoungPersonsID>
         <CohortStatus>P</CohortStatus>
         <GivenName>Wilma</GivenName>
         <MiddleName></MiddleName>
