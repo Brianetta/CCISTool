@@ -49,7 +49,7 @@ public class XMLImporter extends DefaultHandler {
     private boolean youngPersonsRecordImport = false;
     private boolean personalDetailsFound = false;
     private boolean year11SGFlag;
-    private int recordCount=0;
+    private int recordCount;
     private Gui gui;
 
     public XMLImporter() {
@@ -65,10 +65,10 @@ public class XMLImporter extends DefaultHandler {
         File tempFile;
         Scanner inputScanner;
         BufferedWriter tempFileWriter;
+        recordCount = 0;
         try {
             tempFile = File.createTempFile("CCISTool", ".tmp");
             tempFile.deleteOnExit();
-            gui.setGuiStatus("Temporary file: " + tempFile.getCanonicalPath());
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -95,6 +95,8 @@ public class XMLImporter extends DefaultHandler {
             try {
                 tempFileWriter.write(inputScanner.nextLine().replaceAll("&","&amp;"));
                 tempFileWriter.flush();
+                recordCount++;
+                gui.setGuiStatus(String.format("%d lines read",recordCount));
             } catch (IOException e) {
                 e.printStackTrace();
                 gui.setGuiStatus(e.getMessage());
@@ -126,7 +128,9 @@ public class XMLImporter extends DefaultHandler {
         SAXParser sp;
         // Need this to start and commit a transaction. I'd rather have done this elsewhere, but I haven't
         // figured out how to encapsulate the database interactions properly yet.
+        gui.setGuiStatus("Initialising database");
         Database database = new Database();
+        recordCount=0;
         // Inhale the XML file
         try {
             sp = spf.newSAXParser();

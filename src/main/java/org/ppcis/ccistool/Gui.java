@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Copyright © Brian Ronald
@@ -188,13 +189,42 @@ public class Gui implements ActionListener {
         }
     }
 
-    private void importXMLFile(boolean unimpaired) {
-        FileHeader fileHeader;
-        if (unimpaired) {
-            fileHeader = new XMLImporter().importXML(getFileName("*.xml"));
-        } else {
-            fileHeader = new XMLImporter().importXMLWithFix(getFileName("*.xml"));
+    private class ImportWorker extends SwingWorker<FileHeader, Void>
+    {
+        boolean unimpaired;
+        String filename;
+
+        public ImportWorker(String filename,boolean unimpaired) {
+            this.unimpaired = unimpaired;
+            this.filename = filename;
         }
+
+        @Override
+        public FileHeader doInBackground() {
+            if (unimpaired) {
+                return new XMLImporter().importXML(filename);
+            } else {
+                return new XMLImporter().importXMLWithFix(filename);
+            }
+        }
+        @Override
+        public void done() {
+            try {
+                Gui.getGui().getImportResults(get());
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    private void importXMLFile(boolean unimpaired) {
+        String importFile;
+        importFile = getFileName("*.xml");
+        ImportWorker importer = new ImportWorker(importFile, unimpaired);
+        importer.execute();
+    }
+
+    public void getImportResults(FileHeader fileHeader) {
         if (fileHeader == null) return;
         if (fileHeader.getPeriodEnd()==null) return;
         this.fileHeader = fileHeader;
@@ -219,6 +249,5 @@ public class Gui implements ActionListener {
 
     public void setGuiStatus(String status) {
         guiStatus.setText(status);
-        jPanel.updateUI();
     }
 }

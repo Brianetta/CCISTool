@@ -404,7 +404,7 @@ public class YoungPersonsRecord {
         private String dateVerified;
         private String reviewDate;
         private String dueToLapseDate;
-        private Boolean currencyLapsed;
+        private boolean currencyLapsed = false;
         private Integer establishmentNumber;
         private String establishmentName;
         private String UKProviderReferenceNumber;
@@ -497,7 +497,7 @@ public class YoungPersonsRecord {
             return dueToLapseDate;
         }
 
-        public Boolean isCurrencyLapsed() {
+        public boolean isCurrencyLapsed() {
             return currencyLapsed;
         }
 
