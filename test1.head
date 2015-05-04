@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE NCCIS2015>
+<!--NCCIS Return Information Exported from the CogniSoft NCCIS Database-->
+<NCCIS2015>
+<FileHeader>
+  <Databases>
+    <DatabaseID>123</DatabaseID>
+  </Databases>
+  <SourceLEAs>
+      <LEACode>390</LEACode>
+      <LEACode>391</LEACode>
+      <LEACode>392</LEACode>
+      <LEACode>393</LEACode>
+      <LEACode>394</LEACode>
+      <LEACode>929</LEACode>
+  </SourceLEAs>
+  <DateOfSend>2015-05-01</DateOfSend>
+  <PeriodEnd>2015-04-30</PeriodEnd>
+  <SupplierName>CCISTool</SupplierName>
+  <SupplierXMLVersion>1.0</SupplierXMLVersion>
+  <XMLSchemaVersion>1.0</XMLSchemaVersion>
+</FileHeader>

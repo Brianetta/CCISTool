@@ -28,7 +28,20 @@ print "            <YouthContractIndicator>"$22"</YouthContractIndicator>"
 print "            <YouthContractStartDate>"$23"</YouthContractStartDate>"
 print "            <PreviousYPIDIdentifier>"$24"</PreviousYPIDIdentifier>"
 print "        </PersonalDetails>"
-print "        <SeptemberGuarantee />"
+print "        <SeptemberGuarantee>"
+if ($41 != "") {
+print "            <Year11>"
+print "                <GuaranteeStatus>"$41"</GuaranteeStatus>"
+print "                <LEACode>"$42"</LEACode>"
+print "            </Year11>"
+}
+if ($43 != "") {
+print "            <Year12>"
+print "                <GuaranteeStatus>"$43"</GuaranteeStatus>"
+print "                <LEACode>"$44"</LEACode>"
+print "            </Year12>"
+}
+print "        </SeptemberGuarantee>"
 print "        <LevelOfNeed>"
 print "            <LevelOfNeedCode>"$25"</LevelOfNeedCode>"
 print "            <SENDFlag>"$26"</SENDFlag>"
