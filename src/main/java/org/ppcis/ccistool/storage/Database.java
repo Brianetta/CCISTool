@@ -127,7 +127,7 @@ public class Database {
             preparedStatement.setString(2, youngPersonsRecord.personalDetails.getGivenName());
             preparedStatement.setString(3, youngPersonsRecord.personalDetails.getFamilyName());
             preparedStatement.setString(4, youngPersonsRecord.personalDetails.getMiddleName());
-            preparedStatement.setString(5, youngPersonsRecord.personalDetails.getGender().toString());
+            preparedStatement.setString(5, youngPersonsRecord.personalDetails.getGender());
             preparedStatement.setString(6, youngPersonsRecord.personalDetails.getDob());
             preparedStatement.setObject(7, youngPersonsRecord.personalDetails.getLeadLea());
             if (youngPersonsRecord.personalDetails.getCohortStatus() != null)

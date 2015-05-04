@@ -88,7 +88,7 @@ public class YoungPersonsRecord {
             } catch (StringIndexOutOfBoundsException e) {
                 // Leave this as null
             }
-            if (this.cohortStatus == 'X') {
+            if (this.cohortStatus != null && this.cohortStatus == 'X') {
                 // NCCIS treat this data content error as a File Rejection, so we need that fileHeader instance
                 fileHeader.addFileValidationError(ErrorStrings.ERR_INCORRECT_COHORT_STATUS);
             }
@@ -258,8 +258,12 @@ public class YoungPersonsRecord {
             return postcode;
         }
 
-        public Character getGender() {
-            return gender;
+        public String getGender() {
+            if (gender == null) {
+                return "";
+            } else {
+                return gender.toString();
+            }
         }
 
         public String getDob() {
