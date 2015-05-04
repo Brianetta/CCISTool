@@ -230,7 +230,7 @@ public class XMLImporter extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         // Re-usable content variables
         String currentString;
-        if (currentContent != null) {                   // Current tag contains data, not more tags
+        if (currentContent != null && currentContent.length() > 0) {                   // Current tag contains data, not more tags
             currentString = currentContent.toString();  // Stringify the StringBuilder
             if (fileHeaderImport) {
                 // We're currently looking at tags inside the FileHeader node

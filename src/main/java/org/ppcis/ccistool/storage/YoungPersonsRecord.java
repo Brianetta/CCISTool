@@ -260,7 +260,7 @@ public class YoungPersonsRecord {
 
         public String getGender() {
             if (gender == null) {
-                return "";
+                return null;
             } else {
                 return gender.toString();
             }
