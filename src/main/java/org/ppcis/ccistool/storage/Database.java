@@ -44,6 +44,7 @@ public class Database {
                 for(String sql : sqlStatements) {
                     statement.addBatch(sql);
                 }
+                beginTransaction();
                 statement.executeBatch();
                 statement.close();
                 // Now to populate the LEA table from the UsefulData class. It might be quicker to hard-code the SQL,
@@ -56,6 +57,7 @@ public class Database {
                 }
                 preparedStatement.executeBatch();
                 preparedStatement.close();
+                commitTransaction();
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
