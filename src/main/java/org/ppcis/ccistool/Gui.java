@@ -34,8 +34,9 @@ public class Gui implements ActionListener {
     private JMenuItem fileOpen;     // File -> Open...
     private JMenuItem fileOpenWithFix;     // File -> Open impaired...
     private JMenuItem fileExit;     // File -> Exit
-    private JMenu dataMenu;         // The file menu
-    private JMenuItem dataShowErrors;     // File -> Open...
+    private JMenu dataMenu;         // The data menu
+    private JMenuItem dataCheckErrors;     // Data -> Check for errors
+    private JMenuItem dataShowErrors;     // Data -> Show errors
     private JPanel jPanel;          // The bit below the menu bar
     private JList<String> leaList;                 // List field to display source LEAs
     private DefaultListModel<String> leaListData;  // Data for that list field
@@ -95,11 +96,16 @@ public class Gui implements ActionListener {
             dataMenu = new JMenu("Data");
             dataMenu.setMnemonic(KeyEvent.VK_D);
             {
+                dataCheckErrors = new JMenuItem("Check errors...");
+                dataCheckErrors.setMnemonic('C');
+                dataCheckErrors.addActionListener(this);
+                dataCheckErrors.setActionCommand("checkErrors");
                 dataShowErrors = new JMenuItem("Show errors...");
                 dataShowErrors.setMnemonic('S');
                 dataShowErrors.addActionListener(this);
                 dataShowErrors.setActionCommand("showErrors");
             }
+            dataMenu.add(dataCheckErrors);
             dataMenu.add(dataShowErrors);
         }
         jMenuBar.add(fileMenu);
@@ -182,6 +188,8 @@ public class Gui implements ActionListener {
                 break;
             case ("exit"):
                 System.exit(0);
+                break;
+            case ("checkErrors"):
                 break;
             case ("showErrors"):
                 errorDisplay = new ErrorDisplay(leaList.getSelectedValuesList());
