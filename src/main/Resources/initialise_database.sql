@@ -40,7 +40,7 @@ CREATE TABLE YoungPersonsRecord (
 	SENDFlag VARCHAR,
 	GuaranteeStatusIndicator VARCHAR,
 	YouthContractIndicator VARCHAR,
-	YouthContactStartDate DATE,
+	YouthContractStartDate DATE,
 	PreviousYPIDIdentifier VARCHAR,
 	EstablishmentNumber VARCHAR,
 	UniquePupilNumber VARCHAR,

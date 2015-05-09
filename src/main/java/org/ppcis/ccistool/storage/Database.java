@@ -103,7 +103,7 @@ public class Database {
                     "SENDFlag," +
                     "GuaranteeStatusIndicator," +
                     "YouthContractIndicator," +
-                    "YouthContactStartDate," +
+                    "YouthContractStartDate," +
                     "PreviousYPIDIdentifier," +
                     "EstablishmentNumber," +
                     "UniquePupilNumber," +
