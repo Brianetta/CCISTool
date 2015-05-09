@@ -61,7 +61,7 @@ public class Database {
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
-                // Need to tell user about SQLite JDBC requirement
+                // TODO: Need to tell user about SQLite JDBC requirement
             } finally {
                 scanner.close();
             }
