@@ -71,7 +71,7 @@ public class YoungPersonsRecord {
         private Integer educatedLEA;
         private Integer transferredToLACode;
         private Integer LEACodeAtYear11;
-        private Long uniqueLearnerNo;
+        private String uniqueLearnerNo;
         private String uniquePupilNumber;
         private Character guaranteeStatusIndicator;
         private Character youthContractIndicator;
@@ -179,11 +179,7 @@ public class YoungPersonsRecord {
         }
 
         public void setUniqueLearnerNo(String uniqueLearnerNo) {
-            try {
-                this.uniqueLearnerNo = Long.decode(uniqueLearnerNo);
-            } catch (NumberFormatException e) {
-                // Leave this as null
-            }
+            this.uniqueLearnerNo = uniqueLearnerNo;
         }
 
         public void setUniquePupilNumber(String uniquePupilNumber) {
@@ -290,7 +286,7 @@ public class YoungPersonsRecord {
             return LEACodeAtYear11;
         }
 
-        public Long getUniqueLearnerNo() {
+        public String getUniqueLearnerNo() {
             return uniqueLearnerNo;
         }
 

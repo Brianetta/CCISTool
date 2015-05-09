@@ -145,7 +145,7 @@ public class Database {
             preparedStatement.setString(17, youngPersonsRecord.personalDetails.getPostcode());
             preparedStatement.setString(18, youngPersonsRecord.personalDetails.getEthnicity());
             preparedStatement.setObject(19, youngPersonsRecord.personalDetails.getEducatedLEA());
-            preparedStatement.setObject(20, youngPersonsRecord.personalDetails.getUniqueLearnerNo());
+            preparedStatement.setString(20, youngPersonsRecord.personalDetails.getUniqueLearnerNo());
             if (youngPersonsRecord.levelOfNeed.isSendFlag() != null)
                 preparedStatement.setString(21, youngPersonsRecord.levelOfNeed.isSendFlag() ? "Y" : "N");
             preparedStatement.setObject(22, youngPersonsRecord.personalDetails.getGuaranteeStatusIndicator());
