@@ -12879,7 +12879,7 @@
     <YoungPersonsRecord>
         <PersonalDetails>
             <YoungPersonsID>1230000000234</YoungPersonsID>
-            <CohortStatus>P</CohortStatus>
+            <CohortStatus>T</CohortStatus>
             <GivenName>Error35</GivenName>
             <MiddleName></MiddleName>
             <FamilyName>Test30</FamilyName>
