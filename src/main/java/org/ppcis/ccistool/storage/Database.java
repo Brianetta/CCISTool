@@ -146,7 +146,7 @@ public class Database {
             preparedStatement.setString(18, youngPersonsRecord.personalDetails.getEthnicity());
             preparedStatement.setObject(19, youngPersonsRecord.personalDetails.getEducatedLEA());
             preparedStatement.setString(20, youngPersonsRecord.personalDetails.getUniqueLearnerNo());
-            preparedStatement.setString(21, youngPersonsRecord.levelOfNeed.isSENDFlag());
+            preparedStatement.setString(21, youngPersonsRecord.levelOfNeed.getSENDFlag());
             preparedStatement.setObject(22, youngPersonsRecord.personalDetails.getGuaranteeStatusIndicator());
             preparedStatement.setObject(23, youngPersonsRecord.personalDetails.getYouthContractIndicator());
             preparedStatement.setString(24, youngPersonsRecord.personalDetails.getYouthContractStartDate());
@@ -161,7 +161,7 @@ public class Database {
             preparedStatement.setString(33, youngPersonsRecord.activities.getDateVerified());
             preparedStatement.setString(34, youngPersonsRecord.activities.getReviewDate());
             preparedStatement.setString(35, youngPersonsRecord.activities.getDueToLapseDate());
-            preparedStatement.setString(36, youngPersonsRecord.activities.isCurrencyLapsed() ? "Y" : "N");
+            preparedStatement.setString(36, youngPersonsRecord.activities.getCurrencyLapsed());
             preparedStatement.setObject(37, youngPersonsRecord.levelOfNeed.getLevelOfNeedCode());
             preparedStatement.setString(38, youngPersonsRecord.activities.getNEETStartDate());
             preparedStatement.setString(39, youngPersonsRecord.activities.getPredictedEndDate());

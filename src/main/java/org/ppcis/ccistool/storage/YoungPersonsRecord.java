@@ -387,7 +387,7 @@ public class YoungPersonsRecord {
             return levelOfNeedCode;
         }
 
-        public String isSENDFlag() {
+        public String getSENDFlag() {
             return this.sendFlag;
         }
     }
@@ -399,7 +399,7 @@ public class YoungPersonsRecord {
         private String dateVerified;
         private String reviewDate;
         private String dueToLapseDate;
-        private boolean currencyLapsed = false;
+        private String currencyLapsed;
         private Integer establishmentNumber;
         private String establishmentName;
         private String UKProviderReferenceNumber;
@@ -435,12 +435,7 @@ public class YoungPersonsRecord {
         }
 
         public void setCurrencyLapsed(String currencyLapsed) {
-            try {
-                // If the first character is a y (ignoring case) the flag is true, else false
-                this.currencyLapsed = (currencyLapsed.charAt(0) == 'Y' || currencyLapsed.charAt(0) == 'y');
-            } catch (StringIndexOutOfBoundsException e) {
-                // Leave this as null
-            }
+            this.currencyLapsed = currencyLapsed;
         }
 
         public void setEstablishmentNumber(String establishmentNumber) {
@@ -492,7 +487,7 @@ public class YoungPersonsRecord {
             return dueToLapseDate;
         }
 
-        public boolean isCurrencyLapsed() {
+        public String getCurrencyLapsed() {
             return currencyLapsed;
         }
 
