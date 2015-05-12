@@ -95,5 +95,7 @@ public class ErrorSelects {
         SQL.put(228, "SELECT youngpersonsid,228 FROM YoungPersonsRecord WHERE LENGTH(EstablishmentNumber) <> 7 OR SUBSTR(EstablishmentNumber,1,3) NOT IN (SELECT LEANo FROM LEA)");
         SQL.put(229, "SELECT youngpersonsid,229 FROM YoungPersonsRecord WHERE ActivityCode NOT IN (110,120,130,140,150) AND date(dob,'+17 year') > '2015-08-31'");
         SQL.put(230, "SELECT youngpersonsid,230 FROM YoungPersonsRecord WHERE ActivityCode IN (110,120,130,140,150) AND date(dob,'+17 year') < '2015-09-01'");
+        SQL.put(231, "SELECT youngpersonsid,231 FROM YoungPersonsRecord WHERE CurrencyLapsed='Y' AND DueToLapseDate > ?");
+        SQL.put(232, "SELECT youngpersonsid,231 FROM YoungPersonsRecord WHERE CurrencyLapsed='N' AND DueToLapseDate < ?");
     }
 }
