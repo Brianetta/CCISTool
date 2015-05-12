@@ -35,7 +35,7 @@ public class ErrorSelects {
                 "'REFU','NOBT'" +
                 ")");
         SQL.put(8, "SELECT YoungPersonsID,8 FROM YoungPersonsRecord WHERE DOB IS NULL");
-        SQL.put(9, "SELECT YoungPersonsID,9 FROM YoungPersonsRecord WHERE DATE(DOB,'+25 year') < '2015-08-31'");
+        SQL.put(9, "SELECT YoungPersonsID,9 FROM YoungPersonsRecord WHERE DATE(DOB,'+25 year') < '2015-09-1'");
         SQL.put(10, "SELECT YoungPersonsID,10 FROM YoungPersonsRecord WHERE DATE(DOB,'+15 year') > '2015-08-31'");
         SQL.put(11, "SELECT YoungPersonsID,11 FROM YoungPersonsRecord WHERE CohortStatus IS NULL");
         SQL.put(13, "SELECT YoungPersonsID,13 FROM YoungPersonsRecord WHERE CohortStatus = 'T' AND TransferredToLACode IS NULL");
@@ -89,5 +89,11 @@ public class ErrorSelects {
         SQL.put(203, "SELECT YoungPersonsID,203 FROM YoungPersonsRecord WHERE DateAscertained IS NULL");
         SQL.put(220, "SELECT YoungPersonsID,220 FROM YoungPersonsRecord WHERE CurrencyLapsed IS NULL");
         SQL.put(221, "SELECT YoungPersonsID,221 FROM YoungPersonsRecord WHERE CurrencyLapsed NOT IN ('Y','N')");
+        SQL.put(224, "SELECT youngpersonsid,224 FROM YoungPersonsRecord WHERE ActivityCode IN (540,610,615,616,619,620,630,640,650,660,670,680) AND NEETStartDate IS NULL");
+        SQL.put(225, "SELECT youngpersonsid,225 FROM YoungPersonsRecord WHERE NEETStartDate > StartDate");
+        SQL.put(226, "SELECT youngpersonsid,226 FROM YoungPersonsRecord WHERE NEETStartDate IS NOT NULL AND ActivityCode NOT IN (540,610,615,616,619,620,630,640,650,660,670,680)");
+        SQL.put(228, "SELECT youngpersonsid,228 FROM YoungPersonsRecord WHERE LENGTH(EstablishmentNumber) <> 7 OR SUBSTR(EstablishmentNumber,1,3) NOT IN (SELECT LEANo FROM LEA)");
+        SQL.put(229, "SELECT youngpersonsid,229 FROM YoungPersonsRecord WHERE ActivityCode NOT IN (110,120,130,140,150) AND date(dob,'+17 year') > '2015-08-31'");
+        SQL.put(230, "SELECT youngpersonsid,230 FROM YoungPersonsRecord WHERE ActivityCode IN (110,120,130,140,150) AND date(dob,'+17 year') < '2015-09-01'");
     }
 }
