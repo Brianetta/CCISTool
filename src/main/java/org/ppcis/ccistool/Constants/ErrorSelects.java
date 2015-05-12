@@ -88,5 +88,6 @@ public class ErrorSelects {
         SQL.put(202, "SELECT YoungPersonsID,202 FROM YoungPersonsRecord WHERE StartDate IS NULL");
         SQL.put(203, "SELECT YoungPersonsID,203 FROM YoungPersonsRecord WHERE DateAscertained IS NULL");
         SQL.put(220, "SELECT YoungPersonsID,220 FROM YoungPersonsRecord WHERE CurrencyLapsed IS NULL");
+        SQL.put(221, "SELECT YoungPersonsID,221 FROM YoungPersonsRecord WHERE CurrencyLapsed NOT IN ('Y','N')");
     }
 }
