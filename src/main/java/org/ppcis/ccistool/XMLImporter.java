@@ -365,7 +365,7 @@ public class XMLImporter extends DefaultHandler {
                         currentYoungPersonsRecord.levelOfNeed.setLevelOfNeedCode(currentString);
                         break;
                     case "SENDFlag":
-                        currentYoungPersonsRecord.levelOfNeed.setSendFlag(currentString);
+                        currentYoungPersonsRecord.levelOfNeed.setSENDFlag(currentString);
                         break;
                     case "CharacteristicCode":
                         currentYoungPersonsRecord.levelOfNeed.addCharacteristic(currentString);

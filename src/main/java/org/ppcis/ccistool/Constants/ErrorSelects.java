@@ -71,5 +71,8 @@ public class ErrorSelects {
                 "Postcode NOT GLOB '[A-z][0-9][0-9] [0-9][A-z][A-z]' AND " +
                 "Postcode NOT GLOB '[A-z][A-z][0-9][A-z] [0-9][A-z][A-z]' AND " +
                 "Postcode NOT GLOB '[A-z][A-z][0-9][0-9] [0-9][A-z][A-z]'");
+        SQL.put(100, "SELECT YoungPersonsID,100 FROM YoungPersonsRecord WHERE LevelOfNeedCode IS NULL");
+        SQL.put(101, "SELECT YoungPersonsID,101 FROM YoungPersonsRecord WHERE LevelOfNeedCode NOT BETWEEN 1 AND 3");
+        SQL.put(102, "select YoungPersonsID,102 from YoungPersonsRecord where SENDFlag NOT IN ('Y','N')");
     }
 }

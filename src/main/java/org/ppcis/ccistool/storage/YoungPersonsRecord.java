@@ -352,7 +352,7 @@ public class YoungPersonsRecord {
 
     public class LevelOfNeed {
         private Integer levelOfNeedCode;
-        private Boolean sendFlag;
+        private String sendFlag;
         private ArrayList<Integer> characteristics;
 
         public LevelOfNeed() {
@@ -367,13 +367,8 @@ public class YoungPersonsRecord {
             }
         }
 
-        public void setSendFlag(String sendFlag) {
-            try {
-                // If the first character is a y (ignoring case) the flag is true, else false
-                this.sendFlag = (sendFlag.charAt(0) == 'Y' || sendFlag.charAt(0) == 'y');
-            } catch (StringIndexOutOfBoundsException e) {
-                // Leave this as null
-            }
+        public void setSENDFlag(String sendFlag) {
+             this.sendFlag = sendFlag;
         }
 
         public void addCharacteristic(String characteristic) {
@@ -392,8 +387,8 @@ public class YoungPersonsRecord {
             return levelOfNeedCode;
         }
 
-        public Boolean isSendFlag() {
-            return sendFlag;
+        public String isSENDFlag() {
+            return this.sendFlag;
         }
     }
 
