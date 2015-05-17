@@ -68,7 +68,7 @@ print "                <PredictedEndDate>"$38"</PredictedEndDate>"
 print "            </Cohort>"
 print "        </Activities>"
 print "        <IntendedDestination>"
-print "            <IntendedDestinationYr11></IntendedDestinationYr11>"
+print "            <IntendedDestinationYr11>"$39"</IntendedDestinationYr11>"
 print "        </IntendedDestination>"
 print "    </YoungPersonsRecord>"
 }
