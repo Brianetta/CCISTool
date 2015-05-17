@@ -1405,7 +1405,7 @@
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
-            <SENDFlag>N</SENDFlag>
+            <SENDFlag>Y</SENDFlag>
         </LevelOfNeed>
         <Activities>
             <Cohort>
