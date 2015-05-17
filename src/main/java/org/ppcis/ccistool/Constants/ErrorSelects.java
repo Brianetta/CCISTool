@@ -131,5 +131,31 @@ public class ErrorSelects {
         SQL.put(251, "SELECT YoungPersonsID,251 FROM YoungPersonsRecord WHERE NEETStartDate < DATE(DOB,'+15 years')");
         SQL.put(253, "SELECT YoungPersonsID,253 FROM YoungPersonsRecord WHERE ActivityCode=440 AND DATE(DOB,'+18 years')>StartDate");
         SQL.put(254, "SELECT YoungPersonsID,254 FROM YoungPersonsRecord WHERE ActivityCode=280 AND SENDFlag <> 'Y'");
+        SQL.put(255, "SELECT YoungPersonsID,255 FROM YoungPersonsRecord WHERE ActivityCode=460 AND SENDFlag <> 'Y'");
+        SQL.put(256, "SELECT YoungPersonsID,256 FROM YoungPersonsRecord WHERE DateVerified < StartDate");
+        SQL.put(257, "SELECT YoungPersonsID,257 FROM YoungPersonsRecord WHERE ReviewDate > PredictedEndDate");
+        SQL.put(258, "SELECT YoungPersonsID,258 FROM YoungPersonsRecord WHERE PredictedEndDate IS NOT NULL AND DATE(PredictedEndDate) IS NULL");
+        SQL.put(259, "SELECT YoungPersonsID,259 FROM YoungPersonsRecord WHERE ActivityCode IN (110,120,130,140,150," +
+                "210,220,230,240,250,260,270,280,290," +
+                "410,430,440,450,460) AND PredictedEndDate IS NULL");
+        SQL.put(260, "SELECT YoungPersonsRecord.YoungPersonsID,260 FROM YoungPersonsRecord " +
+                "INNER JOIN Characteristic ON YoungPersonsRecord.YoungPersonsID=Characteristic.YoungPersonsID " +
+                "WHERE CharacteristicCode=180 AND Gender='M'");
+        SQL.put(261, "SELECT YoungPersonsID,261 FROM YoungPersonsRecord WHERE LEACodeY11 NOT IN (SELECT LEANo FROM LEA) OR LEACodeY12 NOT IN (SELECT LEANo FROM LEA)");
+        SQL.put(262, "SELECT YoungPersonsID,262 FROM YoungPersonsRecord WHERE ActivityCode IN (260,290,350,710,720) AND ReviewDate IS NULL");
+        SQL.put(301, "SELECT YoungPersonsID,301 FROM YoungPersonsRecord WHERE IntendedDestinationYr11 IS NULL");
+        SQL.put(302, "SELECT YoungPersonsID,302 FROM YoungPersonsRecord WHERE IntendedDestinationYr11 NOT IN (111,121,211,311,321,411,511,611)");
+        SQL.put(902, "SELECT YoungPersonsID,902 FROM YoungPersonsRecord GROUP BY YoungPersonsID HAVING COUNT(*) > 1");
+        SQL.put(905, "SELECT YoungPersonsID,905 FROM YoungPersonsRecord WHERE CohortStatus IN ('P','G') " +
+                "AND ((GuaranteeStatusY11 IS NULL OR LEACodeY11 IS NULL) " +
+                "AND DATE(DOB,'+16 years') BETWEEN '2014-09-01' AND '2015-08-31') " +
+                "OR ((GuaranteeStatusY12 IS NULL OR LEACodeY12 IS NULL) " +
+                "AND DATE(DOB,'+16 years') BETWEEN '2013-09-01' AND '2014-08-31')");
+        SQL.put(906, "SELECT YoungPersonsID,906 FROM YoungPersonsRecord WHERE GuaranteeStatusIndicator='Y' " +
+                "AND ((GuaranteeStatusY11 IS NULL OR LEACodeY11 IS NULL) " +
+                "AND DATE(DOB,'+16 years') BETWEEN '2014-09-01' AND '2015-08-31') " +
+                "OR ((GuaranteeStatusY12 IS NULL OR LEACodeY12 IS NULL) " +
+                "AND DATE(DOB,'+16 years') BETWEEN '2013-09-01' AND '2014-08-31')");
+        SQL.put(907, "SELECT A.YoungPersonsID,906 FROM YoungPersonsRecord AS A INNER JOIN YoungPersonsRecord AS B ON A.UniqueLearnerNo=B.UniqueLearnerNo AND A.YoungPersonsID <> B.YoungPersonsID");
     }
 }
