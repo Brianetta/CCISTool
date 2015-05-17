@@ -49,10 +49,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>391</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -777,10 +773,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>392</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -893,10 +885,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>393</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -1066,6 +1058,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>392</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -1120,6 +1116,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>393</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -1568,6 +1568,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>391</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -1680,10 +1684,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>390</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -1796,6 +1796,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>929</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -1904,10 +1908,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>392</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -2131,10 +2135,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>394</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -2246,10 +2246,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>393</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -2420,6 +2416,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>393</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -2698,10 +2698,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>394</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -2810,6 +2806,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>390</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -3145,10 +3145,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>394</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -3203,10 +3203,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>391</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -3377,6 +3377,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>391</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -3431,6 +3435,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>394</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -3539,10 +3547,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>390</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -3597,6 +3605,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>391</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -3759,6 +3771,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>390</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -3983,10 +3999,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>929</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -4491,6 +4507,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>929</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -4769,6 +4789,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>390</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -4877,10 +4901,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>929</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -5101,6 +5125,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>929</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -5491,6 +5519,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>391</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -5599,10 +5631,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>391</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -5711,10 +5739,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>929</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -5769,6 +5793,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>391</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -5931,10 +5959,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>393</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -6047,10 +6071,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>393</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -6105,10 +6129,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>391</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -6163,10 +6183,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>393</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -6221,6 +6241,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>390</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -6387,10 +6411,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>929</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -6445,6 +6465,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>929</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -6607,6 +6631,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>390</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -6889,10 +6917,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>394</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -7112,10 +7136,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>392</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -7285,6 +7309,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>929</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -7339,10 +7367,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>394</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -7397,10 +7421,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>929</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -7621,10 +7641,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>393</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -7736,10 +7756,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>392</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -7794,10 +7814,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>390</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -8295,10 +8315,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>394</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -8407,10 +8427,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>394</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -8523,6 +8539,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>393</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -8577,6 +8597,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>393</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -8801,10 +8825,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>929</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -8859,6 +8883,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>393</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -8913,10 +8941,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>929</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -8971,10 +8995,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>393</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -9311,6 +9331,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>392</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -9481,10 +9505,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>394</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -9705,6 +9725,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>394</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -10037,10 +10061,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>390</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -10319,6 +10343,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>391</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -10489,10 +10517,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year11>
+            <Year12>
                 <GuaranteeStatus>159</GuaranteeStatus>
                 <LEACode>392</LEACode>
-            </Year11>
+            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -10713,10 +10741,6 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
-            <Year12>
-                <GuaranteeStatus>159</GuaranteeStatus>
-                <LEACode>394</LEACode>
-            </Year12>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -10771,6 +10795,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>393</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
@@ -10825,6 +10853,10 @@
             <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
+            <Year11>
+                <GuaranteeStatus>159</GuaranteeStatus>
+                <LEACode>392</LEACode>
+            </Year11>
         </SeptemberGuarantee>
         <LevelOfNeed>
             <LevelOfNeedCode>3</LevelOfNeedCode>
