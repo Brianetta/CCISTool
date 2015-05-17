@@ -34,6 +34,7 @@ public class Database {
             try {
                 Class.forName("org.sqlite.JDBC");
                 connection = DriverManager.getConnection("jdbc:sqlite:CCISTool.db");
+                connection.setAutoCommit(false);
                 Statement statement = connection.createStatement();
                 while (scanner.hasNext()) {
                     createQuery.append(scanner.nextLine());
@@ -44,7 +45,6 @@ public class Database {
                 for(String sql : sqlStatements) {
                     statement.addBatch(sql);
                 }
-                beginTransaction();
                 statement.executeBatch();
                 statement.close();
                 // Now to populate the LEA table from the UsefulData class. It might be quicker to hard-code the SQL,
@@ -184,19 +184,9 @@ public class Database {
         }
     }
 
-    public void beginTransaction() {
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute("BEGIN TRANSACTION");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void commitTransaction() {
         try {
-            Statement statement = connection.createStatement();
-            statement.execute("COMMIT TRANSACTION");
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }

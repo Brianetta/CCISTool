@@ -134,7 +134,6 @@ public class XMLImporter extends DefaultHandler {
         // Inhale the XML file
         try {
             sp = spf.newSAXParser();
-            database.beginTransaction();
             sp.parse(filename, this);
             database.commitTransaction();
         } catch (ParserConfigurationException e) {
