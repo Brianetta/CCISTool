@@ -195,7 +195,6 @@ public class Database {
     public TableModel errors(List<String> LEAs) {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        ResultSetMetaData metaData;
         ErrorTableModel tableModel = new ErrorTableModel();
         try {
             if (LEAs.size() > 0) {
