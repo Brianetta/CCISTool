@@ -5,6 +5,7 @@ import org.ppcis.ccistool.ErrorTableModel;
 
 import javax.swing.table.TableModel;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -256,8 +257,8 @@ public class Database {
             for (Integer LEA : fileHeader.getSourceLEAs()) {
                 preparedStatement.setString(1, fileHeader.getDatabaseIDs());
                 preparedStatement.setInt(2, LEA);
-                preparedStatement.setDate(3, new Date(fileHeader.getDateOfSend().getTime()));
-                preparedStatement.setDate(4, new Date(fileHeader.getPeriodEnd().getTime()));
+                preparedStatement.setString(3, (new SimpleDateFormat(UsefulData.DATE_FORMAT)).format(fileHeader.getDateOfSend()));
+                preparedStatement.setString(4, (new SimpleDateFormat(UsefulData.DATE_FORMAT)).format(fileHeader.getPeriodEnd()));
                 preparedStatement.setString(5, fileHeader.getSupplierName());
                 preparedStatement.setString(6, fileHeader.getSupplierXMLVersion());
                 preparedStatement.setString(7, fileHeader.getXMLSchemaVersion());
