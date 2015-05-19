@@ -14,9 +14,17 @@ CREATE TABLE Lea (
 	Name VARCHAR
 );;
 
-DROP TABLE IF EXISTS YoungPersonsRecord;;
+CREATE TABLE IF NOT EXISTS FileHeader (
+    DatabaseID INT,
+    SourceLEA INT,
+    DateOfSend DATE,
+    PeriodEnd DATE,
+    SupplierName VARCHAR,
+    SupplierXMLVersion VARCHAR,
+    XMLSchemaVersion VARCHAR
+);;
 
-CREATE TABLE YoungPersonsRecord (
+CREATE TABLE IF NOT EXISTS YoungPersonsRecord (
 	YoungPersonsID VARCHAR,
 	GivenName VARCHAR,
 	FamilyName VARCHAR,
@@ -63,9 +71,7 @@ CREATE TABLE YoungPersonsRecord (
 	LEACodeY12 INT
 );;
 
-DROP TABLE IF EXISTS Characteristic;;
-
-CREATE TABLE Characteristic (
+CREATE TABLE IF NOT EXISTS Characteristic (
 	YoungPersonsID VARCHAR,
 	CharacteristicCode VARCHAR
 );;

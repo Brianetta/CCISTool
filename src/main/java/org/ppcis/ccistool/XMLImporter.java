@@ -131,6 +131,8 @@ public class XMLImporter extends DefaultHandler {
         gui.setGuiStatus("Initialising database");
         Database database = new Database();
         recordCount=0;
+        // Delete anything that's already in the database
+        database.clearPersonalDetails();
         // Inhale the XML file
         try {
             sp = spf.newSAXParser();
@@ -422,6 +424,7 @@ public class XMLImporter extends DefaultHandler {
             case "FileHeader":
                 gui.setGuiStatus("Fileheader found");
                 fileHeaderImport = false;
+                fileHeader.storeInDatabase();
                 break;
             case "YoungPersonsRecord":
                 recordCount++;

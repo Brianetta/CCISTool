@@ -239,4 +239,44 @@ public class Database {
         }
         return tableModel;
     }
+
+    public void storeFileHeader(FileHeader fileHeader) {
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM FileHeader");
+            preparedStatement.execute();
+            preparedStatement = connection.prepareStatement("INSERT INTO FileHeader (" +
+                    "DatabaseID," +
+                    "SourceLEA," +
+                    "DateOfSend," +
+                    "PeriodEnd," +
+                    "SupplierName," +
+                    "SupplierXMLVersion," +
+                    "XMLSchemaVersion) VALUES (?,?,?,?,?,?,?)");
+            for (Integer LEA : fileHeader.getSourceLEAs()) {
+                preparedStatement.setString(1, fileHeader.getDatabaseIDs());
+                preparedStatement.setInt(2, LEA);
+                preparedStatement.setDate(3, new Date(fileHeader.getDateOfSend().getTime()));
+                preparedStatement.setDate(4, new Date(fileHeader.getPeriodEnd().getTime()));
+                preparedStatement.setString(5, fileHeader.getSupplierName());
+                preparedStatement.setString(6, fileHeader.getSupplierXMLVersion());
+                preparedStatement.setString(7, fileHeader.getXMLSchemaVersion());
+                preparedStatement.execute();
+            }
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void clearPersonalDetails() {
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM YoungPersonsRecord");
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -146,4 +146,9 @@ public class FileHeader {
         }
         return tempIDList.toString();
     }
+
+    public void storeInDatabase() {
+        Database database = new Database();
+        database.storeFileHeader(this);
+    }
 }
