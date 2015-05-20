@@ -44,7 +44,7 @@ public class ErrorSelects {
         SQL.put(19, "SELECT YoungPersonsID,19 FROM YoungPersonsRecord WHERE EducatedLEA NOT IN (SELECT LEANo FROM LEA) AND EducatedLEA NOT IN (000,001,002,003,004)");
         SQL.put(24, "SELECT YoungPersonsID,24 FROM YoungPersonsRecord WHERE LEACodeAtYear11 NOT IN (SELECT LEANo FROM LEA) AND LEACodeAtYear11 NOT IN (000,001,002,003,004)");
         SQL.put(25, "SELECT YoungPersonsID,25 FROM YoungPersonsRecord WHERE LEACodeAtYear11 <> LEACodeY11");
-        SQL.put(26, "SELECT YoungPersonsID,26 FROM YoungPersonsRecord WHERE LeadLEA NOT IN (%s)"); // TODO - Fileheader data
+        SQL.put(26, "SELECT YoungPersonsID,26 FROM YoungPersonsRecord WHERE LeadLEA NOT IN (SELECT SourceLEA FROM FileHEader)");
         SQL.put(27, "SELECT YoungPersonsID,27 FROM YoungPersonsRecord WHERE GuaranteeStatusY11 NOT IN (110,124,120,122,123,140,150,151,153,154,159)" +
                 " UNION ALL " +
                 "SELECT YoungPersonsID,27 FROM YoungPersonsRecord WHERE GuaranteeStatusY12 NOT IN (110,114,115,124,120,122,123,140,150,151,153,154,159);)");
@@ -95,8 +95,8 @@ public class ErrorSelects {
         SQL.put(228, "SELECT YoungPersonsID,228 FROM YoungPersonsRecord WHERE LENGTH(EstablishmentNumber) <> 7 OR SUBSTR(EstablishmentNumber,1,3) NOT IN (SELECT LEANo FROM LEA)");
         SQL.put(229, "SELECT YoungPersonsID,229 FROM YoungPersonsRecord WHERE ActivityCode NOT IN (110,120,130,140,150) AND date(dob,'+17 year') > '2015-08-31'");
         SQL.put(230, "SELECT YoungPersonsID,230 FROM YoungPersonsRecord WHERE ActivityCode IN (110,120,130,140,150) AND date(dob,'+17 year') < '2015-09-01'");
-        SQL.put(231, "SELECT YoungPersonsID,231 FROM YoungPersonsRecord WHERE CurrencyLapsed='Y' AND DueToLapseDate > ?"); // TODO - Fileheader data
-        SQL.put(232, "SELECT YoungPersonsID,232 FROM YoungPersonsRecord WHERE CurrencyLapsed='N' AND DueToLapseDate < ?"); // TODO - Fileheader data
+        SQL.put(231, "SELECT YoungPersonsID,231 FROM YoungPersonsRecord WHERE CurrencyLapsed='Y' AND DueToLapseDate > (SELECT PeriodEnd FROM FileHeader LIMIT 1)");
+        SQL.put(232, "SELECT YoungPersonsID,232 FROM YoungPersonsRecord WHERE CurrencyLapsed='N' AND DueToLapseDate < (SELECT PeriodEnd FROM FileHeader LIMIT 1)");
         SQL.put(233, "SELECT YoungPersonsRecord.YoungPersonsID,233 FROM YoungPersonsRecord " +
                 "LEFT JOIN Characteristic ON YoungPersonsRecord.YoungPersonsID=Characteristic.YoungPersonsID " +
                 "AND CharacteristicCode=140 " +
