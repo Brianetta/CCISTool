@@ -196,11 +196,31 @@ public class Gui implements ActionListener {
                 System.exit(0);
                 break;
             case ("checkErrors"):
+                doErrorChecks();
                 break;
             case ("showErrors"):
                 errorDisplay = new ErrorDisplay(leaList.getSelectedValuesList());
                 break;
         }
+    }
+
+    private class ErrorCheckWorker extends SwingWorker<Void, Void>
+    {
+        @Override
+        public Void doInBackground() {
+            new Database().doErrorChecks();
+            return null;
+        }
+
+        @Override
+        public void done() {
+            setGuiStatus("Error checks finished");
+        }
+    }
+
+    private void doErrorChecks() {
+        ErrorCheckWorker errorCheckWorker = new ErrorCheckWorker();
+        errorCheckWorker.execute();
     }
 
     private class ImportWorker extends SwingWorker<FileHeader, Void>

@@ -1,7 +1,9 @@
 package org.ppcis.ccistool.storage;
 
+import org.ppcis.ccistool.Constants.ErrorSelects;
 import org.ppcis.ccistool.Constants.UsefulData;
 import org.ppcis.ccistool.ErrorTableModel;
+import org.ppcis.ccistool.Gui;
 
 import javax.swing.table.TableModel;
 import java.sql.*;
@@ -315,6 +317,23 @@ public class Database {
             return fileHeader;
         } else {
             return null;
+        }
+    }
+
+    public void doErrorChecks() {
+        final String insertPrefix = "INSERT INTO ErrorFound (YoungPersonsID, ErrorCode) ";
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM ErrorFound");
+            commitTransaction();
+            for (Map.Entry<Integer,String> errorSelect : ErrorSelects.SQL.entrySet()) {
+                Gui.getGui().setGuiStatus(String.format("Checking error: %d", errorSelect.getKey()));
+                statement.executeUpdate(insertPrefix + errorSelect.getValue());
+            }
+            statement.close();
+            commitTransaction();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
