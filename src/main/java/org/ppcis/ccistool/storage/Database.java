@@ -255,16 +255,18 @@ public class Database {
                     "SupplierXMLVersion," +
                     "XMLSchemaVersion) VALUES (?,?,?,?,?,?,?)");
             for (Integer LEA : fileHeader.getSourceLEAs()) {
-                preparedStatement.setString(1, fileHeader.getDatabaseIDs());
-                preparedStatement.setInt(2, LEA);
-                preparedStatement.setString(3, (new SimpleDateFormat(UsefulData.DATE_FORMAT)).format(fileHeader.getDateOfSend()));
-                preparedStatement.setString(4, (new SimpleDateFormat(UsefulData.DATE_FORMAT)).format(fileHeader.getPeriodEnd()));
-                preparedStatement.setString(5, fileHeader.getSupplierName());
-                preparedStatement.setString(6, fileHeader.getSupplierXMLVersion());
-                preparedStatement.setString(7, fileHeader.getXMLSchemaVersion());
-                preparedStatement.execute();
+                for (Integer database : fileHeader.getDatabases()) {
+                    preparedStatement.setString(1, fileHeader.getDatabaseIDs());
+                        preparedStatement.setInt(2, LEA);
+                    preparedStatement.setString(3, (new SimpleDateFormat(UsefulData.DATE_FORMAT)).format(fileHeader.getDateOfSend()));
+                    preparedStatement.setString(4, (new SimpleDateFormat(UsefulData.DATE_FORMAT)).format(fileHeader.getPeriodEnd()));
+                    preparedStatement.setString(5, fileHeader.getSupplierName());
+                    preparedStatement.setString(6, fileHeader.getSupplierXMLVersion());
+                    preparedStatement.setString(7, fileHeader.getXMLSchemaVersion());
+                    preparedStatement.execute();
+                    preparedStatement.close();
+                }
             }
-            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -278,6 +280,40 @@ public class Database {
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public FileHeader loadFileHeader() {
+        FileHeader fileHeader = new FileHeader();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet;
+            resultSet = statement.executeQuery("SELECT DISTINCT DatabaseID FROM FileHeader");
+            while (resultSet.next()) {
+                fileHeader.addDatabase(resultSet.getString(1));
+            }
+            resultSet.close();
+            resultSet = statement.executeQuery("SELECT DISTINCT SourceLEA FROM FileHeader");
+            while (resultSet.next()) {
+                fileHeader.addSourceLea(resultSet.getString(1));
+            }
+            resultSet.close();
+            resultSet = statement.executeQuery("SELECT DISTINCT DateOfSend,PeriodEnd,SupplierName,SupplierXMLVersion,XMLSchemaVersion FROM FileHeader");
+            while (resultSet.next()) {
+                fileHeader.setDateOfSend(resultSet.getString(1));
+                fileHeader.setPeriodEnd(resultSet.getString(2));
+                fileHeader.setSupplierName(resultSet.getString(3));
+                fileHeader.setSupplierXMLVersion(resultSet.getString(4));
+                fileHeader.setXMLSchemaVersion(resultSet.getString(5));
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (fileHeader.getPeriodEnd() != null) {
+            return fileHeader;
+        } else {
+            return null;
         }
     }
 }

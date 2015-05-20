@@ -1,6 +1,7 @@
 package org.ppcis.ccistool;
 
 import org.ppcis.ccistool.Constants.UsefulData;
+import org.ppcis.ccistool.storage.Database;
 import org.ppcis.ccistool.storage.FileHeader;
 
 import javax.swing.*;
@@ -165,6 +166,11 @@ public class Gui implements ActionListener {
         jFrame.setVisible(true);
         jFrame.setMinimumSize(jFrame.getSize());
 
+        fileHeader = new Database().loadFileHeader();
+        getImportResults(fileHeader);
+        if (fileHeader.getPeriodEnd() != null) {
+            setGuiStatus("Data reloaded from database");
+        }
     }
 
     public String getFileName(String fileSpec) {
