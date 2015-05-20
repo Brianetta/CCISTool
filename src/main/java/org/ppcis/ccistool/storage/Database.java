@@ -264,9 +264,9 @@ public class Database {
                     preparedStatement.setString(6, fileHeader.getSupplierXMLVersion());
                     preparedStatement.setString(7, fileHeader.getXMLSchemaVersion());
                     preparedStatement.execute();
-                    preparedStatement.close();
                 }
             }
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
