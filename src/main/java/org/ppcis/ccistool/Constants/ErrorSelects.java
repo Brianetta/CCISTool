@@ -44,17 +44,17 @@ public class ErrorSelects {
         SQL.put(19, "SELECT YoungPersonsID,19 FROM YoungPersonsRecord WHERE EducatedLEA NOT IN (SELECT LEANo FROM LEA) AND EducatedLEA NOT IN (000,001,002,003,004)");
         SQL.put(24, "SELECT YoungPersonsID,24 FROM YoungPersonsRecord WHERE LEACodeAtYear11 NOT IN (SELECT LEANo FROM LEA) AND LEACodeAtYear11 NOT IN (000,001,002,003,004)");
         SQL.put(25, "SELECT YoungPersonsID,25 FROM YoungPersonsRecord WHERE LEACodeAtYear11 <> LEACodeY11");
-        SQL.put(26, "SELECT YoungPersonsID,26 FROM YoungPersonsRecord WHERE LeadLEA NOT IN (SELECT SourceLEA FROM FileHEader)");
+        SQL.put(26, "SELECT YoungPersonsID,26 FROM YoungPersonsRecord WHERE LeadLEA NOT IN (SELECT SourceLEA FROM FileHeader)");
         SQL.put(27, "SELECT YoungPersonsID,27 FROM YoungPersonsRecord WHERE GuaranteeStatusY11 NOT IN (110,124,120,122,123,140,150,151,153,154,159)" +
                 " UNION ALL " +
-                "SELECT YoungPersonsID,27 FROM YoungPersonsRecord WHERE GuaranteeStatusY12 NOT IN (110,114,115,124,120,122,123,140,150,151,153,154,159);)");
+                "SELECT YoungPersonsID,27 FROM YoungPersonsRecord WHERE GuaranteeStatusY12 NOT IN (110,114,115,124,120,122,123,140,150,151,153,154,159)");
         SQL.put(29, "SELECT YoungPersonsID,29 FROM YoungPersonsRecord WHERE YouthContractIndicator='Y' AND YouthContractStartDate IS NULL");
         SQL.put(30, "SELECT YoungPersonsID,30 FROM YoungPersonsRecord WHERE UniqueLearnerNo NOT GLOB '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'");
         SQL.put(31, "SELECT YoungPersonsID,31 FROM YoungPersonsRecord WHERE AddressLine1 IS NULL AND AddressLine2 IS NULL AND AddressLine3 IS NULL AND AddressLine4 IS NULL AND Town IS NULL AND County IS NULL");
         SQL.put(32, "SELECT YoungPersonsID,32 FROM YoungPersonsRecord WHERE Postcode IS NULL");
         SQL.put(33, "SELECT YoungPersonsID,33 FROM YoungPersonsRecord WHERE DATE(DOB,'+19 year') > '2015-08-31' AND SENDFlag IS NULL");
         SQL.put(34, "SELECT YoungPersonsID,34 FROM YoungPersonsRecord WHERE CohortStatus <> 'T' AND TransferredToLACode IS NOT NULL");
-        SQL.put(35, "SELECT GivenName,YoungPersonsID,35 FROM YoungPersonsRecord WHERE " +
+        SQL.put(35, "SELECT YoungPersonsID,35 FROM YoungPersonsRecord WHERE " +
                 "(CohortStatus = 'T' AND TransferredToLACode NOT IN (SELECT LEANo FROM LEA)) OR " +
                 "(CohortStatus = 'E' AND TransferredToLACode NOT IN (000,001,002,003))");
         SQL.put(36, "SELECT YoungPersonsID,36 FROM YoungPersonsRecord WHERE YouthContractIndicator NOT IN ('Y','N')");
@@ -156,6 +156,6 @@ public class ErrorSelects {
                 "AND DATE(DOB,'+16 years') BETWEEN '2014-09-01' AND '2015-08-31') " +
                 "OR ((GuaranteeStatusY12 IS NULL OR LEACodeY12 IS NULL) " +
                 "AND DATE(DOB,'+16 years') BETWEEN '2013-09-01' AND '2014-08-31')");
-        SQL.put(907, "SELECT A.YoungPersonsID,906 FROM YoungPersonsRecord AS A INNER JOIN YoungPersonsRecord AS B ON A.UniqueLearnerNo=B.UniqueLearnerNo AND A.YoungPersonsID <> B.YoungPersonsID");
+        SQL.put(907, "SELECT A.YoungPersonsID,907 FROM YoungPersonsRecord AS A INNER JOIN YoungPersonsRecord AS B ON A.UniqueLearnerNo=B.UniqueLearnerNo AND A.YoungPersonsID <> B.YoungPersonsID");
     }
 }
