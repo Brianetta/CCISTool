@@ -11291,9 +11291,9 @@
             <Ethnicity>NOBT</Ethnicity>
             <LeadLEA>390</LeadLEA>
             <EducatedLEA>390</EducatedLEA>
-            <TransferredToLACode></TransferredToLACode>
+            <TransferredToLACode>840</TransferredToLACode>
             <LEACodeAtYear11>390</LEACodeAtYear11>
-            <UniqueLearnerNo>1000000001</UniqueLearnerNo>
+            <UniqueLearnerNo>1000000105</UniqueLearnerNo>
             <UniquePupilNumber></UniquePupilNumber>
             <GuaranteeStatusIndicator>N</GuaranteeStatusIndicator>
             <YouthContractIndicator>N</YouthContractIndicator>
@@ -11347,7 +11347,7 @@
             <EducatedLEA>390</EducatedLEA>
             <TransferredToLACode></TransferredToLACode>
             <LEACodeAtYear11>390</LEACodeAtYear11>
-            <UniqueLearnerNo>1000000001</UniqueLearnerNo>
+            <UniqueLearnerNo>1000000106</UniqueLearnerNo>
             <UniquePupilNumber></UniquePupilNumber>
             <GuaranteeStatusIndicator>N</GuaranteeStatusIndicator>
             <YouthContractIndicator>N</YouthContractIndicator>
@@ -11455,7 +11455,7 @@
             <EducatedLEA>390</EducatedLEA>
             <TransferredToLACode></TransferredToLACode>
             <LEACodeAtYear11>390</LEACodeAtYear11>
-            <UniqueLearnerNo>1000000001</UniqueLearnerNo>
+            <UniqueLearnerNo>1000000107</UniqueLearnerNo>
             <UniquePupilNumber></UniquePupilNumber>
             <GuaranteeStatusIndicator>N</GuaranteeStatusIndicator>
             <YouthContractIndicator>N</YouthContractIndicator>
