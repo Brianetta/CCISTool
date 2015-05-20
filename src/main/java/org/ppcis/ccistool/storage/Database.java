@@ -273,11 +273,12 @@ public class Database {
     }
 
     public void clearPersonalDetails() {
-        PreparedStatement preparedStatement;
+        Statement statement;
         try {
-            preparedStatement = connection.prepareStatement("DELETE FROM YoungPersonsRecord");
-            preparedStatement.execute();
-            preparedStatement.close();
+            statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM YoungPersonsRecord");
+            statement.executeUpdate("DELETE FROM Characteristic");
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
