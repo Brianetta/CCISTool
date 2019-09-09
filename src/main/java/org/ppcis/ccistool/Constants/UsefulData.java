@@ -46,7 +46,7 @@ public class UsefulData {
         LEA.put(850,"Hampshire");
         LEA.put(350,"Bolton");
         LEA.put(309,"Haringey");
-        LEA.put(837,"Bournemouth");
+        LEA.put(839,"Bournemouth, Christchurch & Poole");
         LEA.put(310,"Harrow");
         LEA.put(867,"Bracknell Forest");
         LEA.put(805,"Hartlepool");
@@ -96,7 +96,7 @@ public class UsefulData {
         LEA.put(341,"Liverpool");
         LEA.put(371,"Doncaster");
         LEA.put(821,"Luton");
-        LEA.put(835,"Dorset");
+        LEA.put(838,"Dorset");
         LEA.put(352,"Manchester");
         LEA.put(332,"Dudley");
         LEA.put(887,"Medway");
@@ -138,7 +138,6 @@ public class UsefulData {
         LEA.put(320,"Waltham Forest");
         LEA.put(879,"Plymouth");
         LEA.put(212,"Wandsworth");
-        LEA.put(836,"Poole");
         LEA.put(877,"Warrington");
         LEA.put(851,"Portsmouth");
         LEA.put(937,"Warwickshire");
