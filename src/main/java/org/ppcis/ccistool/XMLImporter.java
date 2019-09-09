@@ -12,12 +12,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Scanner;
 import java.util.Stack;
 
 /**
@@ -56,68 +51,6 @@ public class XMLImporter extends DefaultHandler {
         fileHeader = new FileHeader();
         gui = Gui.getGui();
         gui.setGuiStatus("Open file...");
-    }
-
-    FileHeader importXMLWithFix(String filename) {
-        // Dialogue was cancelled; drop out as if nothing happened
-        if (filename == null) return null;
-
-        File tempFile;
-        Scanner inputScanner;
-        BufferedWriter tempFileWriter;
-        recordCount = 0;
-        try {
-            tempFile = File.createTempFile("CCISTool", ".tmp");
-            tempFile.deleteOnExit();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        try {
-            tempFileWriter = new BufferedWriter(new FileWriter(tempFile));
-        } catch (IOException e) {
-            e.printStackTrace();
-            gui.setGuiStatus(e.getMessage());
-            return null;
-        }
-
-        try {
-            inputScanner = new Scanner(Paths.get(filename));
-        } catch (IOException e) {
-            gui.setGuiStatus(e.getMessage());
-            e.printStackTrace();
-            return null;
-        }
-
-        while (inputScanner.hasNext()) {
-            // Fix each line, turning ampersands into the ampersand entity
-            try {
-                tempFileWriter.write(inputScanner.nextLine().replaceAll("&","&amp;"));
-                tempFileWriter.flush();
-                recordCount++;
-                gui.setGuiStatus(String.format("%d lines read",recordCount));
-            } catch (IOException e) {
-                e.printStackTrace();
-                gui.setGuiStatus(e.getMessage());
-                fileValidationError("Error processing file");
-            }
-        }
-        try {
-            tempFileWriter.close();
-        } catch (IOException e) {
-            gui.setGuiStatus(e.getMessage());
-            e.printStackTrace();
-        }
-
-        try {
-            return importXML(tempFile.getCanonicalPath());
-        } catch (IOException e) {
-            gui.setGuiStatus(e.getMessage());
-            e.printStackTrace();
-            fileValidationError("Temp file died");
-            return null;
-        }
     }
 
     FileHeader importXML(String filename) {

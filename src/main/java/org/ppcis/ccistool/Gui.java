@@ -229,17 +229,12 @@ public class Gui implements ActionListener {
         String filename;
 
         public ImportWorker(String filename,boolean unimpaired) {
-            this.unimpaired = unimpaired;
             this.filename = filename;
         }
 
         @Override
         public FileHeader doInBackground() {
-            if (unimpaired) {
-                return new XMLImporter().importXML(filename);
-            } else {
-                return new XMLImporter().importXMLWithFix(filename);
-            }
+            return new XMLImporter().importXML(filename);
         }
         @Override
         public void done() {
