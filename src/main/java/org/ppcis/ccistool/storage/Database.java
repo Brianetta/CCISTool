@@ -104,9 +104,8 @@ public class Database {
                     "EducatedLEA," +
                     "UniqueLearnerNo," +
                     "SENDFlag," +
+                    "SENSupportFlag," +
                     "GuaranteeStatusIndicator," +
-                    "YouthContractIndicator," +
-                    "YouthContractStartDate," +
                     "PreviousYPIDIdentifier," +
                     "EstablishmentNumber," +
                     "UniquePupilNumber," +
@@ -127,7 +126,7 @@ public class Database {
                     "LEACodeY11," +
                     "GuaranteeStatusY12," +
                     "LEACodeY12" +
-                    ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             preparedStatement.setString(1, youngPersonsRecord.personalDetails.getYoungPersonsID());
             preparedStatement.setString(2, youngPersonsRecord.personalDetails.getGivenName());
             preparedStatement.setString(3, youngPersonsRecord.personalDetails.getFamilyName());
@@ -150,29 +149,28 @@ public class Database {
             preparedStatement.setObject(19, youngPersonsRecord.personalDetails.getEducatedLEA());
             preparedStatement.setString(20, youngPersonsRecord.personalDetails.getUniqueLearnerNo());
             preparedStatement.setString(21, youngPersonsRecord.levelOfNeed.getSENDFlag());
-            preparedStatement.setObject(22, youngPersonsRecord.personalDetails.getGuaranteeStatusIndicator());
-            preparedStatement.setObject(23, youngPersonsRecord.personalDetails.getYouthContractIndicator());
-            preparedStatement.setString(24, youngPersonsRecord.personalDetails.getYouthContractStartDate());
-            preparedStatement.setString(25, youngPersonsRecord.personalDetails.getPreviousYPIDIdentifier());
-            preparedStatement.setObject(26, youngPersonsRecord.activities.getEstablishmentNumber());
-            preparedStatement.setString(27, youngPersonsRecord.personalDetails.getUniquePupilNumber());
-            preparedStatement.setString(28, youngPersonsRecord.activities.getEstablishmentName());
-            preparedStatement.setString(29, youngPersonsRecord.activities.getUKProviderReferenceNumber());
-            preparedStatement.setObject(30, youngPersonsRecord.activities.getActivityCode());
-            preparedStatement.setString(31, youngPersonsRecord.activities.getStartDate());
-            preparedStatement.setString(32, youngPersonsRecord.activities.getDateAscertained());
-            preparedStatement.setString(33, youngPersonsRecord.activities.getDateVerified());
-            preparedStatement.setString(34, youngPersonsRecord.activities.getReviewDate());
-            preparedStatement.setString(35, youngPersonsRecord.activities.getDueToLapseDate());
-            preparedStatement.setString(36, youngPersonsRecord.activities.getCurrencyLapsed());
-            preparedStatement.setObject(37, youngPersonsRecord.levelOfNeed.getLevelOfNeedCode());
-            preparedStatement.setString(38, youngPersonsRecord.activities.getNEETStartDate());
-            preparedStatement.setString(39, youngPersonsRecord.activities.getPredictedEndDate());
-            preparedStatement.setObject(40, youngPersonsRecord.getIntendedDestinationY11());
-            preparedStatement.setObject(41, youngPersonsRecord.septemberGuarantee.year11.getGuaranteeStatus());
-            preparedStatement.setObject(42, youngPersonsRecord.septemberGuarantee.year11.getLEACode());
-            preparedStatement.setObject(43, youngPersonsRecord.septemberGuarantee.year12.getGuaranteeStatus());
-            preparedStatement.setObject(44, youngPersonsRecord.septemberGuarantee.year12.getLEACode());
+            preparedStatement.setString(22, youngPersonsRecord.levelOfNeed.getSENSupportFlag());
+            preparedStatement.setObject(23, youngPersonsRecord.personalDetails.getGuaranteeStatusIndicator());
+            preparedStatement.setString(24, youngPersonsRecord.personalDetails.getPreviousYPIDIdentifier());
+            preparedStatement.setObject(25, youngPersonsRecord.activities.getEstablishmentNumber());
+            preparedStatement.setString(26, youngPersonsRecord.personalDetails.getUniquePupilNumber());
+            preparedStatement.setString(27, youngPersonsRecord.activities.getEstablishmentName());
+            preparedStatement.setString(28, youngPersonsRecord.activities.getUKProviderReferenceNumber());
+            preparedStatement.setObject(29, youngPersonsRecord.activities.getActivityCode());
+            preparedStatement.setString(30, youngPersonsRecord.activities.getStartDate());
+            preparedStatement.setString(31, youngPersonsRecord.activities.getDateAscertained());
+            preparedStatement.setString(32, youngPersonsRecord.activities.getDateVerified());
+            preparedStatement.setString(33, youngPersonsRecord.activities.getReviewDate());
+            preparedStatement.setString(34, youngPersonsRecord.activities.getDueToLapseDate());
+            preparedStatement.setString(35, youngPersonsRecord.activities.getCurrencyLapsed());
+            preparedStatement.setObject(36, youngPersonsRecord.levelOfNeed.getLevelOfNeedCode());
+            preparedStatement.setString(37, youngPersonsRecord.activities.getNEETStartDate());
+            preparedStatement.setString(38, youngPersonsRecord.activities.getPredictedEndDate());
+            preparedStatement.setObject(39, youngPersonsRecord.getIntendedDestinationY11());
+            preparedStatement.setObject(40, youngPersonsRecord.septemberGuarantee.year11.getGuaranteeStatus());
+            preparedStatement.setObject(41, youngPersonsRecord.septemberGuarantee.year11.getLEACode());
+            preparedStatement.setObject(42, youngPersonsRecord.septemberGuarantee.year12.getGuaranteeStatus());
+            preparedStatement.setObject(43, youngPersonsRecord.septemberGuarantee.year12.getLEACode());
             preparedStatement.execute();
             preparedStatement.close();
             preparedStatement = connection.prepareStatement("INSERT INTO Characteristic (YoungPersonsID,CharacteristicCode) VALUES(?,?)");

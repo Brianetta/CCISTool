@@ -74,8 +74,6 @@ public class YoungPersonsRecord {
         private String uniqueLearnerNo;
         private String uniquePupilNumber;
         private Character guaranteeStatusIndicator;
-        private Character youthContractIndicator;
-        private String youthContractStartDate;
         private String previousYPIDIdentifier;
 
         public void setYoungPersonsID(String youngPersonsID) {
@@ -190,14 +188,6 @@ public class YoungPersonsRecord {
             this.guaranteeStatusIndicator = guaranteeStatusIndicator;
         }
 
-        public void setYouthContractIndicator(char youthContractIndicator) {
-            this.youthContractIndicator = youthContractIndicator;
-        }
-
-        public void setYouthContractStartDate(String youthContractStartDate) {
-            this.youthContractStartDate = youthContractStartDate;
-        }
-
         public void setCounty(String county) {
             this.county = county;
         }
@@ -298,14 +288,6 @@ public class YoungPersonsRecord {
             return guaranteeStatusIndicator;
         }
 
-        public Character getYouthContractIndicator() {
-            return youthContractIndicator;
-        }
-
-        public String getYouthContractStartDate() {
-            return youthContractStartDate;
-        }
-
         public String getPreviousYPIDIdentifier() {
             return previousYPIDIdentifier;
         }
@@ -352,7 +334,7 @@ public class YoungPersonsRecord {
 
     public class LevelOfNeed {
         private Integer levelOfNeedCode;
-        private String sendFlag;
+        private String sendFlag,senSupportFlag;
         private ArrayList<Integer> characteristics;
 
         public LevelOfNeed() {
@@ -369,6 +351,9 @@ public class YoungPersonsRecord {
 
         public void setSENDFlag(String sendFlag) {
              this.sendFlag = sendFlag;
+        }
+        public void setSENSupportFlag(String senSupportFlag) {
+            this.senSupportFlag = senSupportFlag;
         }
 
         public void addCharacteristic(String characteristic) {
@@ -389,6 +374,9 @@ public class YoungPersonsRecord {
 
         public String getSENDFlag() {
             return this.sendFlag;
+        }
+        public String getSENSupportFlag() {
+            return this.senSupportFlag;
         }
     }
 

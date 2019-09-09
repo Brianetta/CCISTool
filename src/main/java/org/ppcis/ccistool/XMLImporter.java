@@ -272,12 +272,6 @@ public class XMLImporter extends DefaultHandler {
                     case "GuaranteeStatusIndicator":
                         currentYoungPersonsRecord.personalDetails.setGuaranteeStatusIndicator(currentString.charAt(0));
                         break;
-                    case "YouthContractIndicator":
-                        currentYoungPersonsRecord.personalDetails.setYouthContractIndicator(currentString.charAt(0));
-                        break;
-                    case "YouthContractStartDate":
-                        currentYoungPersonsRecord.personalDetails.setYouthContractStartDate(currentString);
-                        break;
                     case "PreviousYPIDIdentifier":
                         currentYoungPersonsRecord.personalDetails.setPreviousYPIDIdentifier(currentString);
                         break;
@@ -300,6 +294,9 @@ public class XMLImporter extends DefaultHandler {
                         break;
                     case "SENDFlag":
                         currentYoungPersonsRecord.levelOfNeed.setSENDFlag(currentString);
+                        break;
+                    case "SENSupportFlag":
+                        currentYoungPersonsRecord.levelOfNeed.setSENSupportFlag(currentString);
                         break;
                     case "CharacteristicCode":
                         currentYoungPersonsRecord.levelOfNeed.addCharacteristic(currentString);
