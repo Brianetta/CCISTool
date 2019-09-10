@@ -40,3 +40,4 @@ Ant files
 
 # Our own persistence file
 CCISTool.db
+CCISTool.db-journal
