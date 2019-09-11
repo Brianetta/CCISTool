@@ -8016,7 +8016,7 @@
         <Activities>
             <Cohort>
                 <ActivityCode>615</ActivityCode>
-                <StartDate>2015-04-03</StartDate>
+                <StartDate>2018-04-03</StartDate>
                 <DateAscertained>2019-03-25</DateAscertained>
                 <DateVerified>2019-03-26</DateVerified>
                 <ReviewDate></ReviewDate>
@@ -8025,7 +8025,7 @@
                 <EstablishmentNumber>3939999</EstablishmentNumber>
                 <EstablishmentName>School name</EstablishmentName>
                 <UKProviderReferenceNumber></UKProviderReferenceNumber>
-                <NEETStartDate>2019-04-03</NEETStartDate>
+                <NEETStartDate>2018-04-03</NEETStartDate>
                 <PredictedEndDate></PredictedEndDate>
             </Cohort>
         </Activities>
