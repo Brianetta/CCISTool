@@ -11437,34 +11437,34 @@
             <UniqueLearnerNo>1000000105</UniqueLearnerNo>
             <UniquePupilNumber></UniquePupilNumber>
             <GuaranteeStatusIndicator>N</GuaranteeStatusIndicator>
-            <YouthContractIndicator>N</YouthContractIndicator>
-            <YouthContractStartDate></YouthContractStartDate>
-            <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
+            <YouthContractIndicator></YouthContractIndicator>
+            <YouthContractStartDate>3</YouthContractStartDate>
+            <PreviousYPIDIdentifier>N</PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
         </SeptemberGuarantee>
         <LevelOfNeed>
-            <LevelOfNeedCode>3</LevelOfNeedCode>
-            <SENDFlag>N</SENDFlag>
+            <LevelOfNeedCode>N</LevelOfNeedCode>
+            <SENDFlag>430</SENDFlag>
         </LevelOfNeed>
         <Activities>
             <Cohort>
-                <ActivityCode>430</ActivityCode>
-                <StartDate>2015-01-01</StartDate>
+                <ActivityCode>2015-01-01</ActivityCode>
+                <StartDate>2015-03-01</StartDate>
                 <DateAscertained>2015-03-01</DateAscertained>
-                <DateVerified>2015-03-01</DateVerified>
-                <ReviewDate></ReviewDate>
-                <DueToLapseDate>2015-06-01</DueToLapseDate>
-                <CurrencyLapsed>N</CurrencyLapsed>
-                <EstablishmentNumber>3909999</EstablishmentNumber>
-                <EstablishmentName>School name</EstablishmentName>
-                <UKProviderReferenceNumber>12345678</UKProviderReferenceNumber>
-                <NEETStartDate></NEETStartDate>
-                <PredictedEndDate>2015-06-01</PredictedEndDate>
+                <DateVerified></DateVerified>
+                <ReviewDate>2015-06-01</ReviewDate>
+                <DueToLapseDate>N</DueToLapseDate>
+                <CurrencyLapsed>3909999</CurrencyLapsed>
+                <EstablishmentNumber>School name</EstablishmentNumber>
+                <EstablishmentName>12345678</EstablishmentName>
+                <UKProviderReferenceNumber></UKProviderReferenceNumber>
+                <NEETStartDate>2015-06-01</NEETStartDate>
+                <PredictedEndDate>611</PredictedEndDate>
             </Cohort>
         </Activities>
         <IntendedDestination>
-            <IntendedDestinationYr11>611</IntendedDestinationYr11>
+            <IntendedDestinationYr11></IntendedDestinationYr11>
         </IntendedDestination>
     </YoungPersonsRecord>
     <YoungPersonsRecord>
@@ -11491,34 +11491,34 @@
             <UniqueLearnerNo>1000000106</UniqueLearnerNo>
             <UniquePupilNumber></UniquePupilNumber>
             <GuaranteeStatusIndicator>N</GuaranteeStatusIndicator>
-            <YouthContractIndicator>N</YouthContractIndicator>
-            <YouthContractStartDate></YouthContractStartDate>
-            <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
+            <YouthContractIndicator></YouthContractIndicator>
+            <YouthContractStartDate>3</YouthContractStartDate>
+            <PreviousYPIDIdentifier>N</PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
         </SeptemberGuarantee>
         <LevelOfNeed>
-            <LevelOfNeedCode>3</LevelOfNeedCode>
-            <SENDFlag>N</SENDFlag>
+            <LevelOfNeedCode>N</LevelOfNeedCode>
+            <SENDFlag>430</SENDFlag>
         </LevelOfNeed>
         <Activities>
             <Cohort>
-                <ActivityCode>430</ActivityCode>
-                <StartDate>2015-01-01</StartDate>
+                <ActivityCode>2015-01-01</ActivityCode>
+                <StartDate>2015-03-01</StartDate>
                 <DateAscertained>2015-03-01</DateAscertained>
-                <DateVerified>2015-03-01</DateVerified>
-                <ReviewDate></ReviewDate>
-                <DueToLapseDate>2015-06-01</DueToLapseDate>
-                <CurrencyLapsed>N</CurrencyLapsed>
-                <EstablishmentNumber>3909999</EstablishmentNumber>
-                <EstablishmentName>School name</EstablishmentName>
-                <UKProviderReferenceNumber>12345678</UKProviderReferenceNumber>
-                <NEETStartDate></NEETStartDate>
-                <PredictedEndDate>2015-06-01</PredictedEndDate>
+                <DateVerified></DateVerified>
+                <ReviewDate>2015-06-01</ReviewDate>
+                <DueToLapseDate>N</DueToLapseDate>
+                <CurrencyLapsed>3909999</CurrencyLapsed>
+                <EstablishmentNumber>School name</EstablishmentNumber>
+                <EstablishmentName>12345678</EstablishmentName>
+                <UKProviderReferenceNumber></UKProviderReferenceNumber>
+                <NEETStartDate>2015-06-01</NEETStartDate>
+                <PredictedEndDate>611</PredictedEndDate>
             </Cohort>
         </Activities>
         <IntendedDestination>
-            <IntendedDestinationYr11>611</IntendedDestinationYr11>
+            <IntendedDestinationYr11></IntendedDestinationYr11>
         </IntendedDestination>
     </YoungPersonsRecord>
     <YoungPersonsRecord>
@@ -11545,34 +11545,34 @@
             <UniqueLearnerNo>1000000001</UniqueLearnerNo>
             <UniquePupilNumber></UniquePupilNumber>
             <GuaranteeStatusIndicator>N</GuaranteeStatusIndicator>
-            <YouthContractIndicator>N</YouthContractIndicator>
-            <YouthContractStartDate></YouthContractStartDate>
-            <PreviousYPIDIdentifier>1230000000202</PreviousYPIDIdentifier>
+            <YouthContractIndicator>1230000000202</YouthContractIndicator>
+            <YouthContractStartDate>3</YouthContractStartDate>
+            <PreviousYPIDIdentifier>N</PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
         </SeptemberGuarantee>
         <LevelOfNeed>
-            <LevelOfNeedCode>3</LevelOfNeedCode>
-            <SENDFlag>N</SENDFlag>
+            <LevelOfNeedCode>N</LevelOfNeedCode>
+            <SENDFlag>430</SENDFlag>
         </LevelOfNeed>
         <Activities>
             <Cohort>
-                <ActivityCode>430</ActivityCode>
-                <StartDate>2015-01-01</StartDate>
+                <ActivityCode>2015-01-01</ActivityCode>
+                <StartDate>2015-03-01</StartDate>
                 <DateAscertained>2015-03-01</DateAscertained>
-                <DateVerified>2015-03-01</DateVerified>
-                <ReviewDate></ReviewDate>
-                <DueToLapseDate>2015-06-01</DueToLapseDate>
-                <CurrencyLapsed>N</CurrencyLapsed>
-                <EstablishmentNumber>3909999</EstablishmentNumber>
-                <EstablishmentName>School name</EstablishmentName>
-                <UKProviderReferenceNumber>12345678</UKProviderReferenceNumber>
-                <NEETStartDate></NEETStartDate>
-                <PredictedEndDate>2015-06-01</PredictedEndDate>
+                <DateVerified></DateVerified>
+                <ReviewDate>2015-06-01</ReviewDate>
+                <DueToLapseDate>N</DueToLapseDate>
+                <CurrencyLapsed>3909999</CurrencyLapsed>
+                <EstablishmentNumber>School name</EstablishmentNumber>
+                <EstablishmentName>12345678</EstablishmentName>
+                <UKProviderReferenceNumber></UKProviderReferenceNumber>
+                <NEETStartDate>2015-06-01</NEETStartDate>
+                <PredictedEndDate>611</PredictedEndDate>
             </Cohort>
         </Activities>
         <IntendedDestination>
-            <IntendedDestinationYr11>611</IntendedDestinationYr11>
+            <IntendedDestinationYr11></IntendedDestinationYr11>
         </IntendedDestination>
     </YoungPersonsRecord>
     <YoungPersonsRecord>
@@ -11599,34 +11599,34 @@
             <UniqueLearnerNo>1000000107</UniqueLearnerNo>
             <UniquePupilNumber></UniquePupilNumber>
             <GuaranteeStatusIndicator>N</GuaranteeStatusIndicator>
-            <YouthContractIndicator>N</YouthContractIndicator>
-            <YouthContractStartDate></YouthContractStartDate>
-            <PreviousYPIDIdentifier></PreviousYPIDIdentifier>
+            <YouthContractIndicator></YouthContractIndicator>
+            <YouthContractStartDate>3</YouthContractStartDate>
+            <PreviousYPIDIdentifier>N</PreviousYPIDIdentifier>
         </PersonalDetails>
         <SeptemberGuarantee>
         </SeptemberGuarantee>
         <LevelOfNeed>
-            <LevelOfNeedCode>3</LevelOfNeedCode>
-            <SENDFlag>N</SENDFlag>
+            <LevelOfNeedCode>N</LevelOfNeedCode>
+            <SENDFlag>430</SENDFlag>
         </LevelOfNeed>
         <Activities>
             <Cohort>
-                <ActivityCode>430</ActivityCode>
-                <StartDate>2015-01-01</StartDate>
+                <ActivityCode>2015-01-01</ActivityCode>
+                <StartDate>2015-03-01</StartDate>
                 <DateAscertained>2015-03-01</DateAscertained>
-                <DateVerified>2015-03-01</DateVerified>
-                <ReviewDate></ReviewDate>
-                <DueToLapseDate>2015-06-01</DueToLapseDate>
-                <CurrencyLapsed>N</CurrencyLapsed>
-                <EstablishmentNumber>3909999</EstablishmentNumber>
-                <EstablishmentName>School name</EstablishmentName>
-                <UKProviderReferenceNumber>12345678</UKProviderReferenceNumber>
-                <NEETStartDate></NEETStartDate>
-                <PredictedEndDate>2015-06-01</PredictedEndDate>
+                <DateVerified></DateVerified>
+                <ReviewDate>2015-06-01</ReviewDate>
+                <DueToLapseDate>N</DueToLapseDate>
+                <CurrencyLapsed>3909999</CurrencyLapsed>
+                <EstablishmentNumber>School name</EstablishmentNumber>
+                <EstablishmentName>12345678</EstablishmentName>
+                <UKProviderReferenceNumber></UKProviderReferenceNumber>
+                <NEETStartDate>2015-06-01</NEETStartDate>
+                <PredictedEndDate>611</PredictedEndDate>
             </Cohort>
         </Activities>
         <IntendedDestination>
-            <IntendedDestinationYr11>611</IntendedDestinationYr11>
+            <IntendedDestinationYr11></IntendedDestinationYr11>
         </IntendedDestination>
     </YoungPersonsRecord>
 </NCCIS>
