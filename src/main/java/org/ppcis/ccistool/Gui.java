@@ -161,8 +161,12 @@ public class Gui implements ActionListener {
 
         fileHeader = new Database().loadFileHeader();
         getImportResults(fileHeader);
-        if (fileHeader.getPeriodEnd() != null) {
-            setGuiStatus("Data reloaded from database");
+        try {
+            if (fileHeader.getPeriodEnd() != null) {
+                setGuiStatus("Data reloaded from database");
+            }
+        } catch (NullPointerException E) {
+            //
         }
     }
 
