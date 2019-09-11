@@ -79,13 +79,6 @@ public class Gui implements ActionListener {
                 fileOpen.setActionCommand("open");
             }
             fileMenu.add(fileOpen);
-            {
-                fileOpenWithFix = new JMenuItem("Import impaired...");
-                fileOpenWithFix.setMnemonic('I');
-                fileOpenWithFix.addActionListener(this);
-                fileOpenWithFix.setActionCommand("openImpaired");
-            }
-            fileMenu.add(fileOpenWithFix);
             fileMenu.addSeparator();
             {
                 fileExit = new JMenuItem("Exit");
