@@ -143,14 +143,14 @@ public class ErrorSelects {
         SQL.put(902, "SELECT YoungPersonsID,902 FROM YoungPersonsRecord GROUP BY YoungPersonsID HAVING COUNT(*) > 1");
         SQL.put(905, "SELECT YoungPersonsID,905 FROM YoungPersonsRecord WHERE CohortStatus IN ('P','G') " +
                 "AND ((GuaranteeStatusY11 IS NULL OR LEACodeY11 IS NULL) " +
-                "AND DATE(DOB,'+16 years') BETWEEN '2014-09-01' AND '2019-08-31') " +
+                "AND DATE(DOB,'+16 years') BETWEEN '2018-09-01' AND '2019-08-31') " +
                 "OR ((GuaranteeStatusY12 IS NULL OR LEACodeY12 IS NULL) " +
-                "AND DATE(DOB,'+16 years') BETWEEN '2013-09-01' AND '2014-08-31')");
+                "AND DATE(DOB,'+16 years') BETWEEN '2017-09-01' AND '2018-08-31')");
         SQL.put(906, "SELECT YoungPersonsID,906 FROM YoungPersonsRecord WHERE GuaranteeStatusIndicator='Y' " +
                 "AND ((GuaranteeStatusY11 IS NULL OR LEACodeY11 IS NULL) " +
-                "AND DATE(DOB,'+16 years') BETWEEN '2014-09-01' AND '2019-08-31') " +
+                "AND DATE(DOB,'+16 years') BETWEEN '2018-09-01' AND '2019-08-31') " +
                 "OR ((GuaranteeStatusY12 IS NULL OR LEACodeY12 IS NULL) " +
-                "AND DATE(DOB,'+16 years') BETWEEN '2013-09-01' AND '2014-08-31')");
+                "AND DATE(DOB,'+16 years') BETWEEN '2017-09-01' AND '2018-08-31')");
         SQL.put(907, "SELECT A.YoungPersonsID,907 FROM YoungPersonsRecord AS A INNER JOIN YoungPersonsRecord AS B ON A.UniqueLearnerNo=B.UniqueLearnerNo AND A.YoungPersonsID <> B.YoungPersonsID");
     }
 }
