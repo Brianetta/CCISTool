@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE NCCIS>
 <!--NCCIS Return Information Exported from the CogniSoft NCCIS Database-->
-<NCCIS2019>
+<NCCIS>
 <FileHeader>
   <Databases>
     <DatabaseID>123</DatabaseID>
