@@ -172,6 +172,7 @@ public class Database {
             preparedStatement.setObject(41, youngPersonsRecord.septemberGuarantee.year11.getLEACode());
             preparedStatement.setObject(42, youngPersonsRecord.septemberGuarantee.year12.getGuaranteeStatus());
             preparedStatement.setObject(43, youngPersonsRecord.septemberGuarantee.year12.getLEACode());
+            preparedStatement.setObject(44, youngPersonsRecord.personalDetails.getYearGroup());
             preparedStatement.execute();
             preparedStatement.close();
             preparedStatement = connection.prepareStatement("INSERT INTO Characteristic (YoungPersonsID,CharacteristicCode) VALUES(?,?)");
