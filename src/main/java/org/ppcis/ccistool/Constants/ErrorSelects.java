@@ -72,7 +72,7 @@ public class ErrorSelects {
         SQL.put(101, "SELECT YoungPersonsID,101 FROM YoungPersonsRecord WHERE LevelOfNeedCode NOT BETWEEN 1 AND 3");
         SQL.put(102, "SELECT YoungPersonsID,102 FROM YoungPersonsRecord WHERE SENDFlag NOT IN ('Y','N')");
         SQL.put(103, "SELECT YoungPersonsID,103 FROM YoungPersonsRecord WHERE SENDFlag IS NULL");
-        SQL.put(104, "SELECT YoungPersonsID,104 FROM Characteristic WHERE CharacteristicCode NOT IN (110,120,130,140,150,160,170,180,190) GROUP BY YoungPersonsID");
+        SQL.put(104, "SELECT YoungPersonsID,104 FROM Characteristic WHERE CharacteristicCode NOT IN (110,120,130,140,150,160,170,180,190,200) GROUP BY YoungPersonsID");
         SQL.put(200, "SELECT YoungPersonsID,200 FROM YoungPersonsRecord WHERE ActivityCode IS NULL");
         SQL.put(201, "SELECT YoungPersonsID,201 FROM YoungPersonsRecord WHERE ActivityCode NOT IN (110,120,130,140,150," +
                 "210,220,230,240,250,260,270,280,290," +
@@ -80,7 +80,7 @@ public class ErrorSelects {
                 "410,430,440,450,460," +
                 "530," +
                 "540,610,615,616,619,620,630,640,650,660,670,680," +
-                "710,720," +
+                "710," +
                 "810,820,830)");
         SQL.put(202, "SELECT YoungPersonsID,202 FROM YoungPersonsRecord WHERE StartDate IS NULL");
         SQL.put(203, "SELECT YoungPersonsID,203 FROM YoungPersonsRecord WHERE DateAscertained IS NULL");
@@ -118,7 +118,7 @@ public class ErrorSelects {
                 "310,320,330,340,350,360,380,381,550," +
                 "410,430,440,450,460," +
                 "530," +
-                "710,720)");
+                "710)");
         SQL.put(244, "SELECT YoungPersonsID,244 FROM YoungPersonsRecord WHERE DueToLapseDate IS NOT NULL AND DATE(DueToLapseDate) IS NULL");
         SQL.put(251, "SELECT YoungPersonsID,251 FROM YoungPersonsRecord WHERE NEETStartDate < DATE(DOB,'+15 years')");
         SQL.put(253, "SELECT YoungPersonsID,253 FROM YoungPersonsRecord WHERE ActivityCode=440 AND DATE(DOB,'+18 years')>StartDate");
