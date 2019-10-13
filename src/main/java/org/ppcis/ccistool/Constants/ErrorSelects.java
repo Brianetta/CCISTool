@@ -24,7 +24,7 @@ public class ErrorSelects {
         SQL.put(2, "SELECT YoungPersonsID,2 FROM YoungPersonsRecord WHERE GivenName IS NULL");
         SQL.put(3, "SELECT YoungPersonsID,3 FROM YoungPersonsRecord WHERE FamilyName IS NULL");
         SQL.put(4, "SELECT YoungPersonsID,4 FROM YoungPersonsRecord WHERE GENDER IS NULL");
-        SQL.put(5, "SELECT YoungPersonsID,5 FROM YoungPersonsRecord WHERE GENDER NOT IN ('F','M','U','N')");
+        SQL.put(5, "SELECT YoungPersonsID,5 FROM YoungPersonsRecord WHERE GENDER NOT IN ('F','M','U','W')");
         SQL.put(6, "SELECT YoungPersonsID,6 FROM YoungPersonsRecord WHERE ETHNICITY IS NULL");
         SQL.put(7, "SELECT YoungPersonsID,7 FROM YoungPersonsRecord WHERE ETHNICITY NOT IN (\n" +
                 "'WBRI','WIRI','WROM','WOTH'," +
