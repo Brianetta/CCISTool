@@ -67,7 +67,8 @@ CREATE TABLE IF NOT EXISTS YoungPersonsRecord (
 	GuaranteeStatusY11 INT,
 	LEACodeY11 INT,
 	GuaranteeStatusY12 INT,
-	LEACodeY12 INT
+	LEACodeY12 INT,
+	YearGroup INT
 );;
 
 CREATE TABLE IF NOT EXISTS Characteristic (

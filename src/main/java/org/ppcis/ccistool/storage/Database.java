@@ -125,8 +125,9 @@ public class Database {
                     "GuaranteeStatusY11," +
                     "LEACodeY11," +
                     "GuaranteeStatusY12," +
-                    "LEACodeY12" +
-                    ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    "LEACodeY12," +
+                    "YearGroup" +
+                    ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             preparedStatement.setString(1, youngPersonsRecord.personalDetails.getYoungPersonsID());
             preparedStatement.setString(2, youngPersonsRecord.personalDetails.getGivenName());
             preparedStatement.setString(3, youngPersonsRecord.personalDetails.getFamilyName());

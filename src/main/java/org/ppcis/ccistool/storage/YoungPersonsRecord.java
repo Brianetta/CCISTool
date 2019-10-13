@@ -75,6 +75,7 @@ public class YoungPersonsRecord {
         private String uniquePupilNumber;
         private Character guaranteeStatusIndicator;
         private String previousYPIDIdentifier;
+        private Integer yearGroup;
 
         public void setYoungPersonsID(String youngPersonsID) {
             this.youngPersonsID = youngPersonsID;
@@ -290,6 +291,14 @@ public class YoungPersonsRecord {
 
         public String getPreviousYPIDIdentifier() {
             return previousYPIDIdentifier;
+        }
+
+        public Integer getYearGroup() {
+            return yearGroup;
+        }
+
+        public void setYearGroup(Integer yearGroup) {
+            this.yearGroup = yearGroup;
         }
     }
 
