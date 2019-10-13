@@ -48,7 +48,7 @@ public class ErrorSelects {
         SQL.put(27, "SELECT YoungPersonsID,27 FROM YoungPersonsRecord WHERE GuaranteeStatusY11 NOT IN (110,124,120,122,123,140,150,151,153,154,159)" +
                 " UNION ALL " +
                 "SELECT YoungPersonsID,27 FROM YoungPersonsRecord WHERE GuaranteeStatusY12 NOT IN (110,114,115,124,120,122,123,140,150,151,153,154,159)");
-        SQL.put(30, "SELECT YoungPersonsID,30 FROM YoungPersonsRecord WHERE UniqueLearnerNo NOT GLOB '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'");
+        SQL.put(30, "SELECT YoungPersonsID,30 FROM YoungPersonsRecord WHERE UniqueLearnerNo NOT GLOB '[1-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'");
         SQL.put(31, "SELECT YoungPersonsID,31 FROM YoungPersonsRecord WHERE AddressLine1 IS NULL AND AddressLine2 IS NULL AND AddressLine3 IS NULL AND AddressLine4 IS NULL AND Town IS NULL AND County IS NULL");
         SQL.put(32, "SELECT YoungPersonsID,32 FROM YoungPersonsRecord WHERE Postcode IS NULL");
         SQL.put(34, "SELECT YoungPersonsID,34 FROM YoungPersonsRecord WHERE CohortStatus <> 'T' AND TransferredToLACode IS NOT NULL");
