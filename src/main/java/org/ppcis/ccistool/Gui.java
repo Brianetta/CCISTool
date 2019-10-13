@@ -9,8 +9,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -258,14 +258,14 @@ public class Gui implements ActionListener {
         for (Integer sourceLEA : fileHeader.getSourceLEAs()) {
             leaListData.addElement(sourceLEA.toString() + ": " + UsefulData.LEA.get(sourceLEA));
         }
-        showDateOfSend.setText(new SimpleDateFormat(MONTH_FORMAT).format(fileHeader.getDateOfSend()));
-        if (fileHeader.getDateOfSend().before(fileHeader.getPeriodEnd())) {
+        showDateOfSend.setText(fileHeader.getDateOfSend().format(DateTimeFormatter.ofPattern("MMM yyyy")));
+        if (fileHeader.getDateOfSend().isBefore(fileHeader.getPeriodEnd())) {
             showDateOfSend.setForeground(new Color(224, 128, 0));
         } else {
             showDateOfSend.setForeground(new Color(0, 128, 0));
         }
-        showPeriodEnd.setText(new SimpleDateFormat(MONTH_FORMAT).format(fileHeader.getPeriodEnd()));
-        if (fileHeader.getPeriodEnd().after((Calendar.getInstance()).getTime())) {
+        showPeriodEnd.setText(fileHeader.getPeriodEnd().format(DateTimeFormatter.ofPattern("MMM yyyy")));
+        if (fileHeader.getPeriodEnd().isAfter(LocalDate.now())) {
             showPeriodEnd.setForeground(new Color(224, 128, 0));
         } else {
             showPeriodEnd.setForeground(new Color(0, 128, 0));

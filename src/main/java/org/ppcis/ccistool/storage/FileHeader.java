@@ -5,8 +5,8 @@ import org.ppcis.ccistool.Constants.UsefulData;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,8 +27,8 @@ public class FileHeader {
     private List<String> fileValidationErrors;
     private List<Integer> databases;
     private List<Integer> sourceLEAs;
-    private Date dateOfSend;
-    private Date periodEnd;
+    private LocalDate dateOfSend;
+    private LocalDate periodEnd;
     private String supplierName;
     private String supplierXMLVersion;
     private String XMLSchemaVersion;
@@ -72,7 +72,7 @@ public class FileHeader {
         return new ArrayList<Integer>(this.sourceLEAs);
     }
 
-    public Date getDateOfSend() {
+    public LocalDate getDateOfSend() {
         return dateOfSend;
     }
 
@@ -82,13 +82,13 @@ public class FileHeader {
             if (dateOfSend.length() != UsefulData.DATE_FORMAT.length()) {
                 throw new ParseException(null, 0);
             }
-            this.dateOfSend = dateFormatter.parse(dateOfSend);
+            this.dateOfSend = LocalDate.parse(dateOfSend);
         } catch (ParseException e) {
             this.addFileValidationError(ErrorStrings.ERR_INVALID_DATE_SEND + ": " + dateOfSend);
         }
     }
 
-    public Date getPeriodEnd() {
+    public LocalDate getPeriodEnd() {
         return periodEnd;
     }
 
@@ -98,7 +98,7 @@ public class FileHeader {
             if (periodEnd.length() != UsefulData.DATE_FORMAT.length()) {
                 throw new ParseException(null, 0);
             }
-            this.periodEnd = dateFormatter.parse(periodEnd);
+            this.periodEnd = LocalDate.parse(periodEnd);
         } catch (ParseException e) {
             this.addFileValidationError(ErrorStrings.ERR_INVALID_PERIODEND + ": " + periodEnd);
         }
