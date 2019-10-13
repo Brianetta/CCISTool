@@ -247,6 +247,11 @@ public class XMLImporter extends DefaultHandler {
                         break;
                     case "DOB":
                         currentYoungPersonsRecord.personalDetails.setDob(currentString);
+                        Integer schoolYearAdjustment = -5;
+                        LocalDate dob = LocalDate.parse(currentYoungPersonsRecord.personalDetails.getDob());
+                        if (dob.getMonthValue()>8) schoolYearAdjustment -= 1;
+                        if (this.fileHeader.getPeriodEnd().getMonthValue()>8) schoolYearAdjustment += 1;
+                        currentYoungPersonsRecord.personalDetails.setYearGroup(this.fileHeader.getPeriodEnd().getYear()-dob.getYear()+schoolYearAdjustment);
                         break;
                     case "Ethnicity":
                         currentYoungPersonsRecord.personalDetails.setEthnicity(currentString);
