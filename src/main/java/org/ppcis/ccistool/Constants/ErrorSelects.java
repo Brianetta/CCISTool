@@ -35,8 +35,8 @@ public class ErrorSelects {
                 "'REFU','NOBT'" +
                 ")");
         SQL.put(8, "SELECT YoungPersonsID,8 FROM YoungPersonsRecord WHERE DOB IS NULL");
-        SQL.put(9, "SELECT YoungPersonsID,9 FROM YoungPersonsRecord WHERE DATE(DOB,'+25 years') < '2019-09-1'");
-        SQL.put(10, "SELECT YoungPersonsID,10 FROM YoungPersonsRecord WHERE DATE(DOB,'+15 years') > '2019-08-31'");
+        SQL.put(9, "SELECT YoungPersonsID,9 FROM YoungPersonsRecord WHERE YearGroup > 21 AND CohortStatus <> 'A'");
+        SQL.put(10, "SELECT YoungPersonsID,10 FROM YoungPersonsRecord WHERE YearGroup < 11");
         SQL.put(11, "SELECT YoungPersonsID,11 FROM YoungPersonsRecord WHERE CohortStatus IS NULL");
         SQL.put(13, "SELECT YoungPersonsID,13 FROM YoungPersonsRecord WHERE CohortStatus = 'T' AND TransferredToLACode IS NULL");
         SQL.put(14, "SELECT YoungPersonsID,14 FROM YoungPersonsRecord WHERE LeadLEA IS NULL");
@@ -90,8 +90,8 @@ public class ErrorSelects {
         SQL.put(225, "SELECT YoungPersonsID,225 FROM YoungPersonsRecord WHERE NEETStartDate > StartDate");
         SQL.put(226, "SELECT YoungPersonsID,226 FROM YoungPersonsRecord WHERE NEETStartDate IS NOT NULL AND ActivityCode NOT IN (540,610,615,616,619,620,630,640,650,660,670,680)");
         SQL.put(228, "SELECT YoungPersonsID,228 FROM YoungPersonsRecord WHERE LENGTH(EstablishmentNumber) <> 7 OR SUBSTR(EstablishmentNumber,1,3) NOT IN (SELECT LEANo FROM LEA)");
-        SQL.put(229, "SELECT YoungPersonsID,229 FROM YoungPersonsRecord WHERE ActivityCode NOT IN (110,120,130,140,150) AND date(dob,'+17 year') > '2019-08-31'");
-        SQL.put(230, "SELECT YoungPersonsID,230 FROM YoungPersonsRecord WHERE ActivityCode IN (110,120,130,140,150) AND date(dob,'+17 year') < '2019-09-01'");
+        SQL.put(229, "SELECT YoungPersonsID,229 FROM YoungPersonsRecord WHERE ActivityCode NOT IN (110,120,130,140,150) AND YearGroup < 12");
+        SQL.put(230, "SELECT YoungPersonsID,230 FROM YoungPersonsRecord WHERE ActivityCode IN (110,120,130,140,150) AND YearGroup > 11");
         SQL.put(231, "SELECT YoungPersonsID,231 FROM YoungPersonsRecord WHERE CurrencyLapsed='Y' AND DueToLapseDate > (SELECT PeriodEnd FROM FileHeader LIMIT 1)");
         SQL.put(232, "SELECT YoungPersonsID,232 FROM YoungPersonsRecord WHERE CurrencyLapsed='N' AND DueToLapseDate < (SELECT PeriodEnd FROM FileHeader LIMIT 1)");
         SQL.put(233, "SELECT YoungPersonsRecord.YoungPersonsID,233 FROM YoungPersonsRecord " +
@@ -135,7 +135,7 @@ public class ErrorSelects {
                 "WHERE CharacteristicCode=180 AND Gender='M'");
         SQL.put(261, "SELECT YoungPersonsID,261 FROM YoungPersonsRecord WHERE LEACodeY11 NOT IN (SELECT LEANo FROM LEA) OR LEACodeY12 NOT IN (SELECT LEANo FROM LEA)");
         SQL.put(262, "SELECT YoungPersonsID,262 FROM YoungPersonsRecord WHERE ActivityCode IN (260,290,350,710) AND ReviewDate IS NULL");
-        SQL.put(301, "SELECT YoungPersonsID,301 FROM YoungPersonsRecord WHERE IntendedDestinationYr11 IS NULL");
+        SQL.put(301, "SELECT YoungPersonsID,301 FROM YoungPersonsRecord WHERE IntendedDestinationYr11 IS NULL AND YearGroup=11");
         SQL.put(302, "SELECT YoungPersonsID,302 FROM YoungPersonsRecord WHERE IntendedDestinationYr11 NOT IN (111,121,211,311,321,411,511,611)");
         SQL.put(303, "SELECT YoungPersonsID,303 FROM YoungPersonsRecord WHERE SENSupportFlag IS NULL");
         SQL.put(304, "SELECT YoungPersonsID,304 FROM YoungPersonsRecord WHERE SENSupportFlag NOT IN ('Y','N')");
