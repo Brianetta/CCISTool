@@ -139,18 +139,38 @@ public class ErrorSelects {
         SQL.put(302, "SELECT YoungPersonsID,302 FROM YoungPersonsRecord WHERE IntendedDestinationYr11 NOT IN (111,121,211,311,321,411,511,611)");
         SQL.put(303, "SELECT YoungPersonsID,303 FROM YoungPersonsRecord WHERE SENSupportFlag IS NULL");
         SQL.put(304, "SELECT YoungPersonsID,304 FROM YoungPersonsRecord WHERE SENSupportFlag NOT IN ('Y','N')");
-        SQL.put(305, "SELECT YoungPersonsID,305 FROM YoungPersonsRecord CROSS JOIN FileHeader WHERE DateVerified > PeriodEnd");
-        SQL.put(902, "SELECT YoungPersonsID,902 FROM YoungPersonsRecord GROUP BY YoungPersonsID HAVING COUNT(*) > 1");
-        SQL.put(905, "SELECT YoungPersonsID,905 FROM YoungPersonsRecord WHERE CohortStatus IN ('P','G') " +
-                "AND ((GuaranteeStatusY11 IS NULL OR LEACodeY11 IS NULL) " +
-                "AND DATE(DOB,'+16 years') BETWEEN '2018-09-01' AND '2019-08-31') " +
-                "OR ((GuaranteeStatusY12 IS NULL OR LEACodeY12 IS NULL) " +
-                "AND DATE(DOB,'+16 years') BETWEEN '2017-09-01' AND '2018-08-31')");
-        SQL.put(906, "SELECT YoungPersonsID,906 FROM YoungPersonsRecord WHERE GuaranteeStatusIndicator='Y' " +
-                "AND ((GuaranteeStatusY11 IS NULL OR LEACodeY11 IS NULL) " +
-                "AND DATE(DOB,'+16 years') BETWEEN '2018-09-01' AND '2019-08-31') " +
-                "OR ((GuaranteeStatusY12 IS NULL OR LEACodeY12 IS NULL) " +
-                "AND DATE(DOB,'+16 years') BETWEEN '2017-09-01' AND '2018-08-31')");
-        SQL.put(907, "SELECT A.YoungPersonsID,907 FROM YoungPersonsRecord AS A INNER JOIN YoungPersonsRecord AS B ON A.UniqueLearnerNo=B.UniqueLearnerNo AND A.YoungPersonsID <> B.YoungPersonsID");
+        SQL.put(305, "SELECT YoungPersonsID,305 FROM YoungPersonsRecord LEFT JOIN FileHeader ON SourceLEA=LeadLEA WHERE DateVerified > PeriodEnd");
+        SQL.put(902, "SELECT YoungPersonsID,902 FROM YoungPersonsRecord WHERE CohortStatus <> 'G' GROUP BY YoungPersonsID HAVING COUNT(*) > 1");
+        SQL.put(905, "SELECT YoungPersonsID,905 FROM YoungPersonsRecord LEFT JOIN FileHeader ON SourceLEA=LeadLEA WHERE CohortStatus = 'G' " +
+                "AND (GuaranteeStatusY11 IS NULL OR LEACodeY11 IS NULL) AND YearGroup=11 " +
+                "AND strftime('%m', PeriodEnd) IN ('04','05','06','07','08')" +
+                "UNION ALL " +
+                "SELECT YoungPersonsID,905 FROM YoungPersonsRecord LEFT JOIN FileHeader ON SourceLEA=LeadLEA WHERE CohortStatus = 'G' " +
+                "AND (GuaranteeStatusY12 IS NULL OR LEACodeY12 IS NULL) AND YearGroup=12 " +
+                "AND strftime('%m', PeriodEnd) IN ('04','05','06','07','08')" +
+                "UNION ALL " +
+                "SELECT YoungPersonsID,905 FROM YoungPersonsRecord LEFT JOIN FileHeader ON SourceLEA=LeadLEA WHERE CohortStatus = 'G' " +
+                "AND (GuaranteeStatusY11 IS NULL OR LEACodeY11 IS NULL) AND YearGroup=12 " +
+                "AND strftime('%m', PeriodEnd) IN ('09','10','11','12','01','02','03')" +
+                "UNION ALL " +
+                "SELECT YoungPersonsID,905 FROM YoungPersonsRecord LEFT JOIN FileHeader ON SourceLEA=LeadLEA WHERE CohortStatus = 'G' " +
+                "AND (GuaranteeStatusY12 IS NULL OR LEACodeY12 IS NULL) AND YearGroup=13 " +
+                "AND strftime('%m', PeriodEnd) IN ('09','10','11','12','01','02','03')");
+        SQL.put(906, "SELECT YoungPersonsID,906 FROM YoungPersonsRecord LEFT JOIN FileHeader ON SourceLEA=LeadLEA WHERE GuaranteeStatusIndicator='Y' " +
+                "AND (GuaranteeStatusY11 IS NULL OR LEACodeY11 IS NULL) AND YearGroup=11 " +
+                "AND strftime('%m', PeriodEnd) IN ('04','05','06','07','08')" +
+                "UNION ALL " +
+                "SELECT YoungPersonsID,906 FROM YoungPersonsRecord LEFT JOIN FileHeader ON SourceLEA=LeadLEA WHERE GuaranteeStatusIndicator='Y' " +
+                "AND (GuaranteeStatusY12 IS NULL OR LEACodeY12 IS NULL) AND YearGroup=12 " +
+                "AND strftime('%m', PeriodEnd) IN ('04','05','06','07','08')" +
+                "UNION ALL " +
+                "SELECT YoungPersonsID,906 FROM YoungPersonsRecord LEFT JOIN FileHeader ON SourceLEA=LeadLEA WHERE GuaranteeStatusIndicator='Y' " +
+                "AND (GuaranteeStatusY11 IS NULL OR LEACodeY11 IS NULL) AND YearGroup=12 " +
+                "AND strftime('%m', PeriodEnd) IN ('09','10','11','12','01','02','03')" +
+                "UNION ALL " +
+                "SELECT YoungPersonsID,906 FROM YoungPersonsRecord LEFT JOIN FileHeader ON SourceLEA=LeadLEA WHERE GuaranteeStatusIndicator='Y' " +
+                "AND (GuaranteeStatusY12 IS NULL OR LEACodeY12 IS NULL) AND YearGroup=13 " +
+                "AND strftime('%m', PeriodEnd) IN ('09','10','11','12','01','02','03')");
+        SQL.put(907, "SELECT A.YoungPersonsID,907 FROM YoungPersonsRecord AS A INNER JOIN YoungPersonsRecord AS B ON A.UniqueLearnerNo=B.UniqueLearnerNo AND A.YoungPersonsID <> B.YoungPersonsID AND A.CohortStatus <> 'M' AND B.CohortStatus <> 'M'");
     }
 }
