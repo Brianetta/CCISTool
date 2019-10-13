@@ -32,7 +32,7 @@ public class Database {
 
     public Database() {
         if (connection == null) {
-            Scanner scanner = new Scanner(getClass().getResourceAsStream("/initialise_database.sql"));
+            Scanner scanner = new Scanner(getClass().getResourceAsStream("/initialise_database.sql"), "UTF-8");
             StringBuilder createQuery = new StringBuilder();
             try {
                 Class.forName("org.sqlite.JDBC");
