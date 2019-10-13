@@ -13,6 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Stack;
 
 /**
@@ -337,6 +338,7 @@ public class XMLImporter extends DefaultHandler {
                         currentYoungPersonsRecord.activities.setUKProviderReferenceNumber(currentString);
                         break;
                     case "NEETStartDate":
+                    case "NeetStartDate":
                         currentYoungPersonsRecord.activities.setNEETStartDate(currentString);
                         break;
                     case "PredictedEndDate":
