@@ -134,7 +134,7 @@ public class ErrorSelects {
                 "INNER JOIN Characteristic ON YoungPersonsRecord.YoungPersonsID=Characteristic.YoungPersonsID " +
                 "WHERE CharacteristicCode=180 AND Gender='M'");
         SQL.put(261, "SELECT YoungPersonsID,261 FROM YoungPersonsRecord WHERE LEACodeY11 NOT IN (SELECT LEANo FROM LEA) OR LEACodeY12 NOT IN (SELECT LEANo FROM LEA)");
-        SQL.put(262, "SELECT YoungPersonsID,262 FROM YoungPersonsRecord WHERE ActivityCode IN (260,290,350,710) AND ReviewDate IS NULL");
+        SQL.put(262, "SELECT YoungPersonsID,262 FROM YoungPersonsRecord WHERE ActivityCode IN (260,290,350,616,710) AND ReviewDate IS NULL");
         SQL.put(301, "SELECT YoungPersonsID,301 FROM YoungPersonsRecord WHERE IntendedDestinationYr11 IS NULL AND YearGroup=11");
         SQL.put(302, "SELECT YoungPersonsID,302 FROM YoungPersonsRecord WHERE IntendedDestinationYr11 NOT IN (111,121,211,311,321,411,511,611)");
         SQL.put(303, "SELECT YoungPersonsID,303 FROM YoungPersonsRecord WHERE SENSupportFlag IS NULL");
